@@ -1,0 +1,28 @@
+/* Design tokens — single source of truth for color, unchanged from the
+   original inline :root block. Retune brand colors here only. */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1b2140;
+  --color-accent: #3b56e0;
+  --color-accent-600: #2f4fd4;
+  --color-accent-700: #23306e;
+  --color-accent-100: #eaeeff;
+  --color-accent-800: #1b2140;
+  --color-divider: #1b214020;
+  --color-surface: transparent;
+
+  --color-teal: #17806f;
+  --color-green: #1f9e6a;
+  --color-red: #dd5a4d;
+  --color-amber: #ffc95c;
+  --color-amber-dark: #c9821a;
+  --color-navy: #16204a;
+  --color-navy-mid: #23306e;
+
+  --page-bg: #f7f8fd;
+  --font-heading: "Barlow Condensed", system-ui, sans-serif;
+  --font-body: "Barlow", system-ui, sans-serif;
+
+  --max-width: 1180px;
+  --pad-inline: clamp(16px, 4vw, 40px);
+}

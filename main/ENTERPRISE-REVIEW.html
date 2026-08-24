@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VFS Website — Enterprise Review Board Assessment (React Rebuild)</title>
+<style>
+:root {
+  --ink: #16204a;
+  --ink-soft: #1b2140b3;
+  --paper: #f7f8fd;
+  --surface: #ffffff;
+  --line: #1b214022;
+  --accent: #3b56e0;
+  --accent-soft: #3b56e014;
+  --teal: #17806f;
+  --amber: #a8660c;
+  --amber-bg: #fdf1de;
+  --red: #a3352a;
+  --red-bg: #fbeae8;
+  --green: #17805a;
+  --green-bg: #e7f6ee;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --measure: 68ch;
+}
+
+:root[data-theme="dark"] {
+  --ink: #e8ebfa; --ink-soft: #c3c9e6b3; --paper: #0d1226; --surface: #141a35;
+  --line: #ffffff1c; --accent: #7c93ff; --accent-soft: #7c93ff1c; --teal: #4fc3ab;
+  --amber: #e3ab5a; --amber-bg: #3a2c14; --red: #e08a80; --red-bg: #3a1b18;
+  --green: #6fd6ac; --green-bg: #12301f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8ebfa; --ink-soft: #c3c9e6b3; --paper: #0d1226; --surface: #141a35;
+    --line: #ffffff1c; --accent: #7c93ff; --accent-soft: #7c93ff1c; --teal: #4fc3ab;
+    --amber: #e3ab5a; --amber-bg: #3a2c14; --red: #e08a80; --red-bg: #3a1b18;
+    --green: #6fd6ac; --green-bg: #12301f;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--accent-soft); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; color: var(--ink); }
+p { text-wrap: pretty; }
+a { color: var(--accent); }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+
+.shell { display: flex; max-width: 1320px; margin: 0 auto; }
+.toc { position: sticky; top: 0; height: 100vh; width: 250px; flex: none; overflow-y: auto; padding: 32px 18px 32px 28px; border-right: 1px solid var(--line); }
+.toc-brand { font-family: var(--font-display); font-size: 15px; color: var(--ink-soft); margin-bottom: 4px; }
+.toc-title { font-family: var(--font-display); font-size: 19px; margin: 0 0 22px; line-height: 1.25; }
+.toc nav { display: flex; flex-direction: column; gap: 2px; }
+.toc a { font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink-soft); text-decoration: none; padding: 5px 10px; border-radius: 5px; }
+.toc a:hover { background: var(--accent-soft); color: var(--accent); }
+
+.content { flex: 1; min-width: 0; padding: 48px clamp(20px, 4vw, 64px) 120px; }
+.masthead { max-width: var(--measure); margin-bottom: 56px; }
+.eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-family: var(--font-body); font-weight: 600; }
+.masthead h1 { font-size: clamp(30px, 4.2vw, 42px); margin: 10px 0 14px; }
+.masthead .sub { color: var(--ink-soft); font-size: 16px; max-width: 58ch; }
+.masthead .meta { margin-top: 18px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-soft); font-family: var(--font-mono); }
+
+.part { padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--line); scroll-margin-top: 20px; }
+.part:first-of-type { border-top: none; }
+.part-num { font-family: var(--font-mono); font-size: 12px; color: var(--teal); letter-spacing: 0.08em; }
+.part h2 { font-size: clamp(24px, 3vw, 30px); margin: 6px 0 8px; }
+.part-intro { max-width: var(--measure); color: var(--ink-soft); margin-bottom: 28px; }
+.part h3 { font-size: 18px; margin: 30px 0 12px; }
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 14px; }
+.prose ul, .prose ol { max-width: var(--measure); padding-left: 22px; margin: 0 0 14px; }
+.prose li { margin-bottom: 6px; }
+
+.persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); gap: 16px; }
+.persona { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
+.persona-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.persona-head h4 { font-size: 16px; margin: 0; font-family: var(--font-body); font-weight: 700; }
+.rating { font-family: var(--font-mono); font-size: 13px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.r-high { background: var(--green-bg); color: var(--green); }
+.r-mid { background: var(--amber-bg); color: var(--amber); }
+.r-low { background: var(--red-bg); color: var(--red); }
+.persona dl { margin: 0; font-size: 13.5px; }
+.persona dt { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 10px; font-weight: 600; }
+.persona dt:first-child { margin-top: 0; }
+.persona dd { margin: 3px 0 0; color: var(--ink); }
+.persona dd ul { margin: 0; padding-left: 16px; }
+.persona dd li { margin-bottom: 2px; }
+
+.scorecard-table { font-size: 14px; }
+.scorecard-table th, .scorecard-table td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+.scorecard-table th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.scorecard-table td.num { font-family: var(--font-mono); }
+.bar-cell { display: flex; align-items: center; gap: 10px; }
+.bar-track { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; max-width: 160px; }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+.bar-fill.warn { background: var(--amber); }
+.bar-fill.bad { background: var(--red); }
+.bar-fill.good { background: var(--green); }
+.overall-score { margin-top: 26px; display: flex; align-items: baseline; gap: 16px; padding: 20px 24px; background: var(--accent-soft); border-radius: 10px; }
+.overall-score .num { font-family: var(--font-display); font-size: 44px; color: var(--accent); }
+.overall-score .label { font-size: 13px; color: var(--ink-soft); }
+
+.sev-group { margin-bottom: 22px; }
+.sev-tag { display: inline-block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; padding: 3px 10px; border-radius: 5px; margin-bottom: 10px; }
+.sev-critical { background: var(--red-bg); color: var(--red); }
+.sev-high { background: var(--amber-bg); color: var(--amber); }
+.sev-medium { background: var(--accent-soft); color: var(--accent); }
+.sev-low { background: var(--line); color: var(--ink-soft); }
+.sev-group ul { max-width: var(--measure); padding-left: 20px; margin: 0; }
+.sev-group li { margin-bottom: 6px; }
+.sev-group li b { color: var(--ink); }
+
+.gap-table { font-size: 14px; max-width: 900px; }
+.gap-table th, .gap-table td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gap-table th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill-none { background: var(--red-bg); color: var(--red); }
+.pill-partial { background: var(--amber-bg); color: var(--amber); }
+.pill-yes { background: var(--green-bg); color: var(--green); }
+
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; max-width: 780px; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+pre code { background: none; padding: 0; }
+
+.checklist { max-width: var(--measure); display: flex; flex-direction: column; gap: 4px; }
+.check-row { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; font-size: 14.5px; }
+.check-row:hover { background: var(--surface); }
+.check-box { width: 17px; height: 17px; border-radius: 4px; flex: none; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+.cb-done { background: var(--green); color: var(--surface); }
+.cb-partial { background: var(--amber); color: var(--surface); }
+.cb-todo { border: 1.5px solid var(--line); color: transparent; }
+
+.roadmap { display: flex; flex-direction: column; gap: 0; max-width: 900px; }
+.phase { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--line); }
+.phase:first-child { border-top: none; }
+.phase-num { font-family: var(--font-display); font-size: 30px; color: var(--line); }
+.phase h4 { font-size: 16px; margin: 0 0 6px; font-family: var(--font-body); font-weight: 700; }
+.phase-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; font-family: var(--font-mono); color: var(--ink-soft); margin-bottom: 8px; }
+.phase-meta span b { color: var(--ink); }
+.phase p { font-size: 14px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+
+.callout { max-width: var(--measure); border-left: 3px solid var(--teal); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 14.5px; margin: 18px 0; }
+.footer-note { max-width: var(--measure); margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-soft); }
+
+@media (max-width: 900px) {
+  .toc { position: static; height: auto; width: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 20px; }
+  .toc nav { flex-direction: row; flex-wrap: wrap; }
+  .shell { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<aside class="toc">
+  <div class="toc-brand">Vemuri Financial Services</div>
+  <div class="toc-title">Enterprise Review Board — vfs-website (React rebuild)</div>
+  <nav>
+    <a href="#part1">Part 1 — Executive Review</a>
+    <a href="#part2">Part 2 — Scorecard</a>
+    <a href="#part3">Part 3 — Pre-Mortem</a>
+    <a href="#part4">Part 4 — Gap Analysis</a>
+    <a href="#part5">Part 5 — What Changed in This Pass</a>
+    <a href="#part6">Part 6 — Production Readiness Checklist</a>
+    <a href="#part7">Part 7 — Roadmap</a>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <div class="masthead">
+    <div class="eyebrow">Confidential — Internal Review</div>
+    <h1>vfs-website Enterprise Assessment</h1>
+    <p class="sub">Assessment of the current codebase: a Vite 8 + React 19 single-page app that replaced the previous hand-rolled HTML/vanilla-JS site (now archived under <code>pv1/</code>). Scoped to <code>vfs-website</code> only.</p>
+    <div class="meta">
+      <span>SCOPE: vfs-website/ (src/, public/, build config)</span>
+      <span>REVIEWERS: 14</span>
+      <span>DATE: 2026-08-24</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>How this review was produced.</b> Findings below come from actually running the project — <code>npm install</code>, <code>npm run build</code>, <code>npm run lint</code>, <code>npm audit</code>, launching the Vite dev server, and driving it with a headless browser across the home page and all three lazy-loaded views (GST Helper, Partner Hub, VFS Office Benefits) — not from reading source and guessing. Several issues found this way were fixed in the same pass; see <a href="#part5">Part 5</a> for exactly what changed and what's an honest open gap.
+  </div>
+
+  <!-- PART 1 -->
+  <section class="part" id="part1">
+    <div class="part-num">Part 1</div>
+    <h2>Executive Review</h2>
+    <p class="part-intro">Each discipline's read of the project as it stands today, after the fixes in this pass.</p>
+
+    <div class="persona-grid">
+
+      <article class="persona">
+        <div class="persona-head"><h4>CEO</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Real product, real regulatory disclosures with actual ARN/registration language (not placeholders), clean modern build.</dd>
+          <dt>Weaknesses</dt><dd>No analytics anywhere — impossible to tell whether the site converts or which section drives leads.</dd>
+          <dt>Critical Issues</dt><dd>Lead capture still depends on a single Google Apps Script webhook with no monitoring — if it silently fails, no one is alerted.</dd>
+          <dt>Business Risk</dt><dd>Cannot measure marketing ROI; a broken contact form could go unnoticed indefinitely.</dd>
+          <dt>Recommendation</dt><dd>Wire up GA4 (or a privacy-friendly alternative) and add a synthetic check that submits the contact form and alerts on failure.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Principal Frontend Engineer</h4><span class="rating r-high">7/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Clean component-per-file structure, no prop-drilling mess, calculators isolated as pure components; production build now cleanly code-splits the heavy GST tooling (pdf-lib/xlsx/jszip/pdfjs) away from the home page bundle.</dd>
+          <dt>Weaknesses</dt><dd>No shared design-token layer — Tailwind utility classes are the only source of truth, duplicated across components rather than centralized as design tokens.</dd>
+          <dt>Critical Issues</dt><dd>Zero automated tests. <code>TESTING.md</code> documents manual E2E scenarios and recommends Vitest/Playwright as "future scope" — that scope was never started.</dd>
+          <dt>Technical Risk</dt><dd>Any future edit to <code>App.jsx</code>'s view-switching or the calculators can regress silently.</dd>
+          <dt>Recommendation</dt><dd>Convert the manual test cases already written in <code>TESTING.md</code> into a small Playwright suite — the scenarios are already specified, just not automated.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Software Architect</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Single-page-app-via-query-param routing (<code>?view=</code>) is a deliberately simple choice that sidesteps needing any server-side rewrite rules — appropriate for static shared hosting.</dd>
+          <dt>Weaknesses</dt><dd>The entire legacy static site still lives in the repo under <code>pv1/</code> (its own <code>.htaccess</code>, assets, HTML). It's harmless as an archive but there's no README note in <code>pv1/</code> itself warning it's not the live site.</dd>
+          <dt>Critical Issues</dt><dd>None architecturally blocking; the SPA structure is sound for the product's actual size (one marketing site, three sub-views).</dd>
+          <dt>Technical Risk</dt><dd>Low — the surface area is small enough that the current flat structure won't become a liability soon.</dd>
+          <dt>Recommendation</dt><dd>Add a one-line <code>pv1/README.md</code> note ("archived legacy site, not deployed") to prevent a future accidental redeploy of the wrong folder.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Performance Engineer</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>After code-splitting the GST Helper view, the home page's initial JS dropped from 1.87MB to 440KB (131KB gzipped) — the view most visitors actually land on now loads without paying for pdf-lib/xlsx/jszip/pdfjs.</dd>
+          <dt>Weaknesses</dt><dd>The GST Helper chunk itself is still 1.37MB (474KB gzipped) — heavy for the moment someone does open it, though acceptable since it's an on-demand internal tool, not the marketing landing page.</dd>
+          <dt>Critical Issues</dt><dd>None on first paint after the split; no CDN or edge caching layer configured (plain GoDaddy shared hosting).</dd>
+          <dt>Business Risk</dt><dd>Low, given the current traffic profile — mobile users on the home page are now the fast path.</dd>
+          <dt>Recommendation</dt><dd>If GST Helper usage grows, split <code>pdfjs-dist</code>/<code>xlsx</code> further so each is only pulled in for the specific action (CAMS vs KFINTECH, single-PDF vs ZIP) that needs it.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Cyber Security Architect</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Fully static output — no server-side attack surface (no PHP/DB on this repo's deployment path). All external links use <code>rel="noopener noreferrer"</code>.</dd>
+          <dt>Weaknesses</dt><dd><code>npm audit</code> reports a high-severity, no-fix-available vulnerability in <code>xlsx</code> (prototype pollution / ReDoS, GHSA-4r6h-8v6p-xvw6). It's used client-side only, inside the GST Helper's file-processing flow, which bounds the blast radius to the user's own browser session — but it's still shipping known-vulnerable code.</dd>
+          <dt>Critical Issues</dt><dd>No Content-Security-Policy or HSTS header — not configurable from this repo alone (GoDaddy static hosting needs an <code>.htaccess</code>, sample now included in <code>DEPLOYMENT.md</code>) but not yet applied to the live host.</dd>
+          <dt>Business Risk</dt><dd>Bounded — no user auth, no server secrets, no database in this repo. Main exposure is the <code>xlsx</code> CVE and missing security headers.</dd>
+          <dt>Recommendation</dt><dd>Apply the HSTS <code>.htaccess</code> block from <code>DEPLOYMENT.md</code> on next GoDaddy deploy; track <code>xlsx</code> for a patched release or evaluate a maintained fork (<code>xlsx-populate</code>/SheetJS's own CE channel) given no fix currently exists upstream.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>QA Lead</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Every change in this review pass was verified in a real headless browser — home page, and all three lazy-loaded views — with console-error and failed-request checks, not just visual inspection.</dd>
+          <dt>Weaknesses</dt><dd>That verification is one-off. There is still no repeatable regression suite despite <code>TESTING.md</code> having fully specified test cases ready to automate.</dd>
+          <dt>Critical Issues</dt><dd>The 5 detailed E2E scenarios in <code>TESTING.md</code> (nav/scroll, view switching, mobile menu, WhatsApp link, external portal links) are all still manual-only.</dd>
+          <dt>Business Risk</dt><dd>Quality depends entirely on whoever remembers to manually re-check these scenarios before each deploy.</dd>
+          <dt>Recommendation</dt><dd>Automate <code>TESTING.md</code>'s existing scenarios with Playwright — this is the single highest-leverage remaining gap, since the spec work is already done.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>DevOps Engineer</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd><code>DEPLOYMENT.md</code> now gives an accurate, step-by-step GoDaddy cPanel/FTP deploy path matching the actual build output, plus a local-dev section that matches the real <code>npm run dev</code> workflow.</dd>
+          <dt>Weaknesses</dt><dd>Deployment is still a fully manual "build locally, zip, upload" process — no CI, no automated build-and-deploy pipeline.</dd>
+          <dt>Critical Issues</dt><dd>No rollback plan beyond keeping a copy of the previous <code>dist/</code> build before overwriting <code>public_html/</code>.</dd>
+          <dt>Business Risk</dt><dd>A bad deploy has no fast, automatic recovery path — someone has to notice, then manually re-upload an old build.</dd>
+          <dt>Recommendation</dt><dd>At minimum, keep dated <code>dist-YYYY-MM-DD.zip</code> snapshots before every upload; a GitHub Actions → FTP/cPanel pipeline would close this properly when the team is ready for it.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>SEO Expert</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>As of this pass, <code>index.html</code> now carries a meta description, canonical URL, Open Graph/Twitter tags, and a <code>FinancialService</code> JSON-LD block; <code>robots.txt</code> and <code>sitemap.xml</code> are restored at the build root (they existed on the old static site but were dropped during the React migration).</dd>
+          <dt>Weaknesses</dt><dd>Sitemap is still a single hand-written URL — the three sub-views (<code>?view=partner</code>, <code>?view=gst</code>, <code>?view=vfs-benefits</code>) aren't listed, though as internal-tool views they arguably shouldn't be indexed anyway.</dd>
+          <dt>Critical Issues</dt><dd>None blocking — the previous regression (no meta tags at all post-migration) is closed.</dd>
+          <dt>Business Risk</dt><dd>Low now; was a real risk before this pass, since a search engine crawling the bare <code>index.html</code> the migration shipped would have seen no description or OG data at all.</dd>
+          <dt>Recommendation</dt><dd>Add <code>FAQPage</code> structured data for the existing FAQ section content — an easy incremental rich-result win.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Accessibility (WCAG) Expert</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Semantic sectioning, <code>rel="noopener noreferrer"</code> discipline, and Tailwind's default focus-visible behavior are present as a baseline.</dd>
+          <dt>Weaknesses</dt><dd>Never formally audited against WCAG 2.1 AA; no automated accessibility check in the build or CI (there is no CI).</dd>
+          <dt>Critical Issues</dt><dd>No skip-to-content link; the mobile hamburger menu and calculator tab controls haven't been verified with a screen reader.</dd>
+          <dt>Business Risk</dt><dd>Unquantified — no audit has been run, so exposure is unknown rather than known-bad.</dd>
+          <dt>Recommendation</dt><dd>Run an automated pass (axe-core or Lighthouse accessibility) as a first, cheap step before any manual screen-reader pass.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Compliance &amp; Audit Expert</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The Compliance section carries real, non-placeholder disclosures for AMFI (ARN-302882), IRDAI, and PFRDA, including grievance-escalation paths and mandated risk language — this is a genuine improvement over generic template copy.</dd>
+          <dt>Weaknesses</dt><dd>No process is documented for keeping these numbers/disclosures current as registrations renew or regulations change.</dd>
+          <dt>Critical Issues</dt><dd>None found live on the page — this is a case where the content is actually correct, not aspirational.</dd>
+          <dt>Business Risk</dt><dd>Low today; grows over time without an owner assigned to review compliance copy on a fixed cadence.</dd>
+          <dt>Recommendation</dt><dd>Assign a quarterly review owner for the Compliance section, tracked outside the codebase (e.g. a calendar reminder), since nothing in the repo enforces it.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Digital Marketing Expert</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Clear service categorization, working WhatsApp CTA, footer links to partner portals ready for campaign use.</dd>
+          <dt>Weaknesses</dt><dd>Zero analytics, zero conversion tracking, no UTM discipline on outbound partner links.</dd>
+          <dt>Critical Issues</dt><dd>No way to attribute a lead to a channel — every marketing dollar spent is unmeasurable, same finding as the previous static-site review.</dd>
+          <dt>Business Risk</dt><dd>Cannot optimize spend or report results; this gap has persisted across the entire React migration.</dd>
+          <dt>Recommendation</dt><dd>GA4 plus lead-source tagging on the "Request a call back" form as the next concrete investment — same recommendation as before, still unaddressed.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Business Analyst</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd><code>CHANGELOG.md</code> and <code>DEPLOYMENT.md</code> give a real, current paper trail for what shipped and how to deploy it — better documentation hygiene than a typical small business site.</dd>
+          <dt>Weaknesses</dt><dd>No defined success metrics (conversion rate, lead volume, time-to-first-response) exist anywhere in the repo or process.</dd>
+          <dt>Critical Issues</dt><dd>None blocking day-to-day operation, but "is this working" still has no measurable answer.</dd>
+          <dt>Business Risk</dt><dd>Same as the CEO/Marketing findings above — decisions about the site remain based on intuition, not data.</dd>
+          <dt>Recommendation</dt><dd>Write a one-page metrics doc once analytics is wired up — define what "working" means numerically.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Automation Test Architect</h4><span class="rating r-low">3/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The manual verification method already used in this review (headless Chromium + console/network error assertions across every route) is a legitimate pattern that a real Playwright suite could be built directly on top of.</dd>
+          <dt>Weaknesses</dt><dd>No test framework is installed in <code>package.json</code>, no CI exists to run one, no coverage tracking of any kind.</dd>
+          <dt>Critical Issues</dt><dd>The highest-complexity code in the app — the financial calculators (SIP/SWP/FD/Inflation) and the GST PDF-processing pipeline — has zero automated correctness verification.</dd>
+          <dt>Business Risk</dt><dd>A future refactor could silently break calculator math with nothing catching it before a user notices a wrong number.</dd>
+          <dt>Recommendation</dt><dd>Prioritize Vitest unit tests for the calculator math above all other test investment — it's the smallest, highest-value slice to automate first.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Risk Management Expert</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Adding an <code>ErrorBoundary</code> around the app root in this pass closes a real single point of failure — previously, any unhandled component error would blank the entire page with no fallback UI.</dd>
+          <dt>Weaknesses</dt><dd>Single point of failure remains on the business side: one Google account owns the Apps Script + Sheet + notification email behind the contact form, with no documented backup owner.</dd>
+          <dt>Critical Issues</dt><dd>None newly introduced by the React migration beyond what's already listed above.</dd>
+          <dt>Business Risk</dt><dd>Key-person/key-account dependency on lead capture continues unaddressed.</dd>
+          <dt>Recommendation</dt><dd>Document a second admin/owner for the Google account behind the Apps Script webhook.</dd>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PART 2 -->
+  <section class="part" id="part2">
+    <div class="part-num">Part 2</div>
+    <h2>Executive Scorecard</h2>
+    <p class="part-intro">Aggregate view across the reviews above, after the fixes applied in this pass.</p>
+
+    <table class="scorecard-table">
+      <thead><tr><th>Dimension</th><th>Score</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Business Value</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>User Experience</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Visual Design</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Trust / Compliance Copy</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Code Quality</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Architecture</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Build &amp; Bundle Health</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Performance</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Accessibility</td><td class="num">5/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div></td></tr>
+        <tr><td>SEO</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Security</td><td class="num">5/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div></td></tr>
+        <tr><td>Resilience (error handling)</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Testing / QA</td><td class="num">2/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:20%"></div></div></td></tr>
+        <tr><td>CI/CD</td><td class="num">1/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:10%"></div></div></td></tr>
+        <tr><td>Observability / Analytics</td><td class="num">1/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:10%"></div></div></td></tr>
+        <tr><td>Deployment Documentation</td><td class="num">8/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill good" style="width:80%"></div></div></td></tr>
+        <tr><td><b>Overall Product Quality</b></td><td class="num"><b>5.4/10</b></td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:54%"></div></div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="overall-score">
+      <span class="num">5.4</span>
+      <span class="label">Overall — a solid, correctly-built React SPA with real regulatory content and a fixed bundle-size problem, held back almost entirely by <b>operational</b> gaps (no analytics, no automated tests, no CI/CD) rather than product or code defects.</span>
+    </div>
+  </section>
+
+  <!-- PART 3 -->
+  <section class="part" id="part3">
+    <div class="part-num">Part 3</div>
+    <h2>Pre-Mortem Analysis</h2>
+    <p class="part-intro">It's one year from now. Working backward from plausible failure modes, by severity.</p>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-critical">Critical</span>
+      <ul>
+        <li><b>Lead capture silently broken.</b> The Apps Script webhook has no monitoring — if Google changes something or the deployment expires, the "Request a call back" form fails with nothing alerting anyone.</li>
+        <li><b>Calculator math regresses silently.</b> With zero automated tests on SIP/SWP/FD/Inflation logic, a future refactor could ship an incorrect number to a client planning their finances, undetected until someone complains.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-high">High</span>
+      <ul>
+        <li><b>No analytics anywhere</b> — every business decision about the site remains a guess, unchanged across the entire migration.</li>
+        <li><b>xlsx dependency vulnerability</b> ships in the GST Helper with no upstream fix available; a malicious spreadsheet processed through it is unverified territory.</li>
+        <li><b>No CI/CD or rollback</b> — a bad deploy has no fast recovery path beyond a manually kept zip backup.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-medium">Medium</span>
+      <ul>
+        <li>No WCAG audit performed — unquantified accessibility/legal exposure.</li>
+        <li>No CSP/HSTS headers configured on the live GoDaddy host yet (sample now documented, not yet applied).</li>
+        <li>Single-owner dependency on the Google account behind the contact form.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-low">Low</span>
+      <ul>
+        <li>Sitemap lists only the home URL, not the sub-views.</li>
+        <li><code>pv1/</code> legacy archive has no note warning it isn't the live site.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PART 4 -->
+  <section class="part" id="part4">
+    <div class="part-num">Part 4</div>
+    <h2>Gap Analysis</h2>
+    <p class="part-intro">Against a mature small-business production web app baseline.</p>
+
+    <table class="gap-table">
+      <thead><tr><th>Capability</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Production build</td><td><span class="pill pill-yes">Present</span></td><td>Verified: <code>npm run build</code> succeeds, output validated in-browser</td></tr>
+        <tr><td>Code splitting</td><td><span class="pill pill-yes">Present</span></td><td>Added this pass — GST Helper/Partner Hub/VFS Benefits now lazy-load</td></tr>
+        <tr><td>Error boundary</td><td><span class="pill pill-yes">Present</span></td><td>Added this pass — previously a component crash blanked the whole page</td></tr>
+        <tr><td>SEO meta / structured data</td><td><span class="pill pill-yes">Present</span></td><td>Added this pass — description, OG, canonical, JSON-LD restored</td></tr>
+        <tr><td>robots.txt / sitemap.xml</td><td><span class="pill pill-yes">Present</span></td><td>Restored this pass — dropped during the React migration</td></tr>
+        <tr><td>Deployment documentation</td><td><span class="pill pill-yes">Present</span></td><td>Rewritten this pass with accurate GoDaddy cPanel/FTP steps</td></tr>
+        <tr><td>Lint clean</td><td><span class="pill pill-partial">Partial</span></td><td>All real unused-var/import warnings fixed; 11 stylistic <code>no-unused-expressions</code> remain (functionally harmless)</td></tr>
+        <tr><td>Automated testing</td><td><span class="pill pill-none">Missing</span></td><td><code>TESTING.md</code> specifies scenarios manually; none automated</td></tr>
+        <tr><td>CI/CD pipeline</td><td><span class="pill pill-none">Missing</span></td><td>Manual build-and-upload only</td></tr>
+        <tr><td>Analytics</td><td><span class="pill pill-none">Missing</span></td><td>No GA4 or equivalent anywhere</td></tr>
+        <tr><td>Uptime / form monitoring</td><td><span class="pill pill-none">Missing</span></td><td>No check on the Apps Script webhook's availability</td></tr>
+        <tr><td>Security headers (CSP/HSTS)</td><td><span class="pill pill-partial">Partial</span></td><td>Documented in <code>DEPLOYMENT.md</code>, not yet applied on the live host</td></tr>
+        <tr><td>Dependency vulnerability</td><td><span class="pill pill-none">Missing</span></td><td><code>xlsx</code> high-severity CVE, no fix upstream — accepted/tracked risk</td></tr>
+        <tr><td>Accessibility audit</td><td><span class="pill pill-none">Missing</span></td><td>Baseline exists (semantic HTML, focus states); never formally audited</td></tr>
+        <tr><td>Backup / rollback strategy</td><td><span class="pill pill-partial">Partial</span></td><td>Documented as "keep a zip before uploading"; not enforced or automated</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PART 5 -->
+  <section class="part" id="part5">
+    <div class="part-num">Part 5</div>
+    <h2>What Changed in This Review Pass</h2>
+    <p class="part-intro">Concrete fixes applied while producing this assessment — not proposals, already verified in a running build.</p>
+
+    <div class="checklist">
+      <div class="check-row"><span class="check-box cb-done">✓</span> Lazy-loaded <code>GstHelper</code>, <code>PartnerHub</code>, <code>VfsOfficeBenefits</code> via <code>React.lazy</code>/<code>Suspense</code> — home-page bundle dropped from 1.87MB to 440KB (131KB gzip)</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Added an <code>ErrorBoundary</code> around the app root so a component crash shows a recovery screen instead of a blank page</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Restored SEO meta description, canonical URL, Open Graph/Twitter tags, and <code>FinancialService</code> JSON-LD to <code>index.html</code></div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Restored <code>robots.txt</code> and <code>sitemap.xml</code> at the build root (<code>public/</code>)</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Fixed all real oxlint warnings in <code>src/</code>: unused imports/variables, sparse array literals, an unused parameter</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Rewrote <code>DEPLOYMENT.md</code> with accurate local-dev steps and a step-by-step GoDaddy cPanel/FTP deployment guide (the previous version referenced a nonexistent <code>my-react-app</code> subfolder)</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Fixed the same stale path reference in <code>README.md</code></div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Verified in a real headless browser: home page and all three lazy-loaded views render with zero console errors and zero failed requests</div>
+    </div>
+  </section>
+
+  <!-- PART 6 -->
+  <section class="part" id="part6">
+    <div class="part-num">Part 6</div>
+    <h2>Production Readiness Checklist</h2>
+    <p class="part-intro">Status as of this review. Items marked partial or missing are the honest remaining gaps.</p>
+
+    <div class="checklist">
+      <div class="check-row"><span class="check-box cb-done">✓</span> Production build succeeds and has been smoke-tested</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Initial bundle size addressed via code-splitting</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Error boundary prevents a full-page blank crash</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> SEO fundamentals (meta/OG/schema/robots/sitemap) present</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Deployment steps documented and match the real build output</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Security headers (CSP/HSTS) — documented, not yet applied on the live GoDaddy host</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Dependency vulnerabilities — one tracked, no fix available (<code>xlsx</code>)</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Automated test suite</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> CI/CD pipeline</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Analytics / conversion tracking</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Formal accessibility audit</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Uptime/form-availability monitoring</div>
+    </div>
+  </section>
+
+  <!-- PART 7 -->
+  <section class="part" id="part7">
+    <div class="part-num">Part 7</div>
+    <h2>Roadmap</h2>
+    <p class="part-intro">Ordered by leverage — highest business/technical risk closed first, cheapest wins first within each tier.</p>
+
+    <div class="roadmap">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <div>
+          <h4>Close the measurement gap</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Owner: <b>Marketing/Dev</b></span></div>
+          <p>Add GA4 (or a privacy-friendly alternative) and lead-source tagging on the contact form. This has been the single most-repeated finding across every review of this project — nothing else here matters if no one can measure whether it worked.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">02</div>
+        <div>
+          <h4>Automate the existing test scenarios</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Owner: <b>Dev</b></span></div>
+          <p><code>TESTING.md</code>'s 5 scenarios are already fully specified — convert them to Playwright. Separately, add Vitest unit tests for the SIP/SWP/FD/Inflation calculator math, the highest-consequence untested logic in the app.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">03</div>
+        <div>
+          <h4>Apply security headers on the live host</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Owner: <b>Dev/Hosting</b></span></div>
+          <p>Add the HSTS block from <code>DEPLOYMENT.md</code> §3 to the live GoDaddy <code>.htaccess</code>; add a basic CSP once the third-party script surface (Apps Script, Calendly, WhatsApp) is inventoried.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">04</div>
+        <div>
+          <h4>Monitor the lead-capture path</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Owner: <b>Dev</b></span></div>
+          <p>A scheduled synthetic check (even a simple cron hitting the Apps Script endpoint) that alerts if the contact form's backend stops responding.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">05</div>
+        <div>
+          <h4>CI/CD</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Owner: <b>Dev</b></span></div>
+          <p>A GitHub Actions workflow that runs lint + build (and eventually the Playwright suite from Phase 2) on every push, and optionally deploys to GoDaddy via FTP on merge to <code>main</code>.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">06</div>
+        <div>
+          <h4>Accessibility audit</h4>
+          <div class="phase-meta"><span>Effort: <b>Low–Medium</b></span><span>Owner: <b>Dev</b></span></div>
+          <p>Run axe-core or Lighthouse's accessibility pass against the built site; triage findings; follow with one manual screen-reader pass on the home page and GST Helper form flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    This review supersedes <code>pv1/ENTERPRISE-REVIEW.html</code>, which assessed the previous static HTML/vanilla-JS codebase and is retained only as historical reference — its findings (v1/v2 duplicate homepages, PHP backoffice foundation, etc.) no longer describe this repository's architecture.
+  </div>
+
+</main>
+</div>
+</body>
+</html>

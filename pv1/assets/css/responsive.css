@@ -1,0 +1,112 @@
+/* Breakpoints. The original page had none — nav below 900px was hidden with
+   no replacement. This file adds real responsive behavior without touching
+   the desktop layout, which already used clamp()/flex-wrap successfully.
+   Raised from 900px to 1100px (2026-08): with brand + nav + "Get a call
+   back" all sharing one row again (see components.css — the two-row
+   header split is gone, nav sits beside the CTA button as requested), the
+   nav+CTA combination stops fitting on one line somewhere between 1024px
+   and 1100px — measured directly rather than guessed. Below 1100px the
+   hamburger menu below kicks in instead of letting the row wrap. */
+
+/* ≤1099px — collapse the top nav into a hamburger menu. */
+@media (max-width: 1099px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--color-navy-mid);
+    padding: 8px var(--pad-inline) 16px;
+  }
+
+  .site-nav.is-open { display: flex; }
+
+  .site-nav a {
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff1f;
+  }
+
+  .site-nav a:last-child { border-bottom: 0; }
+
+  .nav-toggle { display: inline-flex; }
+
+  /* Services submenu on mobile: no floating popover (no hover, and it
+     would overflow the viewport) — expands inline underneath the
+     "Services" row instead, toggled by tapping the caret. */
+  .nav-item {
+    width: 100%;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ffffff1f;
+  }
+  .nav-item a { width: auto; flex: 1; border-bottom: 0; }
+  .nav-item__caret { font-size: 14px; padding: 8px 4px; }
+  .nav-submenu {
+    position: static;
+    top: auto;
+    left: auto;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    background: #ffffff0d;
+    padding: 0 0 8px;
+  }
+  .nav-submenu a {
+    width: 100%;
+    padding: 10px 0 10px 16px;
+    font-size: 13px;
+    color: #ffffffb3;
+  }
+}
+
+/* ≤560px — the header row (logo + hamburger + CTA) is tight on phones.
+   Reduce the gap and collapse the CTA to an icon-only button so nothing
+   forces horizontal scroll. Full label stays available to screen readers
+   via aria-label on the link. */
+@media (max-width: 560px) {
+  .site-header__bar { gap: 10px; }
+
+  .btn-header-cta {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+  }
+
+  .btn-header-cta__icon { display: inline; }
+  .btn-header-cta__label { display: none; }
+}
+
+/* ≤640px — stat band dividers stack cleanly instead of landing mid-row. */
+@media (max-width: 640px) {
+  .stat-band__grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-band__item { border-right: 1px solid #1b214029; padding: 20px 14px; }
+  .stat-band__item:nth-child(2n) { border-right: 0; }
+  .stat-band__item:first-child,
+  .stat-band__item:last-child { padding-left: 14px; padding-right: 14px; }
+
+  .hero__title { line-height: 0.98; }
+
+  .table-scroll-hint { display: block; }
+}
+
+/* ≤400px — tighten hero/calc column minimums so nothing forces horizontal
+   scroll on the smallest common phone width (iPhone SE, 320px viewport). */
+@media (max-width: 400px) {
+  .hero__copy,
+  .hero__calc,
+  .quiz-wrap__intro,
+  .quiz-wrap__panel,
+  .start-grid__copy,
+  .start-grid__form {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+
+  .stat-band__grid { grid-template-columns: 1fr 1fr; }
+}

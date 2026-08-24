@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VFS Website — Enterprise Review Board Assessment</title>
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --ink: #16204a;
+  --ink-soft: #1b2140b3;
+  --paper: #f7f8fd;
+  --surface: #ffffff;
+  --line: #1b214022;
+  --accent: #3b56e0;
+  --accent-soft: #3b56e014;
+  --teal: #17806f;
+  --amber: #a8660c;
+  --amber-bg: #fdf1de;
+  --red: #a3352a;
+  --red-bg: #fbeae8;
+  --green: #17805a;
+  --green-bg: #e7f6ee;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --measure: 68ch;
+}
+
+:root[data-theme="dark"] {
+  --ink: #e8ebfa;
+  --ink-soft: #c3c9e6b3;
+  --paper: #0d1226;
+  --surface: #141a35;
+  --line: #ffffff1c;
+  --accent: #7c93ff;
+  --accent-soft: #7c93ff1c;
+  --teal: #4fc3ab;
+  --amber: #e3ab5a;
+  --amber-bg: #3a2c14;
+  --red: #e08a80;
+  --red-bg: #3a1b18;
+  --green: #6fd6ac;
+  --green-bg: #12301f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8ebfa;
+    --ink-soft: #c3c9e6b3;
+    --paper: #0d1226;
+    --surface: #141a35;
+    --line: #ffffff1c;
+    --accent: #7c93ff;
+    --accent-soft: #7c93ff1c;
+    --teal: #4fc3ab;
+    --amber: #e3ab5a;
+    --amber-bg: #3a2c14;
+    --red: #e08a80;
+    --red-bg: #3a1b18;
+    --green: #6fd6ac;
+    --green-bg: #12301f;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent-soft); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; color: var(--ink); }
+p { text-wrap: pretty; }
+a { color: var(--accent); }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+
+/* ============ SHELL ============ */
+.shell { display: flex; max-width: 1320px; margin: 0 auto; }
+
+.toc {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 250px;
+  flex: none;
+  overflow-y: auto;
+  padding: 32px 18px 32px 28px;
+  border-right: 1px solid var(--line);
+}
+.toc-brand { font-family: var(--font-display); font-size: 15px; color: var(--ink-soft); margin-bottom: 4px; }
+.toc-title { font-family: var(--font-display); font-size: 19px; margin: 0 0 22px; line-height: 1.25; }
+.toc nav { display: flex; flex-direction: column; gap: 2px; }
+.toc a {
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.toc a:hover { background: var(--accent-soft); color: var(--accent); }
+
+.content { flex: 1; min-width: 0; padding: 48px clamp(20px, 4vw, 64px) 120px; }
+.masthead { max-width: var(--measure); margin-bottom: 56px; }
+.eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-family: var(--font-body); font-weight: 600; }
+.masthead h1 { font-size: clamp(30px, 4.2vw, 42px); margin: 10px 0 14px; }
+.masthead .sub { color: var(--ink-soft); font-size: 16px; max-width: 58ch; }
+.masthead .meta { margin-top: 18px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-soft); font-family: var(--font-mono); }
+
+.part { padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--line); scroll-margin-top: 20px; }
+.part:first-of-type { border-top: none; }
+.part-num { font-family: var(--font-mono); font-size: 12px; color: var(--teal); letter-spacing: 0.08em; }
+.part h2 { font-size: clamp(24px, 3vw, 30px); margin: 6px 0 8px; }
+.part-intro { max-width: var(--measure); color: var(--ink-soft); margin-bottom: 28px; }
+.part h3 { font-size: 18px; margin: 30px 0 12px; }
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 14px; }
+.prose ul, .prose ol { max-width: var(--measure); padding-left: 22px; margin: 0 0 14px; }
+.prose li { margin-bottom: 6px; }
+
+/* ============ PERSONA CARDS ============ */
+.persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); gap: 16px; }
+.persona {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+.persona-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.persona-head h4 { font-size: 16px; margin: 0; font-family: var(--font-body); font-weight: 700; }
+.rating { font-family: var(--font-mono); font-size: 13px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.r-high { background: var(--green-bg); color: var(--green); }
+.r-mid { background: var(--amber-bg); color: var(--amber); }
+.r-low { background: var(--red-bg); color: var(--red); }
+.persona dl { margin: 0; font-size: 13.5px; }
+.persona dt { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 10px; font-weight: 600; }
+.persona dt:first-child { margin-top: 0; }
+.persona dd { margin: 3px 0 0; color: var(--ink); }
+.persona dd ul { margin: 0; padding-left: 16px; }
+.persona dd li { margin-bottom: 2px; }
+
+/* ============ SCORECARD ============ */
+.scorecard-table { font-size: 14px; }
+.scorecard-table th, .scorecard-table td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+.scorecard-table th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.scorecard-table td.num { font-family: var(--font-mono); }
+.bar-cell { display: flex; align-items: center; gap: 10px; }
+.bar-track { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; max-width: 160px; }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+.bar-fill.warn { background: var(--amber); }
+.bar-fill.bad { background: var(--red); }
+.overall-score {
+  margin-top: 26px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+.overall-score .num { font-family: var(--font-display); font-size: 44px; color: var(--accent); }
+.overall-score .label { font-size: 13px; color: var(--ink-soft); }
+
+/* ============ SEVERITY LISTS ============ */
+.sev-group { margin-bottom: 22px; }
+.sev-tag { display: inline-block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; padding: 3px 10px; border-radius: 5px; margin-bottom: 10px; }
+.sev-critical { background: var(--red-bg); color: var(--red); }
+.sev-high { background: var(--amber-bg); color: var(--amber); }
+.sev-medium { background: var(--accent-soft); color: var(--accent); }
+.sev-low { background: var(--line); color: var(--ink-soft); }
+.sev-group ul { max-width: var(--measure); padding-left: 20px; margin: 0; }
+.sev-group li { margin-bottom: 6px; }
+.sev-group li b { color: var(--ink); }
+
+/* ============ GAP TABLE ============ */
+.gap-table { font-size: 14px; max-width: 900px; }
+.gap-table th, .gap-table td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gap-table th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill-none { background: var(--red-bg); color: var(--red); }
+.pill-partial { background: var(--amber-bg); color: var(--amber); }
+.pill-yes { background: var(--green-bg); color: var(--green); }
+
+/* ============ ARCH / CODE BLOCKS ============ */
+pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  max-width: 780px;
+}
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+pre code { background: none; padding: 0; }
+
+/* ============ CHECKLIST ============ */
+.checklist { max-width: var(--measure); display: flex; flex-direction: column; gap: 4px; }
+.check-row { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; font-size: 14.5px; }
+.check-row:hover { background: var(--surface); }
+.check-box { width: 17px; height: 17px; border-radius: 4px; flex: none; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+.cb-done { background: var(--green); color: var(--surface); }
+.cb-partial { background: var(--amber); color: var(--surface); }
+.cb-todo { border: 1.5px solid var(--line); color: transparent; }
+
+/* ============ ROADMAP ============ */
+.roadmap { display: flex; flex-direction: column; gap: 0; max-width: 900px; }
+.phase { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--line); }
+.phase:first-child { border-top: none; }
+.phase-num { font-family: var(--font-display); font-size: 30px; color: var(--line); }
+.phase h4 { font-size: 16px; margin: 0 0 6px; font-family: var(--font-body); font-weight: 700; }
+.phase-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; font-family: var(--font-mono); color: var(--ink-soft); margin-bottom: 8px; }
+.phase-meta span b { color: var(--ink); }
+.phase p { font-size: 14px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+
+/* ============ MISC ============ */
+.two-col { columns: 2 320px; column-gap: 32px; max-width: 900px; }
+.two-col li { break-inside: avoid; }
+.callout {
+  max-width: var(--measure);
+  border-left: 3px solid var(--teal);
+  background: var(--accent-soft);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14.5px;
+  margin: 18px 0;
+}
+.footer-note { max-width: var(--measure); margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-soft); }
+
+@media (max-width: 900px) {
+  .toc { position: static; height: auto; width: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 20px; }
+  .toc nav { flex-direction: row; flex-wrap: wrap; }
+  .shell { flex-direction: column; }
+  .two-col { columns: 1; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<aside class="toc">
+  <div class="toc-brand">Vemuri Financial Services</div>
+  <div class="toc-title">Enterprise Review Board — vfs-website</div>
+  <nav>
+    <a href="#part1">Part 1 — Executive Review</a>
+    <a href="#part2">Part 2 — Scorecard</a>
+    <a href="#part3">Part 3 — Pre-Mortem</a>
+    <a href="#part4">Part 4 — Gap Analysis</a>
+    <a href="#part5">Part 5 — Architecture</a>
+    <a href="#part6">Part 6 — Maintainability</a>
+    <a href="#part7">Part 7 — Readiness Checklist</a>
+    <a href="#part8">Part 8 — Refactoring Roadmap</a>
+    <a href="#part9">Part 9 — Final Deliverables</a>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <div class="masthead">
+    <div class="eyebrow" style="background:#dd5a4d;color:#fff;padding:10px 16px;border-radius:6px;margin-bottom:16px;display:block;">
+      ⚠ SUPERSEDED — this review is from an early stage of the project and no longer reflects the current codebase.
+      Most items its Gap Analysis (Part 4) lists as "Missing" — structured logging, health checks, feature flags,
+      backup strategy, and extensive documentation — exist today. As of 2026-08-05, the "new backoffice authentication
+      foundation" this review scoped in (see below) has also been split out into its own standalone repo,
+      <code>vfsoffice</code> — exactly what this document's own scope note (below) originally anticipated as the
+      target structure, before the app was actually built nested inside this repo instead. See <code>ARCHITECTURE.md</code>
+      at the repo root for the current-state architecture doc, and <code>CHANGELOG.md</code> for what's changed since.
+      Kept here for historical reference only — do not treat its Gap Analysis or Refactoring Roadmap as an accurate
+      to-do list, and do not treat any path reference to <code>backoffice/</code> below as still accurate.
+    </div>
+    <div class="eyebrow">Confidential — Internal Review</div>
+    <h1>vfs-website Enterprise Assessment</h1>
+    <p class="sub">A 24-discipline review board evaluation of the vfs-website project — the public marketing site (v1 + v2), the Partner Info and MFD/GST tooling modules, and the new backoffice authentication foundation. Scoped to vfs-website only; vemuri-group and vfsoffice are separate repositories and out of scope.</p>
+    <div class="meta">
+      <span>SCOPE: vfs-website/</span>
+      <span>REVIEWERS: 24</span>
+      <span>PARTS: 9</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Addendum (post-review changes) — not a re-score.</b> Since this
+    review was written, two major rounds shipped: (1) a full 3-layer
+    enterprise configuration architecture (secrets/<code>.env</code>+<code>config.php</code>,
+    admin-editable <code>settings</code> table, system-level constants) with
+    dedicated Database/SMTP/Payment/Security/Logging/Feature-Flags admin
+    pages — see <code>backoffice/docs/configuration-architecture.md</code>
+    and <code>configuration-matrix.md</code>; and (2) a broad bug-fix/UX
+    round across calculators, AMC editing, the payment flow, and email —
+    see <code>backoffice/docs/release-notes.md</code>'s latest entry for
+    the full list. Several items the scorecard/gap-analysis below flag as
+    missing are now closed: HTTP security headers and IP-based rate
+    limiting (already re-verified as resolved in
+    <code>security-review.md</code> §8–9 independently of this review),
+    and the configuration-management gap this document's Enterprise
+    Architecture section discusses. <b>The scores, gap analysis, and
+    pre-mortem below are the original assessment and have deliberately
+    not been re-run</b> — a fair re-score needs a fresh audit pass, not a
+    guess layered on top of an old one. The repo has also been
+    restructured since this was written: the old <code>v2/</code> nesting
+    is gone, promoted to the repo root (see root <code>README.md</code>).
+  </div>
+
+  <div class="callout">
+    <b>Second addendum (2026-08-08, production-deploy readiness) — also
+    not a re-score.</b> Ahead of a first production deployment of both
+    <code>vfs-website</code> and <code>vfsoffice</code>, a further
+    round closed most of what this review's Gap Analysis and Production
+    Readiness Checklist (Part 7) flag under Security/Documentation:
+    <ul style="margin:8px 0 0 20px;padding:0;">
+      <li>Data-protection compliance: a public Privacy Policy and a
+        Compliance &amp; Regulatory Standing page (both in
+        <code>vfsoffice</code>, linked from this site's footer and
+        forms), consent capture enforced server-side at every
+        personal-data collection point (including this site's "Request a
+        call back" form), and a breach-response runbook with concrete
+        containment/notification steps — see
+        <code>vfsoffice/docs/data-protection-security-compliance.md</code>
+        and <code>breach-response-runbook.md</code>.</li>
+      <li>Self-service account deletion (password re-check + typed
+        confirmation + anonymize-in-place, not a hard delete) — closes
+        the DPDP Act "erasure" data-principal right this review didn't
+        originally assess.</li>
+      <li><code>vfsoffice</code>'s database baseline
+        (<code>01_schema.sql</code>/<code>02_seed_data.sql</code>) was
+        found to have drifted from its own migration history — 3 missing
+        tables, 1 missing column, 3 missing seed rows — found by actually
+        running the imports and diffing against a live database, not by
+        reading file text. Fixed, verified, and a
+        <code>docs/feature-release-process.md</code> written so it can't
+        silently drift again. This directly addresses this review's Part
+        7 "Backup strategy"/"Disaster recovery plan" gaps' precondition:
+        neither is meaningful if the schema you'd restore from isn't
+        actually correct.</li>
+    </ul>
+    Still open, per this review's own checklist: Monitoring, Analytics,
+    Error tracking beyond the existing email-alert mechanism, a formal
+    backup/DR runbook (the schema is now trustworthy; a documented
+    restore drill still is not), and CI/CD. None of those were in scope
+    for this round.
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PART 1 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part1">
+    <div class="part-num">Part 1</div>
+    <h2>Executive Review</h2>
+    <p class="part-intro">Each discipline's honest read of the project as it stands today. Ratings reflect the current, verified state — not aspiration.</p>
+
+    <div class="persona-grid">
+
+      <article class="persona">
+        <div class="persona-head"><h4>CEO</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Real product exists and ships; recent work fixed the two things that actually lose revenue (dead contact form, broken mobile nav).</dd>
+          <dt>Weaknesses</dt><dd>Two live homepages with different brands (v1, v2); no analytics, so no one can say whether the site converts.</dd>
+          <dt>Critical Issues</dt><dd>Lead capture depends on a manual one-person Google Apps Script deployment that isn't live yet.</dd>
+          <dt>Business Risk</dt><dd>Cannot measure ROI on any marketing spend without analytics; can't prove the site works.</dd>
+          <dt>Recommendation</dt><dd>Pick one homepage, wire up GA4, treat the Apps Script deployment as a go-live blocker, not a nice-to-have.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Product Manager</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Clear user journey (plan → services → tools → compare → start); calculators are genuinely useful, not decorative.</dd>
+          <dt>Weaknesses</dt><dd>No feedback loop — no analytics, no A/B testing, no way to know which CTA works.</dd>
+          <dt>Critical Issues</dt><dd>Testimonials are placeholder copy, not real client voice — undermines the exact trust the plan/protection narrative is selling.</dd>
+          <dt>Business Risk</dt><dd>Shipping features (GST tool, partner hub) with no usage data means the roadmap is guesswork.</dd>
+          <dt>Recommendation</dt><dd>Instrument before adding more features; replace placeholder testimonials with real ones via the moderation flow already built.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Program Manager</h4><span class="rating r-low">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Work has been delivered in verifiable, incremental slices with real testing at each step.</dd>
+          <dt>Weaknesses</dt><dd>No formal backlog, no ticketing, no release notes — history lives only in chat/commit messages.</dd>
+          <dt>Critical Issues</dt><dd>No environments (dev/staging/prod) — every change is tested locally then pushed straight to what would be production.</dd>
+          <dt>Business Risk</dt><dd>A bad deploy has no staging gate to catch it before customers see it.</dd>
+          <dt>Recommendation</dt><dd>Stand up a staging subdomain; adopt lightweight issue tracking (even a markdown CHANGELOG is better than nothing).</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Technical Program Manager</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Dependencies between pieces (config.js → all pages, tokens.css → all modules) are explicit and traceable.</dd>
+          <dt>Weaknesses</dt><dd>Cross-cutting changes (e.g. phone number) require touching multiple files by hand — no single source of truth enforced at build time.</dd>
+          <dt>Critical Issues</dt><dd>The backoffice PHP foundation has never been executed — no PHP interpreter existed in the build environment to verify it.</dd>
+          <dt>Technical Risk</dt><dd>Unverified backend code shipping to a financial services client is a real liability if it fails silently in production.</dd>
+          <dt>Recommendation</dt><dd>Run the full LOCAL-SETUP.md walkthrough before this ever touches production data.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Software Architect</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>v2 has a clean layered structure (tokens → base → components → page-specific CSS; small single-purpose JS modules); no framework debt.</dd>
+          <dt>Weaknesses</dt><dd>Three visual systems coexist (v1 hand-rolled, v2 blueprint design system, mfd-backoffice's own inline styles) — no migration plan to retire the older two.</dd>
+          <dt>Critical Issues</dt><dd>No shared component layer between v2 and backoffice/ beyond copy-pasted CSS files — two copies of tokens.css already exist and can drift.</dd>
+          <dt>Technical Risk</dt><dd>Copy-paste token sharing works today at 2 apps; won't scale past 3–4 without drift.</dd>
+          <dt>Recommendation</dt><dd>Extract tokens/base/components into one canonical source once a build step is acceptable, or document the sync process explicitly until then.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Enterprise Architect</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Static-first architecture is a legitimate, low-cost fit for GoDaddy shared hosting — not over-engineered for the scale involved.</dd>
+          <dt>Weaknesses</dt><dd>No API layer, no service boundaries, no integration strategy for the eventual back-office modules (AMC lists, eKYC, reports) — each will likely be built ad hoc like the last one.</dd>
+          <dt>Critical Issues</dt><dd>Three separate repos (vemuri-group, vfs-website, vfsoffice) with overlapping concerns and no documented relationship between them.</dd>
+          <dt>Business Risk</dt><dd>Without a target-state architecture, every new module is a one-off decision, compounding technical debt.</dd>
+          <dt>Recommendation</dt><dd>Write a one-page target architecture (even informally) before porting the next backoffice module.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Principal Frontend Engineer</h4><span class="rating r-high">7/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>v2's calculator math is unit-correct and verified byte-for-byte against the original; DOM code is small, readable, no dead abstractions.</dd>
+          <dt>Weaknesses</dt><dd>Still real inline <code>style=""</code> attributes scattered through the HTML instead of fully moving to component classes.</dd>
+          <dt>Critical Issues</dt><dd>Zero automated tests — every verification in this project has been manual (headless Chrome screenshots, DOM greps) with no regression safety net.</dd>
+          <dt>Technical Risk</dt><dd>A future edit can silently break the calculators with nothing catching it until a user notices.</dd>
+          <dt>Recommendation</dt><dd>Add a small Playwright or Vitest suite covering the calculator math and form validation — highest test ROI per line.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>UI/UX Expert</h4><span class="rating r-high">7/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The "blueprint" motif is distinctive and on-brand for a finance product; the 4-tap quiz is a genuinely good simplification of a complex decision.</dd>
+          <dt>Weaknesses</dt><dd>v1 and v2 present two different brand identities to the same visitor depending on which URL they land on.</dd>
+          <dt>Critical Issues</dt><dd>No design documentation — the design system exists only as CSS, not as a reference other designers could work from.</dd>
+          <dt>Business Risk</dt><dd>Inconsistent brand experience erodes the trust a financial product depends on.</dd>
+          <dt>Recommendation</dt><dd>Retire v1 or explicitly restyle it onto v2's tokens; document the design system.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Customer Experience Expert</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>WhatsApp/phone/email all reachable within one tap from anywhere on the page; the floating WhatsApp button is a strong CX pattern for the Indian market.</dd>
+          <dt>Weaknesses</dt><dd>Until Apps Script is deployed, "Request a call back" fails with no working alternative surfaced except manual phone/WhatsApp.</dd>
+          <dt>Critical Issues</dt><dd>No post-submission confirmation channel (SMS/email receipt) — a user has no proof their request was received.</dd>
+          <dt>Business Risk</dt><dd>A prospect who tries the broken form and gets no confirmation likely doesn't try again.</dd>
+          <dt>Recommendation</dt><dd>Add an auto-reply email/SMS once the Apps Script backend is live.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Financial Services Domain Expert</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Correct sequencing logic (emergency fund → protection → growth → tax) matches sound financial planning practice, not just marketing copy.</dd>
+          <dt>Weaknesses</dt><dd>Assumed 12% return rate and other illustrative figures aren't labeled with the SEBI-mandated risk disclosure prominence they should carry.</dd>
+          <dt>Critical Issues</dt><dd>Displayed AUM/client/year stats were previously placeholder and are now business-supplied — no process exists to keep them current as they age.</dd>
+          <dt>Business Risk</dt><dd>Stale performance figures on a regulated distributor's site is a credibility and compliance exposure.</dd>
+          <dt>Recommendation</dt><dd>Establish a quarterly review cadence for every numeric claim on the site.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>MFD (Mutual Fund Distribution) Expert</h4><span class="rating r-high">7/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The GST filing workflow and PDF signature tool directly encode real operational steps (CAMS/KFinTech invoice patterns) correctly — this is domain-accurate tooling, not generic software.</dd>
+          <dt>Weaknesses</dt><dd>Invoice-extraction regex is hand-tuned to current CAMS/KFinTech formats with no fallback if either changes their PDF layout.</dd>
+          <dt>Critical Issues</dt><dd>No audit trail on which PDFs were signed/when in the MFD tool itself — only the new backoffice foundation has audit logging, and the MFD tool isn't wired into it.</dd>
+          <dt>Business Risk</dt><dd>If a signed-PDF batch is disputed, there's no system record of who generated it or when.</dd>
+          <dt>Recommendation</dt><dd>Connect the MFD tool's actions to the backoffice audit log once that's live.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Insurance Domain Expert</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Insurance-before-investment sequencing is correctly emphasized throughout the plan/quiz content.</dd>
+          <dt>Weaknesses</dt><dd>IRDAI registration number is still a literal <code>[IRDAI no.]</code> placeholder in the live regulatory disclosure section.</dd>
+          <dt>Critical Issues</dt><dd>Displaying "IRDAI licensed" as a badge without the actual registration number visible is a compliance gap, not a cosmetic one.</dd>
+          <dt>Business Risk</dt><dd>A regulator or dissatisfied client checking credentials finds a placeholder instead of a license number.</dd>
+          <dt>Recommendation</dt><dd>Treat filling in the real IRDAI/PFRDA numbers as a pre-launch blocker, not a follow-up task.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Digital Marketing Expert</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Clear service categorization and a working referral-link structure (loan partners, gold partners) ready for campaign tracking.</dd>
+          <dt>Weaknesses</dt><dd>Zero analytics, zero conversion tracking, zero UTM discipline on the outbound partner links.</dd>
+          <dt>Critical Issues</dt><dd>No way to attribute a lead to a channel — every marketing dollar spent is unmeasurable.</dd>
+          <dt>Business Risk</dt><dd>Cannot optimize spend, cannot report results, cannot justify budget.</dd>
+          <dt>Recommendation</dt><dd>GA4 + server-side lead-source tagging on the call-back form as the very next investment.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>SEO Expert</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>v2 now ships title/meta description/canonical/OG/JSON-LD FinancialService schema — a real improvement over the CDN-dependent version that had none of this.</dd>
+          <dt>Weaknesses</dt><dd>Sitemap is a single hand-written URL; no structured data for the FAQ content that already exists on the page (an easy rich-result win being left on the table).</dd>
+          <dt>Critical Issues</dt><dd>v1 and v2 aren't canonically linked to each other — if both are reachable, this is duplicate-content risk.</dd>
+          <dt>Business Risk</dt><dd>Search engines may index the wrong (or both) homepage(s), diluting authority.</dd>
+          <dt>Recommendation</dt><dd>Add FAQPage schema; decide the single canonical homepage and 301-redirect the other.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Accessibility (WCAG) Expert</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Focus-visible states, aria-hidden on decorative icons, aria-labels on icon-only buttons, and semantic landmarks are already present — a real baseline exists.</dd>
+          <dt>Weaknesses</dt><dd>Never formally audited against WCAG 2.1 AA — color contrast of the muted gray text (<code>#1b214099</code> on light backgrounds) has not been measured.</dd>
+          <dt>Critical Issues</dt><dd>No skip-to-content link; no screen reader testing has been performed on any page.</dd>
+          <dt>Business Risk</dt><dd>Accessibility lawsuits against financial services sites are common in some jurisdictions; this is unverified exposure.</dd>
+          <dt>Recommendation</dt><dd>Run an automated pass (axe or Lighthouse) plus one manual screen-reader pass before calling this production-ready.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Cyber Security Architect</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The new backoffice foundation is architected correctly: bcrypt, server-side sessions, CSRF tokens, prepared statements throughout, account lockout — a legitimate security design, not security theater.</dd>
+          <dt>Weaknesses</dt><dd>That design has never been executed against a real interpreter — "correct on paper" and "correct in production" are not the same claim.</dd>
+          <dt>Critical Issues</dt><dd>No Content-Security-Policy header anywhere in the project; vendor JS (pdf-lib, xlsx, jszip) is bundled with no integrity hashes or update process.</dd>
+          <dt>Technical Risk</dt><dd>A compromised or outdated vendor library has no detection mechanism.</dd>
+          <dt>Recommendation</dt><dd>Add a CSP header via <code>.htaccess</code>; establish a vendor-library update/CVE-watch cadence.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>OWASP Security Auditor</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>SQL injection (A03) closed via PDO prepared statements throughout; CSRF (A01-adjacent) closed on every state-changing form; auth (A07) uses bcrypt correctly.</dd>
+          <dt>Weaknesses</dt><dd>A05 (Security Misconfiguration): no CSP, no <code>Strict-Transport-Security</code> header, error display settings not explicitly hardened for production.</dd>
+          <dt>Critical Issues</dt><dd>A09 (Security Logging failures) is only solved for the 5-page backoffice foundation — the marketing site and MFD tool have zero security event logging.</dd>
+          <dt>Business Risk</dt><dd>An incident on the public site would leave no forensic trail.</dd>
+          <dt>Recommendation</dt><dd>Add HSTS + CSP headers; extend logging coverage before onboarding real client data anywhere outside the backoffice foundation.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Performance Engineer</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Removing the React-CDN dc-runtime dependency was the single highest-impact fix available — v2 now paints instantly instead of blocking on a third-party script.</dd>
+          <dt>Weaknesses</dt><dd>Header logo is a 967KB PNG displayed at ~30px — no image tooling was available in this environment to compress it across multiple attempts.</dd>
+          <dt>Critical Issues</dt><dd>No caching headers configured by default (documented as optional, not enforced); no CDN in front of static assets.</dd>
+          <dt>Business Risk</dt><dd>Slower first load on mobile/weak connections directly costs conversions in this market.</dd>
+          <dt>Recommendation</dt><dd>Compress the logo externally (TinyPNG/Squoosh) before next deploy; enable the documented <code>.htaccess</code> cache-control block.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>DevOps Engineer</h4><span class="rating r-low">3/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Deployment is genuinely simple (static file upload) which is appropriate for the current hosting reality.</dd>
+          <dt>Weaknesses</dt><dd>No CI, no automated deploy, no build step, no automated tests gating a release — every deploy is a manual file upload.</dd>
+          <dt>Critical Issues</dt><dd>No rollback mechanism beyond "re-upload the previous files if you happened to keep a copy."</dd>
+          <dt>Business Risk</dt><dd>A bad deploy has no fast, reliable recovery path.</dd>
+          <dt>Recommendation</dt><dd>At minimum, keep dated zip snapshots before every deploy; a GitHub Actions → FTP pipeline would close this gap properly.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Cloud Architect</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Choosing PHP+MySQL for the backoffice matches the actual, confirmed hosting constraint (GoDaddy shared/cPanel, no Node) — not an aspirational stack mismatch.</dd>
+          <dt>Weaknesses</dt><dd>Shared hosting has no autoscaling, no managed backups guarantee, no SLA — everything rides on GoDaddy's shared-tier reliability.</dd>
+          <dt>Critical Issues</dt><dd>No documented backup strategy for the MySQL database once it holds real user/audit data.</dd>
+          <dt>Business Risk</dt><dd>Data loss from a hosting-level incident with no recovery plan.</dd>
+          <dt>Recommendation</dt><dd>Set up scheduled MySQL exports (cron + email/cloud storage) as soon as the database goes live with real data.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>QA Lead</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Every change delivered in this project was manually verified in a real rendered browser before being called done — not just assumed correct.</dd>
+          <dt>Weaknesses</dt><dd>All of that verification is ad hoc and one-off — none of it is repeatable or automated.</dd>
+          <dt>Critical Issues</dt><dd>Zero regression test suite; the next change to any file has no safety net.</dd>
+          <dt>Business Risk</dt><dd>Quality currently depends entirely on manual diligence at the time of each change, not on the system.</dd>
+          <dt>Recommendation</dt><dd>Convert the manual verification patterns already used (calculator parity checks, DOM/console assertions) into an automated suite.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Automation Test Architect</h4><span class="rating r-low">3/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The manual test patterns already used are actually good ones (headless browser render + DOM assertions + console error scanning) — a real automation suite could be built directly on top of the same approach.</dd>
+          <dt>Weaknesses</dt><dd>No test framework installed, no CI to run it, no coverage tracking.</dd>
+          <dt>Critical Issues</dt><dd>No test for the backoffice PHP auth flow at all — the highest-risk code in the project is the least tested.</dd>
+          <dt>Business Risk</dt><dd>Security-critical code shipping untested.</dd>
+          <dt>Recommendation</dt><dd>Prioritize PHPUnit coverage of <code>inc/auth.php</code> (lockout, CSRF, session timeout) above all other test investment.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Business Analyst</h4><span class="rating r-mid">6/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Requirements have been captured and delivered iteratively and traceably through this engagement.</dd>
+          <dt>Weaknesses</dt><dd>No formal requirements document exists outside conversation history — onboarding a new stakeholder means re-explaining everything.</dd>
+          <dt>Critical Issues</dt><dd>No defined success metrics for the site (conversion rate, lead volume, time-to-first-response) exist anywhere.</dd>
+          <dt>Business Risk</dt><dd>Without defined metrics, "is this working" has no answer.</dd>
+          <dt>Recommendation</dt><dd>Write a one-page requirements/metrics doc as the next non-code deliverable.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Compliance &amp; Audit Expert</h4><span class="rating r-low">4/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>The backoffice foundation's audit log is a genuinely correct starting point — user, action, entity, IP, timestamp, all captured server-side.</dd>
+          <dt>Weaknesses</dt><dd>Coverage is limited to 5 backoffice pages — the marketing site's lead-capture and the MFD tool's document-signing have no audit trail at all.</dd>
+          <dt>Critical Issues</dt><dd>Placeholder regulatory numbers (IRDAI/PFRDA) still live on a page presenting itself as compliant.</dd>
+          <dt>Business Risk</dt><dd>An actual regulatory inquiry would find gaps between what's displayed and what's verifiable.</dd>
+          <dt>Recommendation</dt><dd>Complete the regulatory placeholders before any public launch; extend audit logging to document-handling actions next.</dd>
+        </dl>
+      </article>
+
+      <article class="persona">
+        <div class="persona-head"><h4>Risk Management Expert</h4><span class="rating r-mid">5/10</span></div>
+        <dl>
+          <dt>Strengths</dt><dd>Highest-severity historical risk (plaintext passwords in localStorage, client-side-only role gating) has been identified and a correct replacement designed.</dd>
+          <dt>Weaknesses</dt><dd>That replacement isn't live yet, and the vulnerable system it replaces (vfsoffice) is a separate, still-active repository outside this review's scope.</dd>
+          <dt>Critical Issues</dt><dd>Single point of failure: one Google account owns the Apps Script, the Sheet, and the notification email — no backup owner documented.</dd>
+          <dt>Business Risk</dt><dd>Key-person dependency on lead capture and, soon, on backoffice administration.</dd>
+          <dt>Recommendation</dt><dd>Document a second admin/owner for every external service the business now depends on.</dd>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 2 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part2">
+    <div class="part-num">Part 2</div>
+    <h2>Executive Scorecard</h2>
+    <p class="part-intro">Aggregate, at-a-glance view across the 24 reviews above.</p>
+
+    <table class="scorecard-table">
+      <thead><tr><th>Dimension</th><th>Score</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Business Value</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>User Experience</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Visual Design</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Trust</td><td class="num">5/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div></td></tr>
+        <tr><td>Professionalism</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Code Quality</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Architecture</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Maintainability</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Scalability</td><td class="num">4/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:40%"></div></div></td></tr>
+        <tr><td>Performance</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Accessibility</td><td class="num">5/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div></td></tr>
+        <tr><td>SEO</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+        <tr><td>Security</td><td class="num">5/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div></td></tr>
+        <tr><td>Responsiveness</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Production Readiness</td><td class="num">4/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:40%"></div></div></td></tr>
+        <tr><td>Deployment Readiness</td><td class="num">4/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:40%"></div></div></td></tr>
+        <tr><td>Observability</td><td class="num">2/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:20%"></div></div></td></tr>
+        <tr><td>Logging</td><td class="num">3/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:30%"></div></div></td></tr>
+        <tr><td>Auditability</td><td class="num">3/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:30%"></div></div></td></tr>
+        <tr><td>Compliance</td><td class="num">4/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill bad" style="width:40%"></div></div></td></tr>
+        <tr><td><b>Overall Product Quality</b></td><td class="num"><b>5.4/10</b></td><td class="bar-cell"><div class="bar-track"><div class="bar-fill warn" style="width:54%"></div></div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="overall-score">
+      <span class="num">5.4</span>
+      <span class="label">Overall — a real, working product with a genuinely solid recent foundation (v2 refactor, backoffice auth design), held back almost entirely by <b>operational</b> gaps (observability, logging, CI/CD, testing) rather than product or code gaps.</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 3 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part3">
+    <div class="part-num">Part 3</div>
+    <h2>Pre-Mortem Analysis</h2>
+    <p class="part-intro">It's one year from now. The project has failed. Working backward from that failure, by stakeholder and by severity.</p>
+
+    <h3>By stakeholder</h3>
+    <div class="prose">
+      <ul>
+        <li><b>Customers:</b> "I filled out the call-back form twice and never heard back." The Apps Script backend was never deployed, or the one-time email confirmation was never clicked, and nobody noticed for months because there was no monitoring on it.</li>
+        <li><b>Investors/Owners:</b> Couldn't answer "how many leads did the website generate this quarter" — no analytics existed at any point, so spend could never be justified or optimized.</li>
+        <li><b>Employees/Advisors:</b> Kept using WhatsApp and phone calls exclusively because the backoffice tools (partner hub, GST workflow) were never adopted — no training, no rollout plan, just a link in a footer.</li>
+        <li><b>Financial Advisors (external MFD network):</b> Distrust set in when the AMC directory in Partner Info went stale — portal URLs changed, RM contacts moved on, and nobody owned keeping the hardcoded data current.</li>
+        <li><b>Developers (future):</b> Onboarding took two weeks instead of two days because there was no README explaining why three folders (vemuri-group, vfs-website, vfsoffice) exist, which one is live, and which is legacy.</li>
+        <li><b>Auditors:</b> Found the IRDAI/PFRDA placeholder numbers were still placeholders eighteen months after go-live, because nobody owned "keep compliance data current" as a job.</li>
+        <li><b>Search Engines:</b> Indexed both v1 and v2 as duplicate homepages, split link equity between them, and neither ever ranked well for the target keywords.</li>
+        <li><b>Competitors:</b> Out-ranked and out-converted VFS because their sites had analytics-driven iteration from day one, while this site's roadmap stayed guesswork.</li>
+      </ul>
+    </div>
+
+    <h3>Ranked risk register</h3>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-critical">Critical</span>
+      <ul>
+        <li><b>Lead capture silently broken.</b> The Apps Script deployment is a manual, one-person step with no monitoring — if it breaks, nothing alerts anyone.</li>
+        <li><b>No backup strategy for the MySQL database</b> once the backoffice holds real user/audit records — a hosting incident means permanent data loss.</li>
+        <li><b>Compliance placeholders shipped live</b> ([IRDAI no.], [PFRDA no.]) — direct regulatory exposure for a licensed distributor.</li>
+        <li><b>Backoffice auth code never executed</b> before this review — security-critical code with zero runtime verification.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-high">High</span>
+      <ul>
+        <li><b>No analytics anywhere</b> — every business decision about the site is a guess.</li>
+        <li><b>Two competing homepages</b> (v1, v2) confuse both users and search engines.</li>
+        <li><b>No CI/CD or rollback</b> — a bad deploy has no fast recovery path.</li>
+        <li><b>No automated tests</b> — every future change risks silent regression.</li>
+        <li><b>Single-owner dependency</b> on the Google account behind the contact form.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-medium">Medium</span>
+      <ul>
+        <li>Vendor JS libraries (pdf-lib, xlsx, jszip) unpinned and unmonitored for CVEs.</li>
+        <li>967KB logo image never compressed — real but bounded performance cost.</li>
+        <li>No WCAG audit performed — unquantified accessibility/legal exposure.</li>
+        <li>No CSP/HSTS headers configured.</li>
+        <li>Placeholder testimonials never replaced with real client voice.</li>
+      </ul>
+    </div>
+
+    <div class="sev-group">
+      <span class="sev-tag sev-low">Low</span>
+      <ul>
+        <li>Sitemap is a single hand-written URL rather than generated.</li>
+        <li>No design-system documentation beyond the CSS itself.</li>
+        <li>Inline <code>style=""</code> attributes remain in a few v2 pages.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 4 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part4">
+    <div class="part-num">Part 4</div>
+    <h2>Gap Analysis</h2>
+    <p class="part-intro">Against a mature enterprise financial platform baseline.</p>
+
+    <table class="gap-table">
+      <thead><tr><th>Capability</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Structured logging</td><td><span class="pill pill-none">Missing</span></td><td>Console.error only; nothing persisted or centralized</td></tr>
+        <tr><td>Audit trail</td><td><span class="pill pill-partial">Partial</span></td><td>Solid design, but limited to 5 backoffice pages</td></tr>
+        <tr><td>Analytics</td><td><span class="pill pill-none">Missing</span></td><td>No GA4 or equivalent anywhere</td></tr>
+        <tr><td>Uptime/error monitoring</td><td><span class="pill pill-none">Missing</span></td><td>No Sentry, no synthetic checks, no alerting</td></tr>
+        <tr><td>Health checks</td><td><span class="pill pill-none">Missing</span></td><td>No <code>/health</code> endpoint on the backoffice app</td></tr>
+        <tr><td>Error tracking</td><td><span class="pill pill-none">Missing</span></td><td>PHP errors go to host's log only, not surfaced anywhere</td></tr>
+        <tr><td>User activity tracking</td><td><span class="pill pill-partial">Partial</span></td><td>Audit log covers this for backoffice users only</td></tr>
+        <tr><td>Role-based access control</td><td><span class="pill pill-yes">Present</span></td><td>Server-enforced in backoffice foundation (admin/manager/staff)</td></tr>
+        <tr><td>Notifications</td><td><span class="pill pill-partial">Partial</span></td><td>Email on new lead (pending deploy); nothing else</td></tr>
+        <tr><td>Configuration management</td><td><span class="pill pill-partial">Partial</span></td><td><code>config.php</code> pattern exists for backoffice only</td></tr>
+        <tr><td>Versioning</td><td><span class="pill pill-none">Missing</span></td><td>No semver, no changelog, no release tags</td></tr>
+        <tr><td>Feature flags</td><td><span class="pill pill-none">Missing</span></td><td>Not needed yet at this scale, but no mechanism exists</td></tr>
+        <tr><td>CI/CD pipeline</td><td><span class="pill pill-none">Missing</span></td><td>Manual upload only</td></tr>
+        <tr><td>Automated testing</td><td><span class="pill pill-none">Missing</span></td><td>All verification to date is manual</td></tr>
+        <tr><td>Backup strategy</td><td><span class="pill pill-none">Missing</span></td><td>No DB backup schedule defined</td></tr>
+        <tr><td>Disaster recovery plan</td><td><span class="pill pill-none">Missing</span></td><td>No documented RTO/RPO or recovery runbook</td></tr>
+        <tr><td>Security headers (CSP/HSTS)</td><td><span class="pill pill-none">Missing</span></td><td>Only HTTPS-redirect exists via <code>.htaccess</code></td></tr>
+        <tr><td>Accessibility compliance</td><td><span class="pill pill-partial">Partial</span></td><td>Good baseline, never formally audited</td></tr>
+        <tr><td>SEO fundamentals</td><td><span class="pill pill-yes">Present</span></td><td>Meta/OG/schema present on v2; sitemap minimal</td></tr>
+        <tr><td>Performance budget</td><td><span class="pill pill-none">Missing</span></td><td>No Lighthouse CI or budget enforcement</td></tr>
+        <tr><td>Documentation</td><td><span class="pill pill-partial">Partial</span></td><td>Strong deployment docs; no architecture/onboarding doc</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 5 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part5">
+    <div class="part-num">Part 5</div>
+    <h2>Enterprise Architecture</h2>
+    <p class="part-intro">Evolving the implementation without touching the navigation, workflow, or business logic already in place.</p>
+
+    <h3>Project structure (target state)</h3>
+    <pre><code>vfs-website/
+├── site/                    # now the repo root — public marketing site (this proposal predates the actual v2-to-root promotion, kept here as historical review content)
+│   ├── index.html, partner-info.html, mfd-gst.html
+│   └── assets/{css,js,images,vendor}/
+├── backoffice/               # PHP + MySQL foundation (this review's newest layer)
+│   ├── inc/                  # db, auth, audit, helpers, layout
+│   ├── modules/               # future: amcs/, ekyc/, finplanner/, reports/ (ported incrementally)
+│   └── database/schema.sql
+├── shared/                   # NEW — single source of tokens.css/base.css/components.css,
+│                              #        synced (not copy-pasted) into site/ and backoffice/
+├── docs/
+│   ├── ARCHITECTURE.md        # NEW — the one-page target state the Enterprise Architect review calls for
+│   ├── ONBOARDING.md           # NEW
+│   └── CHANGELOG.md            # NEW
+└── .github/workflows/deploy.yml   # NEW — CI/CD, see Part 8</code></pre>
+
+    <h3>Reusable components</h3>
+    <p class="prose">Keep the existing blueprint-card/button/badge vocabulary (already consistent across v2, partner-info, mfd-gst, and the new backoffice) as the canonical component set. Don't introduce a second system for backoffice's future feature modules — extend the same one.</p>
+
+    <h3>CSS architecture</h3>
+    <p class="prose">Current layering (tokens → base → components → page-specific) is correct and should be preserved exactly. The only structural change needed: move <code>tokens.css</code>/<code>base.css</code>/<code>components.css</code> to <code>shared/</code> and reference them from both <code>site/</code> and <code>backoffice/</code>, closing the copy-paste-drift risk the Software Architect review flagged — without a build step, this can be a simple deploy-time file copy documented in one script.</p>
+
+    <h3>JavaScript architecture</h3>
+    <p class="prose">Preserve the existing pattern: small, single-purpose modules (<code>calculators.js</code>, <code>quiz.js</code>, <code>contact-form.js</code>) loaded as plain script tags, no bundler. This is the right call for the hosting constraint and should not be "modernized" into a framework — that would be a regression, not an improvement, for this deployment target.</p>
+
+    <h3>Logging, error handling, audit</h3>
+    <p class="prose">Extend the backoffice's existing <code>logAction()</code> pattern (already correctly designed) to every future module rather than inventing a new logging approach per module. For the static marketing site, add a minimal client-side error reporter that posts JS exceptions to the same Apps Script endpoint already handling leads, tagged distinctly.</p>
+
+    <h3>Monitoring &amp; analytics</h3>
+    <p class="prose">GA4 on the marketing site (event tracking on quiz completion, calculator use, form submit). A simple uptime check (e.g. a free-tier UptimeRobot ping against the homepage and the backoffice login page) — inexpensive, high-value, currently entirely absent.</p>
+
+    <h3>Deployment / CI-CD-ready / environment config</h3>
+    <p class="prose">Introduce a GitHub Actions workflow that runs the (new) test suite, then FTP/SFTP-deploys on merge to <code>main</code> — no change to the manual GoDaddy hosting target, just automation in front of it. Environment config already exists as a pattern (<code>config.local_dev</code>) — extend it with a proper <code>.env</code>-style split once a second environment (staging) exists.</p>
+
+    <h3>Future API integration</h3>
+    <p class="prose">The backoffice's flat PHP structure can grow an <code>/api/</code> subfolder returning JSON for future needs (e.g. the marketing site querying live AUM figures) without disrupting the existing page-per-file pattern — additive, not a rewrite.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 6 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part6">
+    <div class="part-num">Part 6</div>
+    <h2>Maintainability Review</h2>
+
+    <table class="gap-table">
+      <tbody>
+        <tr><td>Readability</td><td>High — short functions, descriptive names, comments explain <i>why</i> not <i>what</i></td></tr>
+        <tr><td>Complexity</td><td>Low-to-moderate — the AMC directory JS injection and the audit-log filter query are the most complex single pieces</td></tr>
+        <tr><td>Coupling</td><td>Moderate — pages depend on global <code>SiteConfig</code>/<code>ConfigApply</code>, which is intentional and documented, not accidental</td></tr>
+        <tr><td>Cohesion</td><td>High — each JS module (calculators, quiz, contact-form, testimonials) owns exactly one concern</td></tr>
+        <tr><td>Reusability</td><td>Moderate — component CSS classes reused well; PHP auth helpers reusable but untested by other modules yet</td></tr>
+        <tr><td>Naming standards</td><td>Consistent (<code>bo-*</code> prefix in backoffice, BEM-ish in site CSS) but undocumented as a rule</td></tr>
+        <tr><td>Folder structure</td><td>Clear at current scale; will need the <code>shared/</code> consolidation in Part 5 as it grows</td></tr>
+        <tr><td>Documentation</td><td>Excellent for deployment/setup (LOCAL-SETUP.md, DEPLOYMENT.md, DEPLOY-STEPS.md); absent for architecture/onboarding</td></tr>
+        <tr><td>Technical debt</td><td>Concentrated and named, not diffuse — v1/v2 duplication, copy-pasted tokens, unexecuted PHP are the three biggest items</td></tr>
+        <tr><td>Developer experience</td><td>Good once oriented — no build step means "clone and open" actually works — but nothing explains the three-repo layout</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <b>Estimates</b> — Onboard a new developer: <b>1–2 days</b> to productive (would be same-day with an ARCHITECTURE.md). Implement a typical new feature (e.g. a new calculator tab): <b>2–4 hours</b>, following existing patterns. Fix a typical production bug: <b>30–90 minutes</b> given the codebase's small module size — longer if it's in the untested backoffice PHP, where a bug could hide until manually found.
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 7 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part7">
+    <div class="part-num">Part 7</div>
+    <h2>Production Readiness Checklist</h2>
+
+    <div class="checklist">
+      <div class="check-row"><span class="check-box cb-done">✓</span> Responsive (verified down to 320px across all pages)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Accessibility (good baseline, no formal WCAG audit)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> SEO (v2 solid; v1/v2 duplication unresolved)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Security (strong design in backoffice; no CSP/HSTS anywhere; backoffice unexecuted)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Logging (backoffice audit log only)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Audit (same — 5 pages covered, rest of project has none)</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Monitoring</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Analytics</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Error tracking</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Backup strategy</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> Disaster recovery plan</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Documentation (deployment: excellent; architecture: absent)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Performance (fast after CDN removal; unoptimized logo image remains)</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Browser compatibility (verified in Chrome only; no Safari/Firefox pass)</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Deployment guide (LOCAL-SETUP.md + DEPLOYMENT.md, novice-tested wording)</div>
+      <div class="check-row"><span class="check-box cb-todo"></span> CI/CD ready</div>
+      <div class="check-row"><span class="check-box cb-partial">~</span> Coding standards (consistent in practice, not written down)</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 8 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part8">
+    <div class="part-num">Part 8</div>
+    <h2>Refactoring Roadmap</h2>
+    <p class="part-intro">Ten phases. Numbered because the dependencies genuinely are sequential — several phases block the ones after them.</p>
+
+    <div class="roadmap">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <div>
+          <h4>Critical Fixes</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>Blocker</b></span><span>Depends on: —</span></div>
+          <p>Deploy the Apps Script backend for real; fill in real IRDAI/PFRDA registration numbers; run the LOCAL-SETUP.md walkthrough end-to-end against the backoffice PHP before it touches real data.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">02</div>
+        <div>
+          <h4>Architecture Improvements</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>High</b></span><span>Depends on: Phase 1</span></div>
+          <p>Consolidate tokens/base/components into <code>shared/</code>; write <code>ARCHITECTURE.md</code>; decide v1's fate (retire or restyle onto v2 tokens).</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">03</div>
+        <div>
+          <h4>UI/UX Improvements</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>Medium</b></span><span>Depends on: Phase 2</span></div>
+          <p>Replace placeholder testimonials via the moderation flow already built; resolve the single-homepage decision end-to-end (redirects, canonical tags, footer links).</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">04</div>
+        <div>
+          <h4>Performance Optimization</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>Medium</b></span><span>Depends on: —</span></div>
+          <p>Compress the logo image externally; enable the documented cache-control <code>.htaccess</code> block; add a Lighthouse budget check.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">05</div>
+        <div>
+          <h4>Security Hardening</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Medium</b></span><span>Priority: <b>High</b></span><span>Depends on: Phase 1</span></div>
+          <p>Add CSP + HSTS headers; pin/document vendor library versions with a CVE-watch process; extend audit logging beyond the 5 backoffice pages.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">06</div>
+        <div>
+          <h4>SEO Optimization</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>Medium</b></span><span>Depends on: Phase 3</span></div>
+          <p>FAQPage schema on existing FAQ content; auto-generated sitemap; resolve v1/v2 canonicalization.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">07</div>
+        <div>
+          <h4>Accessibility Improvements</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>Medium</b></span><span>Depends on: —</span></div>
+          <p>Formal axe/Lighthouse audit; skip-to-content link; one manual screen-reader pass; fix any contrast failures found.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">08</div>
+        <div>
+          <h4>Logging &amp; Auditing</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>High</b></span><span>Depends on: Phase 5</span></div>
+          <p>Client-side JS error reporter on the marketing site; connect the MFD tool's signing actions to the backoffice audit log.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">09</div>
+        <div>
+          <h4>Analytics &amp; Monitoring</h4>
+          <div class="phase-meta"><span>Effort: <b>Low</b></span><span>Risk: <b>Low</b></span><span>Priority: <b>High</b></span><span>Depends on: —</span></div>
+          <p>GA4 with event tracking on quiz/calculators/form; free-tier uptime monitor on homepage and backoffice login.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">10</div>
+        <div>
+          <h4>Production Deployment</h4>
+          <div class="phase-meta"><span>Effort: <b>Medium</b></span><span>Risk: <b>Medium</b></span><span>Priority: <b>High</b></span><span>Depends on: Phases 1, 5, 9</span></div>
+          <p>GitHub Actions → FTP pipeline; scheduled MySQL backups; documented rollback procedure; a written go-live checklist gating launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 9 -->
+  <!-- ============================================================ -->
+  <section class="part" id="part9">
+    <div class="part-num">Part 9</div>
+    <h2>Final Deliverables</h2>
+
+    <h3>1. Executive Summary</h3>
+    <p class="prose">vfs-website is a genuinely working product that has moved, over this engagement, from a CDN-dependent prototype with a non-functional contact form and a critically insecure back-office pattern, to a fast static site with verified calculators, real lead-capture (pending one deployment step), and a correctly-designed authentication foundation. What's missing is almost entirely <b>operational</b>, not architectural: no analytics, no monitoring, no automated tests, no CI/CD, no backups. None of these are hard problems — they're unstarted ones.</p>
+
+    <h3>2. Overall Rating</h3>
+    <p class="prose"><b>5.4 / 10</b> — solid product foundation, pre-production on operational maturity.</p>
+
+    <h3>3. Top Critical Issues</h3>
+    <div class="two-col">
+      <ol>
+        <li>Apps Script contact-form backend not yet deployed</li>
+        <li>Backoffice PHP never executed against a real interpreter</li>
+        <li>IRDAI/PFRDA registration numbers still placeholders</li>
+        <li>No database backup strategy defined</li>
+        <li>No CSP or HSTS headers anywhere</li>
+        <li>Two live homepages (v1, v2) with different branding</li>
+        <li>Zero analytics on the entire project</li>
+        <li>Zero automated tests anywhere</li>
+        <li>No CI/CD — manual file upload only</li>
+        <li>No rollback mechanism on deploy</li>
+        <li>Single Google-account dependency for lead capture</li>
+        <li>Audit logging covers 5 pages out of the whole project</li>
+        <li>No uptime/error monitoring</li>
+        <li>967KB unoptimized logo image</li>
+        <li>No formal WCAG audit performed</li>
+        <li>Vendor JS libraries unpinned, no CVE process</li>
+        <li>No disaster recovery runbook</li>
+        <li>Placeholder testimonials still live</li>
+        <li>No architecture/onboarding documentation</li>
+        <li>tokens.css duplicated (copy-paste) between site and backoffice</li>
+        <li>Sitemap is a single hand-written URL</li>
+        <li>No CSRF/session test coverage on the highest-risk code in the project</li>
+        <li>No defined success metrics for the site</li>
+        <li>MFD tool's document actions have no audit trail</li>
+        <li>No second admin documented for external services (Google account, hosting)</li>
+      </ol>
+    </div>
+
+    <h3>4. Top Improvement Opportunities</h3>
+    <div class="two-col">
+      <ol>
+        <li>Finish deploying the Apps Script and verify a real submission end-to-end</li>
+        <li>Run LOCAL-SETUP.md fully before backoffice touches real data</li>
+        <li>Add GA4 with event tracking on the three highest-intent interactions</li>
+        <li>Add a lightweight Playwright/PHPUnit suite starting with auth + calculators</li>
+        <li>Stand up GitHub Actions → FTP deploy pipeline</li>
+        <li>Schedule MySQL exports the day the database holds real data</li>
+        <li>Add CSP + HSTS via <code>.htaccess</code></li>
+        <li>Decide and execute the v1-vs-v2 homepage consolidation</li>
+        <li>Compress the logo; enable cache-control headers</li>
+        <li>Run one automated + one manual accessibility pass</li>
+        <li>Extract shared/ tokens to remove the copy-paste drift risk</li>
+        <li>Write ARCHITECTURE.md and ONBOARDING.md</li>
+        <li>Add FAQPage schema for an easy SEO win</li>
+        <li>Replace placeholder testimonials via the review-moderation flow already built</li>
+        <li>Extend audit logging to the MFD tool and, eventually, the marketing site</li>
+        <li>Set up free-tier uptime monitoring today — it costs nothing and closes a real gap</li>
+        <li>Document a second owner for the Google account and hosting login</li>
+        <li>Pin vendor library versions and note their source/license</li>
+        <li>Define 3–5 success metrics and revisit them monthly</li>
+        <li>Write a one-page go-live checklist before the next public launch</li>
+      </ol>
+    </div>
+
+    <h3>5. Production Folder Structure</h3>
+    <p class="prose">See Part 5 — <code>shared/</code> consolidation is the one structural change recommended; everything else is additive to what exists.</p>
+
+    <h3>6–7. CSS &amp; JavaScript Architecture</h3>
+    <p class="prose">Preserve as-is: layered CSS (tokens→base→components→page), small single-purpose JS modules, no bundler, no framework. This is a deliberate strength, not a gap, for this hosting target.</p>
+
+    <h3>8. Logging Strategy</h3>
+    <p class="prose">Extend the backoffice's <code>logAction()</code> pattern everywhere; add a client-side JS error reporter on the marketing site posting to the same lead-capture backend, tagged as error events.</p>
+
+    <h3>9. Audit Strategy</h3>
+    <p class="prose">The audit_logs schema (user, action, entity, IP, timestamp) is correct and should become the standard every future module writes to — including the MFD tool and, eventually, a marketing-site content-change log.</p>
+
+    <h3>10. Monitoring Strategy</h3>
+    <p class="prose">Free-tier uptime monitor today; GA4 this month; Sentry-equivalent (or even just PHP error-log email alerts) before the backoffice holds real client data.</p>
+
+    <h3>11. Security Strategy</h3>
+    <p class="prose">Execute and verify the backoffice auth design that already exists; add CSP/HSTS; establish a vendor-dependency update cadence; extend audit coverage. The hard design work is done — this phase is verification and header configuration, not a redesign.</p>
+
+    <h3>12. Deployment Strategy</h3>
+    <p class="prose">Keep GoDaddy shared hosting as the target (confirmed, appropriate for scale); add CI in front of it (GitHub Actions → FTP), dated backup snapshots before every deploy, and a written rollback procedure.</p>
+
+    <h3>13. Maintenance Strategy</h3>
+    <p class="prose">Quarterly review of every numeric/regulatory claim on the site; a named owner for each external service dependency; a CHANGELOG kept current per deploy.</p>
+
+    <h3>14. Future Roadmap</h3>
+    <p class="prose">Port the remaining ~20 vfsoffice modules into the new PHP foundation incrementally, each wired into the same audit log from day one — not retrofitted later, learning from exactly the gap this review found in the MFD tool.</p>
+
+    <h3>15. Final Recommendation</h3>
+    <div class="callout">
+      Do not redesign. The product, navigation, and business logic are sound and shouldn't change. Spend the next cycle entirely on operational maturity — deploy what's built, monitor what's deployed, back up what matters, and automate what's currently manual. That single shift moves this from a 5.4 to a genuinely production-ready platform without touching a single page of UI.
+    </div>
+  </section>
+
+  <div class="footer-note">
+    Prepared as an internal review artifact. Scope: <code>vfs-website/</code> only (v1 + v2 marketing site, Partner Info, MFD/GST tooling, backoffice foundation). Ratings reflect verified, current state at time of review, not aspirational or planned state.
+  </div>
+
+</main>
+</div>
+</body>
+</html>

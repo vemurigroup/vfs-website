@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Vemuri Financial Services</title>
+   <meta name="description"
+      content="This website on wealth protection and wealth creation via Mutual Funds, Term Insurance, Health Insurance, NPS, Children's Planning, and Retirement Planning." />
+   <style>
+      :root {
+         --bg-100: #f4f8fb;
+         --bg-80: #e6f6f8;
+         --card: #ffffff;
+         --muted: #071124;
+         --text: #2563eb;
+         --brand: #0ea5a4;
+         --accent: #2563eb;
+         --good: #16a34a;
+         --warn: #f59e0b;
+         --danger: #ef4444;
+         --shadow: 0 12px 40px rgba(11, 20, 40, 0.08);
+         --radius-xl: 16px;
+         --radius: 12px;
+         --header-h: 76px;
+         --maxW: 1180px;
+         --accent-1: #0b63ff;
+         --accent-2: #0f766e;
+      }
+
+
+      * {
+         box-sizing: border-box
+      }
+
+      html,
+      body {
+         height: 100%
+      }
+
+      .bule {
+         color: var(--text);
+      }
+
+      body {
+         margin: 0;
+         font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+         background: radial-gradient(1200px 800px at 80% -10%, #1b2b4d 0%, transparent 60%),
+            radial-gradient(900px 600px at -10% 10%, #10213e 0%, transparent 60%),
+            var(--bg);
+         color: var(--muted);
+         line-height: 1.6;
+         font-weight: 500;
+      }
+
+      a {
+         color: inherit;
+         text-decoration: none
+      }
+
+      img {
+         max-width: 100%;
+         display: block
+      }
+
+      .container {
+         /* max-width: 1400px; */
+         margin: 0 auto;
+         padding: 0 20px
+      }
+
+      /* Header */
+      header {
+         position: sticky;
+         top: 0;
+         z-index: 50;
+         backdrop-filter: saturate(1.2) blur(10px);
+         background: rgba(11, 18, 32, .6);
+         border-bottom: 1px solid rgba(255, 255, 255, .06)
+      }
+
+
+
+      .brand {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         font-weight: 800;
+         letter-spacing: .3px
+      }
+
+      nav ul {
+         display: flex;
+         gap: 18px;
+         list-style: none;
+         padding: 0;
+         margin: 0
+      }
+
+      nav a {
+         padding: 10px 14px;
+         border-radius: 12px;
+         transition: all .2s ease;
+         font-weight: 500;
+         color: var(--muted)
+      }
+
+      nav a:hover,
+      nav a:focus {
+         background: rgba(255, 255, 255, .06);
+         color: var(--text)
+      }
+
+      /* Mobile nav (CSS only) */
+      #menu-toggle {
+         display: none
+      }
+
+      .hamburger {
+         display: none;
+         width: 44px;
+         height: 44px;
+         align-items: center;
+         justify-content: center;
+         border-radius: 12px;
+         border: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .hamburger span {
+         width: 20px;
+         height: 2px;
+         background: var(--text);
+         position: relative;
+         display: block
+      }
+
+      .hamburger span:before,
+      .hamburger span:after {
+         content: "";
+         position: absolute;
+         width: 20px;
+         height: 2px;
+         background: var(--text);
+         left: 0
+      }
+
+      .hamburger span:before {
+         top: -6px
+      }
+
+      .hamburger span:after {
+         top: 6px
+      }
+
+      @media (max-width: 940px) {
+         nav ul {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 70px;
+            background: rgba(17, 26, 46, .95);
+            padding: 14px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            width: calc(100% - 40px)
+         }
+
+         #menu-toggle:checked+label+ul {
+            display: flex;
+            flex-direction: column
+         }
+
+         .hamburger {
+            display: flex
+         }
+      }
+
+      /* Hero */
+      .hero {
+         padding: 80px 0 40px;
+         position: relative;
+         overflow: hidden
+      }
+
+      .hero-grid {
+         display: grid;
+         grid-template-columns: 1.1fr .9fr;
+         gap: 40px;
+         align-items: center
+      }
+
+      .tag {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         font-size: .9rem;
+         color: #26517c;
+         background: rgba(102, 217, 232, .12);
+         border: 1px solid rgba(102, 217, 232, .25);
+         padding: 8px 12px;
+         border-radius: 999px
+      }
+
+      .tag .dot {
+         width: 8px;
+         height: 8px;
+         background: var(--brand);
+         border-radius: 50%;
+         box-shadow: 0 0 0 6px rgba(102, 217, 232, .15)
+      }
+
+      h1 {
+         font-size: clamp(2rem, 3.6vw, 3.2rem);
+         line-height: 1.1;
+         margin: 16px 0 16px
+      }
+
+      .lead {
+         font-size: 1.1rem;
+         color: #0d0d0d;
+         max-width: 60ch
+      }
+
+      .cta {
+         margin-top: 24px;
+         display: flex;
+         gap: 12px;
+         flex-wrap: wrap
+      }
+
+      .btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         padding: 12px 16px;
+         border-radius: 14px;
+         border: 1px solid rgba(255, 255, 255, .08);
+         font-weight: 600;
+         transition: all .2s;
+         cursor: pointer
+      }
+
+      .btn-primary {
+         background: linear-gradient(135deg, var(--brand), #7dd3fc);
+         color: #031222
+      }
+
+      .btn-secondary {
+         background: #5a4a4a0f;
+         color: var(--text)
+      }
+
+      .btn:hover {
+         transform: translateY(-1px);
+         box-shadow: var(--shadow)
+      }
+
+      .hero-card {
+         background: radial-gradient(300px 200px at 100% 0%, rgba(167, 139, 250, .15), transparent 60%),
+            linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+         border: 1px solid rgba(255, 255, 255, .08);
+         padding: 24px;
+         border-radius: var(--radius-xl);
+         box-shadow: var(--shadow);
+      }
+
+      .stats {
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 16px;
+         margin-top: 16px
+      }
+
+      .stat {
+         background: #f301010a;
+         border: 1px dashed rgba(255, 255, 255, .12);
+         padding: 14px;
+         border-radius: 14px;
+         text-align: center
+      }
+
+      .stat .num {
+         font-size: 1.4rem;
+         font-weight: 800
+      }
+
+      .stat .lbl {
+         font-size: .85rem;
+         color: black;
+      }
+
+      @media (max-width: 940px) {
+         .hero-grid {
+            grid-template-columns: 1fr
+         }
+      }
+
+      /* Sections */
+      section {
+         padding: 20px 0
+      }
+
+      .section-title {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 14px;
+         margin-bottom: 20px
+      }
+
+      .section-title h2 {
+         margin: 0;
+         font-size: clamp(1.6rem, 2.8vw, 2.2rem)
+      }
+
+      .section-sub {
+         color: var(--accent);
+         font-size: .98rem
+      }
+
+      /* Cards grid */
+      .grid {
+         display: grid;
+         gap: 18px
+      }
+
+      .cols-3 {
+         grid-template-columns: repeat(3, 1fr)
+      }
+
+      .cols-2 {
+         grid-template-columns: repeat(2, 1fr)
+      }
+
+      .cols-4 {
+         grid-template-columns: repeat(4, 1fr)
+      }
+
+      @media (max-width: 940px) {
+
+         .cols-4,
+         .cols-3 {
+            grid-template-columns: 1fr 1fr
+         }
+      }
+
+      @media (max-width: 640px) {
+
+         .cols-4,
+         .cols-3,
+         .cols-2 {
+            grid-template-columns: 1fr
+         }
+      }
+
+      .card {
+         border: 1px solid rgba(255, 255, 255, .06);
+         border-radius: var(--radius-xl);
+         padding: 18px;
+         box-shadow: var(--shadow)
+      }
+
+      .card h3 {
+         margin: 10px 0 6px;
+
+      }
+
+      .card p {
+         color: var(--accent);
+      }
+
+      .badge {
+         background-color: rgb(216 224 235);
+         display: inline-block;
+         padding: 6px 10px;
+         font-size: .8rem;
+         border-radius: 999px;
+         border: 1px solid rgba(255, 255, 255, .1);
+      }
+
+      /* Services section */
+      .svc-icon {
+         width: 44px;
+         height: 44px;
+         border-radius: 12px;
+         background: rgba(37, 99, 235, .08);
+         padding: 8px;
+         margin-bottom: 10px;
+      }
+
+      .svc-icon-emoji {
+         width: 44px;
+         height: 44px;
+         border-radius: 12px;
+         background: rgba(37, 99, 235, .08);
+         margin-bottom: 10px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 1.5rem;
+         line-height: 1;
+      }
+
+      .svc-links {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+         margin-top: 14px;
+      }
+
+      .chip {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         padding: 8px 12px;
+         font-size: .82rem;
+         font-weight: 600;
+         border-radius: 999px;
+         background: rgba(37, 99, 235, .08);
+         border: 1px solid rgba(37, 99, 235, .18);
+         color: var(--accent);
+         cursor: pointer;
+         transition: all .2s ease;
+      }
+
+      .chip:hover {
+         background: rgba(37, 99, 235, .16);
+         transform: translateY(-1px);
+      }
+
+      .chip.chip-phone {
+         background: rgba(22, 163, 74, .1);
+         border-color: rgba(22, 163, 74, .22);
+         color: var(--good);
+      }
+
+      .contact-modal-overlay {
+         position: fixed;
+         inset: 0;
+         background: rgba(7, 17, 36, 0.62);
+         display: none;
+         align-items: center;
+         justify-content: center;
+         padding: 20px;
+         z-index: 200;
+      }
+
+      .contact-modal-overlay.is-open {
+         display: flex;
+      }
+
+      .contact-modal {
+         background: white;
+         width: min(420px, 100%);
+         border-radius: 18px;
+         padding: 24px;
+         box-shadow: 0 18px 60px rgba(7, 17, 36, 0.22);
+         position: relative;
+      }
+
+      .contact-modal-close {
+         position: absolute;
+         top: 12px;
+         right: 12px;
+         border: 0;
+         background: transparent;
+         font-size: 1.3rem;
+         cursor: pointer;
+         color: #64748b;
+      }
+
+      .contact-modal h3 {
+         margin: 0 0 8px;
+         color: var(--accent);
+      }
+
+      .contact-modal p {
+         margin: 0 0 16px;
+         color: #475569;
+      }
+
+      .contact-modal a {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         padding: 10px 12px;
+         border-radius: 10px;
+         background: rgba(37, 99, 235, 0.08);
+         color: var(--accent);
+         font-weight: 600;
+         margin-bottom: 8px;
+         text-decoration: none;
+      }
+
+      .contact-modal a:hover {
+         background: rgba(37, 99, 235, 0.16);
+      }
+
+      .officer-row {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         margin: 10px 0;
+      }
+
+      .officer-row img,
+      .officer-avatar {
+         width: 56px;
+         height: 56px;
+         border-radius: 50%;
+         object-fit: cover;
+         border: 2px solid rgba(37, 99, 235, .2);
+      }
+
+      .officer-avatar {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 1.6rem;
+         background: rgba(37, 99, 235, .08);
+         flex-shrink: 0;
+      }
+
+      .rate-tag {
+         font-weight: 800;
+         color: var(--good);
+         font-size: 1.05rem;
+      }
+
+      .split {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 24px
+      }
+
+      @media (max-width: 940px) {
+         .split {
+            grid-template-columns: 1fr
+         }
+      }
+
+      .list {
+         display: auto;
+         gap: 8px;
+         margin: 0;
+         padding: 0 0 0 18px
+      }
+
+      .list li {
+         margin: 4px 0
+      }
+
+      .compare {
+         width: 100%;
+         border-collapse: separate;
+         border-spacing: 0;
+         overflow: hidden;
+         border-radius: 16px;
+         border: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .compare th {
+         padding: 14px;
+         text-align: left;
+         color: var(--accent);
+      }
+
+      .compare td {
+         padding: 5px;
+         text-align: left
+      }
+
+      .compare thead {
+         background: rgba(255, 255, 255, .06)
+      }
+
+      .compare tbody tr:nth-child(even) {
+         background: rgba(255, 255, 255, .03)
+      }
+
+      .pillars {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 18px
+      }
+
+      .pillar {
+         border: 1px solid rgba(255, 255, 255, .08);
+         border-radius: 20px;
+         padding: 18px;
+         background: linear-gradient(180deg, rgba(166, 241, 100, 0.04), rgba(255, 98, 98, 0));
+         position: relative;
+      }
+
+      .pillar h3 {
+         margin-top: 0;
+      }
+
+      .pillar.protect {
+         box-shadow: 0 0 0 1px rgba(239, 68, 68, .15) inset
+      }
+
+      .pillar.create {
+         box-shadow: 0 0 0 1px rgba(34, 197, 94, .15) inset
+      }
+
+      .cta-banner {
+         margin: 10px 0;
+         padding: 20px;
+         border-radius: 18px;
+         background: linear-gradient(135deg, rgba(102, 217, 232, .16), rgba(167, 139, 250, .12));
+         border: 1px solid rgba(255, 255, 255, .08)
+      }
+
+      .foot {
+         display: grid;
+         grid-template-columns: 2fr 1fr 1fr;
+         gap: 20px
+      }
+
+      .foot small {
+         color: var(--muted)
+      }
+
+      @media (max-width: 940px) {
+         .foot {
+            grid-template-columns: 1fr
+         }
+      }
+
+      /* Utilities */
+      .muted {
+         color: var(--accent);
+      }
+
+      .kpi {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         color: var(--text);
+      }
+
+      .kpi b {
+         font-size: 1.1rem
+      }
+
+      .dot-x {
+         width: 10px;
+         height: 10px;
+         border-radius: 50%
+      }
+
+      .dot-brand {
+         background: var(--brand)
+      }
+
+      .dot-good {
+         background: var(--good)
+      }
+
+      .dot-warn {
+         background: var(--warn)
+      }
+
+      .dot-danger {
+         background: var(--danger)
+      }
+
+      /* Anchor target offset for sticky header */
+      :target::before {
+         content: "";
+         display: block;
+         height: 80px;
+         margin-top: -80px
+      }
+
+      /* Fixed Header */
+      header {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         text-align: center;
+         padding: 5px;
+         z-index: 50;
+         backdrop-filter: saturate(1.2) blur(10px);
+         background: rgba(11, 18, 32, .6);
+         border-bottom: 1px solid rgba(255, 255, 255, .06)
+      }
+
+      nav ul li {
+         position: relative;
+         margin-right: 20px;
+         display: flex;
+         gap: 18px;
+         list-style: none;
+         padding: 0;
+         margin: 0
+      }
+
+      nav ul li a {
+         text-decoration: none;
+         padding: 5px 5px;
+         display: block;
+         color: white;
+      }
+
+      nav ul li a:hover {
+         background: #1d2a40;
+      }
+
+      /* Submenu hidden by default */
+      nav ul li ul.submenu {
+         display: none;
+         position: absolute;
+         top: 100%;
+         left: 0;
+         background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+         padding: 0;
+         margin: 0;
+         border-radius: 6px;
+         min-width: 180px;
+         z-index: 1000;
+      }
+
+      /* Submenu items */
+      nav ul li ul.submenu li a {
+         padding: 10px 15px;
+         white-space: nowrap;
+      }
+
+      /* Show submenu on hover */
+      nav ul li:hover>ul.submenu {
+         display: block;
+      }
+
+      .testimonial-container {
+         display: flex;
+         overflow-x: auto;
+         gap: 20px;
+         padding: 10px;
+         scroll-behavior: smooth;
+      }
+
+      .testimonial {
+         flex: 0 0 300px;
+         background: #fff;
+         border-radius: 12px;
+         padding: 0 20px;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+         text-align: left;
+         transition: transform 0.3s ease;
+      }
+
+      .testimonial:hover {
+         transform: translateY(-5px);
+      }
+
+      .testimonial p {
+         font-size: 10px;
+         color: #444;
+      }
+
+      .author {
+         margin-top: 15px;
+         font-weight: bold;
+         color: #0077cc;
+      }
+
+      .testimonials {
+         text-align: center;
+      }
+
+      /* Header Top Section */
+      .header-top {
+         color: #fff;
+         /* max-width: 1400px; */
+         margin: 0 auto;
+         padding: 0 20px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         font-size: 12px;
+         background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+      }
+
+      /* .app-header {
+    background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+    color: white;
+    padding: 0.6rem 1rem;
+    display: flex
+;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 18px rgba(8, 20, 40, .08);
+} */
+
+      .header-left,
+      .header-right {
+         display: flex;
+         align-items: center;
+         gap: 20px;
+      }
+
+      .header-top a {
+         color: #fff;
+         text-decoration: none;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         transition: opacity 0.3s;
+      }
+
+      .header-top a:hover {
+         opacity: 0.7;
+      }
+
+      .header-top img {
+         width: 18px;
+         height: 18px;
+         border-radius: 3px;
+      }
+
+      /* Responsive */
+      @media(max-width: 600px) {
+         .header-top {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+         }
+      }
+
+      /* results */
+      .result1 {
+         color: #ef8609;
+      }
+
+      .result2 {
+         color: #f38c06;
+      }
+
+      .result3 {
+         color: #f84503;
+      }
+
+      .result4 {
+         color: #fd03fd;
+      }
+
+      .logo-wrap {
+         width: 34px;
+         height: 34px;
+         border-radius: 1px;
+         background: var(--card);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-weight: 700
+      }
+
+      /* Header - Blue Theme */
+      header {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         z-index: 999;
+         background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+         /* deep blue */
+         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .nav {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+
+      .brand {
+         color: #fff;
+         font-weight: 700;
+      }
+
+      .brand .tiny {
+         color: #dbeafe;
+      }
+
+      ul#menuList a {
+         color: #f3f4f6;
+         /* light text */
+         font-weight: 600;
+      }
+
+      ul#menuList a:hover,
+      ul#menuList a:focus,
+      ul#menuList a.active {
+         background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+         /* light blue overlay */
+         color: #fff;
+      }
+
+      /* Hamburger lines white */
+      label.hamburger span,
+      label.hamburger span::before,
+      label.hamburger span::after {
+         background: #fff;
+      }
+
+      /* Footer - Blue Theme */
+      footer {
+         background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+         /* deep blue */
+         color: #f6f6f6;
+         /* light text */
+         padding: 12px 0;
+         margin-top: 10px;
+      }
+
+      footer h3,
+      footer h4 {
+         color: #fff;
+      }
+
+      footer a {
+         color: #dbeafe;
+         text-decoration: none;
+         transition: color 0.2s ease;
+      }
+
+      footer a:hover {
+         color: #60a5fa;
+         /* lighter blue */
+      }
+
+      footer small {
+         color: #dbeafe;
+      }
+
+      /* -----------------------
+   Mobile / Small-screen overrides
+   Append this to the end of your CSS
+   ----------------------- */
+
+      /* Useful fallbacks for CSS vars if not present */
+      /* :root {
+  --topstrip-h: 36px;
+  --header-h: 76px;
+} */
+
+      /* Mobile layout for tablets & phones */
+      @media (max-width: 940px) {
+
+         /* Top strip: keep icons aligned and reduce text */
+         .header-top .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+         }
+
+         .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+         }
+
+         .header-top a img {
+            width: 20px;
+            height: 20px;
+         }
+
+         /* hide long contact text on narrow view but keep links accessible */
+         .header-top .contact-text {
+            display: none;
+         }
+
+         /* Main header slightly smaller and fixed below top strip */
+         header {
+            top: var(--topstrip-h);
+         }
+
+         .nav {
+            height: 64px;
+            padding: 0 12px;
+            align-items: center;
+         }
+
+         /* Show hamburger; transform nav into a full-width panel */
+         label.hamburger {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+         }
+
+         /* Hide native nav by default on mobile — will be toggled by checkbox */
+         nav ul {
+            display: none;
+            position: fixed;
+            top: calc(var(--topstrip-h) + 64px);
+            /* below top strip + header */
+            left: 8px;
+            right: 8px;
+            margin: 0;
+            padding: 12px;
+            flex-direction: column;
+            gap: 6px;
+            border-radius: 12px;
+            z-index: 1200;
+            background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent-1) 100%);
+            box-shadow: 0 12px 40px rgba(2, 6, 23, 0.4);
+         }
+
+         /* When checkbox is checked, display mobile menu */
+         #menu-toggle:checked+label.hamburger+nav ul,
+         #menu-toggle:checked+label+ul {
+            display: flex;
+         }
+
+         /* Menu items stack and take full width */
+         nav ul li {
+            margin: 6px 0;
+            display: block;
+         }
+
+         nav ul li a {
+            display: flex;
+            padding: 10px 12px;
+            color: #fff;
+            border-radius: 8px;
+         }
+
+         /* Mobile submenu: hidden by default, shown when parent li has .open (toggled by JS) */
+         nav ul li ul.submenu {
+            display: none;
+            position: static;
+            padding-left: 12px;
+            background: transparent;
+            box-shadow: none;
+            border: 0;
+         }
+
+         nav ul li.open>ul.submenu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+         }
+
+         nav ul li ul.submenu li a {
+            color: #fff;
+            padding: 8px 12px;
+         }
+
+         /* Hero and grid spacing for mobile */
+         main.hero {
+            padding: calc(var(--header-h, 76px) + var(--topstrip-h, 36px) + 20px) 0 20px;
+         }
+
+         .hero-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+         }
+
+         .cta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+         }
+
+         .stats {
+            grid-template-columns: 1fr;
+            gap: 10px;
+         }
+
+         /* Cards / columns stack */
+         .cols-3,
+         .cols-4 {
+            grid-template-columns: 1fr;
+         }
+
+         .split {
+            grid-template-columns: 1fr;
+            gap: 12px;
+         }
+
+         .compare {
+            font-size: 14px;
+         }
+
+         /* Footer spacing */
+         footer {
+            padding: 24px 12px;
+         }
+      }
+
+      /* Very small screens: allow contact text to appear stacked (if desired) */
+      @media (max-width: 600px) {
+         .header-top .container {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+         }
+
+         /* optionally show shortened contact-text for very small screens */
+         .header-top .contact-text {
+            display: inline-block;
+            font-size: 12px;
+         }
+
+         .logo-wrap {
+            width: 40px;
+            height: 40px;
+         }
+
+         .brand span {
+            font-size: 16px;
+         }
+
+         .nav {
+            padding: 8px 12px;
+         }
+
+         /* shrink hero headings a bit */
+         h1 {
+            font-size: clamp(1.6rem, 6vw, 2.2rem);
+         }
+      }
+
+      /* Accessibility: ensure keyboard users can see the mobile menu focus states */
+      @media (max-width:940px) {
+         nav ul li a:focus {
+            outline: 3px solid rgba(37, 99, 246, 0.18);
+            outline-offset: 3px;
+         }
+      }
+
+      #iframeContainer {
+         opacity: 0;
+         transition: opacity 0.3s ease;
+      }
+
+      #iframeContainer.show {
+         display: block;
+         opacity: 1;
+      }
+
+      /* ===========================
+   KYC SECTION
+=========================== */
+
+      .kyc-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+         gap: 25px;
+         margin-top: 35px;
+      }
+
+      .kyc-card {
+         background: #fff;
+         border-radius: 15px;
+         padding: 30px;
+         text-align: center;
+         box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+         transition: .3s;
+      }
+
+      .kyc-card:hover {
+         transform: translateY(-8px);
+         box-shadow: 0 20px 35px rgba(0, 119, 204, .15);
+      }
+
+      .kyc-icon {
+         font-size: 48px;
+         margin-bottom: 15px;
+      }
+
+      .kyc-card h3 {
+         color: #0056b3;
+         margin-bottom: 12px;
+      }
+
+      .kyc-card p {
+         color: #555;
+         line-height: 1.7;
+         min-height: 70px;
+      }
+
+      .btn-primary {
+         display: inline-block;
+         margin-top: 20px;
+         padding: 12px 24px;
+         background: #0077cc;
+         color: #fff;
+         text-decoration: none;
+         border-radius: 8px;
+         font-weight: bold;
+      }
+
+      .btn-primary:hover {
+         background: #005fa3;
+      }
+
+      .kyc-awareness {
+         margin-top: 50px;
+         background: #eef8ff;
+         border-left: 6px solid #0077cc;
+         padding: 30px;
+         border-radius: 12px;
+      }
+
+      .kyc-awareness h3 {
+         color: #0056b3;
+         margin-bottom: 15px;
+      }
+
+      .kyc-awareness ul {
+         margin-left: 20px;
+         line-height: 2;
+      }
+
+      .kyc-note {
+         margin-top: 20px;
+         background: #fff3cd;
+         border-left: 5px solid #ff9800;
+         padding: 15px;
+         border-radius: 8px;
+      }
+
+      .kyc-contact {
+         margin-top: 25px;
+         background: #ffffff;
+         border: 1px solid #d9e9ff;
+         padding: 18px;
+         border-radius: 10px;
+         text-align: center;
+         font-size: 18px;
+         color: #0056b3;
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <!-- Header Top Section -->
+      <div class="header-top">
+         <div class="header-left">
+         </div>
+         <div class="header-right">
+            <!-- Phone (Click to Call) -->
+            <a href="tel:+919886291668">
+               <img src="https://img.icons8.com/ios-filled/50/ffffff/phone.png" alt="Phone">
+
+            </a>
+            <!-- Email (Click to Mail) -->
+            <a href="mailto:vemurifin@gmail.com">
+               <img src="https://img.icons8.com/color/48/gmail-new.png" alt="Gmail">
+
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/vemuri-financial-solutions-282a37376/" target="_blank">
+               <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn">
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/919886291668" target="_blank">
+               <img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp">
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com/vemurifin" target="_blank">
+               <img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook">
+            </a>
+         </div>
+      </div>
+      <div class="container nav">
+         <div class="brand">
+            <div>
+               <a href="https://www.vemurigroup.co.in/">
+                  <img class="logo-wrap" src="vemurigroup_logo_registred.png" alt="Vemuri Financial Services Logo">
+               </a>
+            </div>
+            <span>Vemuri Financial Services</span>
+         </div>
+         <nav>
+            <input type="checkbox" id="menu-toggle" aria-label="menu toggle" /><label class="hamburger"
+               for="menu-toggle" aria-hidden="true"><span></span></label>
+            <ul id="menuList">
+               <li id="nav-home"><a href="#home">Home</a></li>
+               <li><a href="#pillars">Pillars</a></li>
+               <li><a href="#solutions">Solutions</a></li>
+               <li><a href="#services">Services</a></li>
+               <li><a href="#compare">Compare</a></li>
+               <li>
+                  <a class="submenu-toggle">Calculators^</a>
+                  <ul class="submenu">
+                     <li><a href="#sip">SIP Calculator</a></li>
+                     <li><a href="#swp">SWP Calculator</a></li>
+                     <li><a href="#fd">FD Calculator</a></li>
+                     <li><a href="#inflation">Inflation Calculator</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a class="submenu-toggle">Useful Links^</a>
+                  <ul class="submenu">
+                     <li><a href="#kyc">KYC Services</a></li>
+                     <li><a href="#testimonialsSec">Testimonials</a></li>
+                     <li><a href="#compliance">Regulatory Disclosures</a></li>
+                     <li><a href="#faq">FAQ</a></li>
+                     <li><a href="partner-info.html" rel="noopener noreferrer">VFSInfo</a></li>
+                     <li><a href="mfd-gst.html" rel="noopener noreferrer">GST Office</a></li>
+                  </ul>
+               </li>
+               <li><a href="#contact" class="">Get Advice</a></li>
+               <!-- <li><a href="http://finbo.vemurigroup.in" target="_blank">Login</a></li> -->
+            </ul>
+         </nav>
+      </div>
+   </header>
+
+   <main id="home" class="hero">
+      <div class="container hero-grid">
+         <div>
+            <span class="tag"><span class="dot"></span>A balanced plan for every life stage</span>
+            <h1 class="bule">Protect today. Grow for tomorrow.</h1>
+            <p class="lead">Build a resilient financial plan that shields your family from risks and consistently grows
+               your wealth. We blend <b>protection</b>(Term & Health Insurance) with <b>creation</b>(Mutual Funds &
+               NPS),
+               plus focused goals like Children’s & Retirement planning.
+            </p>
+            <div class="cta"><a class="btn btn-primary" href="#contact">Start your plan</a><a class="btn btn-secondary"
+                  href="#solutions">Explore solutions</a></div>
+            <div class="stats">
+               <div class="stat">
+                  <div class="num">₹10k → ₹1 Cr*</div>
+                  <div class="lbl">Long-term SIP potential</div>
+               </div>
+               <div class="stat">
+                  <div class="num">2 pillars</div>
+                  <div class="lbl">Protection+Creation</div>
+               </div>
+               <div class="stat">
+                  <div class="num">100%</div>
+                  <div class="lbl">Goal-based approach</div>
+               </div>
+            </div>
+            <p class="muted" style="margin-top:8px; font-size:.85rem">*Illustrative,
+               not guaranteed. Market-linked & subject to risk.
+            </p>
+         </div>
+         <div>
+            <div class="hero-card">
+               <div class="kpi"><span class="dot-x dot-good"></span><b>Emergency Fund</b><span class="muted">— 6–12
+                     months expenses</span></div>
+               <div class="kpi" style="margin-top:10px"><span class="dot-x dot-danger"></span><b>Risk Cover</b><span
+                     class="muted">— Term life 10–15× annual income</span></div>
+               <div class="kpi" style="margin-top:10px"><span class="dot-x dot-warn"></span><b>Health Cover</b><span
+                     class="muted">— Family floater+top-up</span></div>
+               <div class="kpi" style="margin-top:10px"><span class="dot-x dot-brand"></span><b>Wealth Engine</b><span
+                     class="muted">— MF SIPs+NPS (Tax)</span></div>
+               <hr style="border-color:rgba(252, 3, 3, 0.08)">
+               <p class="muted" style="margin:0">Sequence matters: secure the downside first,
+                  then scale investments.
+               </p>
+            </div>
+         </div>
+      </div>
+   </main>
+   <section id="pillars">
+      <div class="container">
+         <div class="section-title">
+            <h2>Two Pillars of a Solid Financial Plan</h2>
+            <span class="section-sub">Balance risk management with growth compounding.</span>
+         </div>
+         <div class="pillars">
+            <div class="pillar protect">
+               <h3>Wealth Protection</h3>
+               <p class="muted">Protect your income, health, and goals from shocks.
+               </p>
+               <ul class="list">
+                  <li><b>Term Insurance</b>— Low-cost pure protection to cover liabilities & future income.</li>
+                  <li><b>Health Insurance</b>— Family floater+super top-up for large medical bills.</li>
+                  <li><b>Emergency Fund</b>— Liquid or money market funds for quick access.</li>
+               </ul>
+            </div>
+            <div class="pillar create">
+               <h3>Wealth Creation</h3>
+               <p class="muted">Grow your money tax‑efficiently for long-term goals.</p>
+               <ul class="list">
+                  <li><b>Mutual Funds (SIP)</b>— Diversified equity for compounding & goal-based buckets.</li>
+                  <li><b>NPS</b>— Extra tax benefit (Sec 80CCD(1B))+disciplined retirement corpus.</li>
+                  <li><b>Hybrid/Debt</b>— For stability,
+                     parking,
+                     or near‑term goals.
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="cta-banner"><b class="blue">Rule of thumb:</b>Build emergency fund → Buy term & health cover →
+            Start/scale SIPs
+            → Add NPS for tax & retirement. </div>
+      </div>
+   </section>
+   <section id="solutions">
+      <div class="container">
+         <div class="section-title">
+            <h2>Solutions & Use‑Cases</h2>
+            <span class="section-sub">Pick what you need now—add more as life evolves.</span>
+         </div>
+         <div class="grid cols-3">
+            <article class="card" aria-labelledby="card-mf">
+               <span class="badge">Wealth Creation</span>
+               <h3 id="card-mf">Mutual Funds (SIP)</h3>
+               <p>Start with diversified equity index/active funds. Align each SIP to a <b>specific goal</b>—education,
+                  house,
+                  or retirement.
+               </p>
+               <ul class="list">
+                  <li>Automate monthly investing</li>
+                  <li>Top-up SIP annually to beat inflation</li>
+                  <li>Use debt/hybrid for short horizons</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-term">
+               <span class="badge">Protection</span>
+               <h3 id="card-term">Term Insurance</h3>
+               <p>Pure life cover to protect dependents. Choose adequate sum assured and keep nominee details updated.
+               </p>
+               <ul class="list">
+                  <li>10–15× annual income coverage</li>
+                  <li>Cover until planned retirement age</li>
+                  <li>Disclose health & lifestyle honestly</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-health">
+               <span class="badge">Protection</span>
+               <h3 id="card-health">Health Insurance</h3>
+               <p>Safeguard savings from medical costs with a family floater and high-deductible top-up.</p>
+               <ul class="list">
+                  <li>Cashless network hospitals</li>
+                  <li>No-claim bonus & restoration</li>
+                  <li>Consider OPD & maternity as needed</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-nps">
+               <span class="badge">Retirement & Tax</span>
+               <h3 id="card-nps">NPS (National Pension System)</h3>
+               <p>NPS adds an extra tax deduction under Sec 80CCD(1B) up to ₹50,
+                  000 and builds a disciplined retirement corpus.
+               </p>
+               <ul class="list">
+                  <li>Choose active or auto choice</li>
+                  <li>Low-cost equity & debt exposure</li>
+                  <li>Lock-in till retirement encourages discipline</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-child">
+               <span class="badge">Goal Planning</span>
+               <h3 id="card-child">Children’s Education Planning</h3>
+               <p>Map current costs to future value,
+                  then back-calc SIP needed. Use equity for long horizon;
+                  debt for near-term.
+               </p>
+               <ul class="list">
+                  <li>Inflation-adjusted goal values</li>
+                  <li>Dedicated goal-based funds</li>
+                  <li>Annual review & rebalancing</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-retire">
+               <span class="badge">Lifetime Goal</span>
+               <h3 id="card-retire">Retirement Planning</h3>
+               <p>Combine NPS+MF SIPs for growth,
+                  then shift to income strategies near retirement.
+               </p>
+               <ul class="list">
+                  <li>Target corpus with SWP plan later</li>
+                  <li>Glide path: equity → hybrid → debt</li>
+                  <li>Tax-aware withdrawal strategy</li>
+               </ul>
+            </article>
+            <!-- ✅ New Component Added -->
+            <article class="card" aria-labelledby="card-retire">
+               <span class="badge">Instant Liquidity</span>
+               <h3 id="card-retire">Loan Against Mutual Fund</h3>
+               <p>Unlock liquidity instantly by pledging your mutual fund investments without selling them.</p>
+               <ul class="list">
+                  <li>Lower Interest Rates.</li>
+                  <li>Quick & Hassle-Free Processing.</li>
+                  <li>No Impact on Investments.</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-retire">
+               <span class="badge">Safe & Accessible</span>
+               <h3 id="card-retire">Emergency Fund</h3>
+               <p>Build a financial cushion for emergencies with liquid & arbitrage mutual funds that ensure quick
+                  access to your money.</p>
+               <ul class="list">
+                  <li>High Liquidity – withdraw anytime.</li>
+                  <li>Better returns than Savings Account.</li>
+                  <li>Low Risk & Safe investment.</li>
+               </ul>
+            </article>
+            <article class="card" aria-labelledby="card-retire">
+               <span class="badge">Diversified Growth</span>
+               <h3 id="card-retire">Diversified Asset Allocation Approach</h3>
+               <p>Invest across equity, debt, and gold for balanced returns with lower risk.</p>
+               <ul class="list">
+                  <li>Diversification across multiple asset classes.</li>
+                  <li>Reduces overall portfolio volatility.</li>
+                  <li>Potential for stable, long-term growth.</li>
+               </ul>
+            </article>
+         </div>
+      </div>
+   </section>
+   <section id="services">
+      <div class="container">
+         <div class="section-title">
+            <h2>Services</h2>
+            <span class="section-sub">One-tap access to onboarding, loans, NPS, insurance, bonds & global
+               investing.</span>
+         </div>
+         <div class="grid cols-3">
+
+            <!-- Onboard Mutual Fund -->
+            <article class="card" aria-labelledby="svc-mf">
+               <div class="svc-icon-emoji" role="img" aria-label="Mutual Fund Onboarding">💰</div>
+               <span class="badge">Onboarding</span>
+               <h3 id="svc-mf">Mutual Fund Onboarding</h3>
+               <p>Start a fresh mutual fund folio or manage existing investments — choose whichever platform works best
+                  for you, on web or mobile.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://vfs.vemurigroup.in/" target="_blank"
+                     rel="noopener noreferrer">🌐 VFS Web Login</a>
+               </div>
+            </article>
+
+            <!-- NPS -->
+            <article class="card" aria-labelledby="svc-nps">
+               <div class="svc-icon-emoji" role="img" aria-label="NPS">🧓</div>
+               <span class="badge">Retirement</span>
+               <h3 id="svc-nps">NPS — National Pension System</h3>
+               <p>Log in or Create to your NPS account to contribute, switch fund managers, or check your
+                  retirement corpus.</p>
+               <div class="svc-links">
+                  <a class="chip"
+                     href="https://tinyurl.com/vfsnps"
+                     target="_blank" rel="noopener noreferrer">🌐
+                     NPS Login</a>
+               </div>
+            </article>
+
+            <!-- Loan Against Mutual Funds -->
+            <article class="card" aria-labelledby="svc-lamf">
+               <div class="svc-icon-emoji" role="img" aria-label="Loan Against Mutual Funds">🔄</div>
+               <span class="badge">Instant Liquidity</span>
+               <h3 id="svc-lamf">Loan Against Mutual Funds</h3>
+               <p>Unlock cash against your MF portfolio without redeeming it. Compare and apply with any of our lending
+                  partners below.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://tinyurl.com/vfsmfvloan"
+                     target="_blank" rel="noopener noreferrer">💰 Volt Money</a>
+                  <a class="chip" href="https://www.quicklend.in?ref_code=NIABFETK" target="_blank"
+                     rel="noopener noreferrer">💰 Quicklend</a>
+                  <a class="chip" href="https://vemurifin.loanonline.cc/" target="_blank" rel="noopener noreferrer">💰
+                     Yenmo</a>
+                  <a class="chip" href="https://www.njcapital.in/partner/customer/login" target="_blank" rel="noopener noreferrer">💰 NJ Capital</a>
+               </div>
+            </article>
+
+            <!-- Home Loan -->
+            <article class="card" aria-labelledby="svc-home-loan">
+               <div class="svc-icon-emoji" role="img" aria-label="Home Loan">🏠</div>
+               <span class="badge">Property</span>
+               <h3 id="svc-home-loan">Home Loan</h3>
+               <p>Explore home loan and loan-against-securities options through our FundsIndia partnership for your
+                  property purchase or refinancing needs.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://frm.finfinity.co.in/?utm_campaign=302882" target="_blank"
+                     rel="noopener noreferrer">🌐
+                     Eligibility Check Loans</a>
+               </div>
+            </article>
+
+            <!-- Personal Loan -->
+            <article class="card" aria-labelledby="svc-personal-loan">
+               <div class="svc-icon-emoji" role="img" aria-label="Personal Loan">💵</div>
+               <span class="badge">Quick Approval</span>
+               <h3 id="svc-personal-loan">Personal Loan</h3>
+               <p>Rates starting at <span class="rate-tag">9.99%*</span> p.a. Speak to our loan officer directly for
+                  eligibility &amp; a personalised quote.</p>
+               <div class="svc-links">
+                  <a class="chip chip-phone" href="tel:+919886291668">📞 Get a Quote</a>
+                  <a class="chip" href="https://frm.finfinity.co.in/?utm_campaign=302882" target="_blank"
+                     rel="noopener noreferrer">🌐 Eligibility Check</a>
+               </div>
+            </article>
+
+            <!-- Global Funds -->
+            <article class="card" aria-labelledby="svc-global">
+               <img class="svc-icon" src="https://img.icons8.com/color/96/globe.png" alt="Global Funds" />
+               <span class="badge">Global Investing</span>
+               <h3 id="svc-global">Global Funds — GIFT City &amp; Demat</h3>
+               <p>Access international market exposure via GIFT City's IFSC framework, and open a Samco demat account
+                  to hold your securities &amp; bonds.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://tinyurl.com/dspgiftcity" target="_blank"
+                     rel="noopener noreferrer">🌐 GIFT
+                     City Overview</a>
+                  <a class="chip" href="https://sam-co.in/bkJzRDhiZGg1SVdOSWdRemVCS3FXUT09" target="_blank"
+                     rel="noopener noreferrer">🌐 US Trade Login</a>
+               </div>
+            </article>
+
+            <!-- Health Insurance -->
+            <article class="card" aria-labelledby="svc-health">
+               <div class="svc-icon-emoji" role="img" aria-label="Health Insurance">🏥</div>
+               <span class="badge">Protection</span>
+               <h3 id="svc-health">Health Insurance</h3>
+               <p>Family floater and super top-up plans to safeguard your savings from medical emergencies.</p>
+               <div class="svc-links">
+                  <a class="chip chip-phone" href="tel:+919886291668">📞 Get a Quote</a>
+               </div>
+            </article>
+
+            <!-- Term Insurance -->
+            <article class="card" aria-labelledby="svc-term">
+               <div class="svc-icon-emoji" role="img" aria-label="Term Insurance">🛡️</div>
+               <span class="badge">Protection</span>
+               <h3 id="svc-term">Term Insurance</h3>
+               <p>Pure, low-cost life cover to protect your family's income and outstanding liabilities.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://sitaramaranganadharamanujadasuvemuri.axismaxlife.agency/website/"
+                     target="_blank" rel="noopener noreferrer">🌐 Check Plans</a>
+               </div>
+            </article>
+
+            <!-- General Insurance -->
+            <article class="card" aria-labelledby="svc-general">
+               <div class="svc-icon-emoji" role="img" aria-label="General Insurance">🚗</div>
+               <span class="badge">Protection</span>
+               <h3 id="svc-general">General Insurance</h3>
+               <p>Motor, home, travel &amp; other general insurance covers tailored to your everyday needs.</p>
+               <div class="svc-links">
+                  <a class="chip chip-phone" href="tel:+919886291668">📞 Get a Quote</a>
+                  <a class="chip" href="https://tinyurl.com/tataaig01" target="_blank" rel="noopener noreferrer">🌐
+                     Check Plans</a>
+               </div>
+            </article>
+
+            <!-- Bonds -->
+            <article class="card" aria-labelledby="svc-bonds">
+               <div class="svc-icon-emoji" role="img" aria-label="Bonds">📈</div>
+               <span class="badge">Fixed Income</span>
+               <h3 id="svc-bonds">Bonds</h3>
+               <p>Explore government, corporate &amp; bonds for steady, market-linked fixed income.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://ndxfinserv.com/signUp/NDX0001197" target="_blank"
+                     rel="noopener noreferrer">🌐
+                     Explore Bonds</a>
+               </div>
+            </article>
+            <!-- Fixed Deposit -->
+            <article class="card" aria-labelledby="svc-fd">
+               <div class="svc-icon-emoji" role="img" aria-label="Fixed Deposit">💰</div>
+               <span class="badge">Fixed Income</span>
+               <h3 id="svc-fd">Fixed Deposit</h3>
+               <p>Explore fixed deposit options for secure, predictable returns on your savings.</p>
+               <div class="svc-links">
+                  <a class="chip chip-phone" href="tel:+919886291668">📞 Connect</a>
+               </div>
+            </article>
+            <!-- Gold Investment -->
+            <article class="card" aria-labelledby="svc-gold">
+               <div class="svc-icon-emoji" role="img" aria-label="Commodity Investment">🪨</div>
+               <span class="badge">Alternative Investment</span>
+               <h3 id="svc-gold">Gold & Silver Investments</h3>
+               <p>Explore gold investment options for diversification and hedge against inflation.</p>
+               <div class="svc-links">
+                  <a class="chip chip-phone" href="tel:+919886291668">📞 Connect</a>
+                  <a class="chip" href="https://qrcode.batuk.gold/partner/?ref=SRRRV461" target="_blank"
+                     rel="noopener noreferrer">🌐
+                     Explore Gold & Silver Investments</a>
+               </div>
+            </article>
+
+         </div>
+      </div>
+   </section>
+   <div class="contact-modal-overlay" id="contactModal" aria-hidden="true">
+      <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+         <button class="contact-modal-close" id="contactModalClose" type="button" aria-label="Close">×</button>
+         <h3 id="contactModalTitle">Contact Vemuri Financial Services</h3>
+         <p>Reach us directly using the details below.</p>
+         <a href="tel:+919886291668">📞 +91 98862 91668</a>
+         <a href="mailto:vemurifin@gmail.com">✉️ vemurifin@gmail.com</a>
+      </div>
+   </div>
+   <section id="compare">
+      <div class="container">
+         <div class="section-title">
+            <h2>Quick Comparison</h2>
+            <span class="section-sub">Each product solves a specific job. Mix wisely.</span>
+         </div>
+         <div class="card">
+            <div style="overflow:auto">
+               <table class="compare" role="table" aria-label="Product comparison">
+                  <thead>
+                     <tr>
+                        <th>Product</th>
+                        <th>Primary Purpose</th>
+                        <th>Best For</th>
+                        <th>Time Horizon</th>
+                        <th>Liquidity</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Term Insurance</td>
+                        <td>Income protection</td>
+                        <td>Dependents,
+                           loans
+                        </td>
+                        <td>Until retirement</td>
+                        <td>Claim on event</td>
+                     </tr>
+                     <tr>
+                        <td>Health Insurance</td>
+                        <td>Medical cost cover</td>
+                        <td>Family protection</td>
+                        <td>Ongoing</td>
+                        <td>Cashless claims</td>
+                     </tr>
+                     <tr>
+                        <td>Mutual Funds (Equity)</td>
+                        <td>Wealth creation</td>
+                        <td>Long-term goals</td>
+                        <td>5–15+years</td>
+                        <td>High (T+2)</td>
+                     </tr>
+                     <tr>
+                        <td>NPS</td>
+                        <td>Retirement+tax</td>
+                        <td>Tax-efficient corpus</td>
+                        <td>Until retirement</td>
+                        <td>Restricted (lock-in)</td>
+                     </tr>
+                     <tr>
+                        <td>Debt/Hybrid MF</td>
+                        <td>Stability & parking</td>
+                        <td>Short to medium goals</td>
+                        <td>3 months – 3 years</td>
+                        <td>High (T+2)</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="muted" style="margin-top:10px">Note: Returns are market-linked or policy-specific;
+               read scheme documents & policy wordings carefully.
+            </p>
+         </div>
+      </div>
+   </section>
+   <section id="faq">
+      <div class="container">
+         <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <span class="section-sub">Short answers to common doubts.</span>
+         </div>
+         <div class="grid cols-2">
+            <div class="card">
+               <h3>Why start with protection first?</h3>
+               <p>Insurance prevents a single event from derailing your goals. After a safety net is in place,
+                  you can invest aggressively for growth.
+               </p>
+            </div>
+            <div class="card">
+               <h3>How much term cover do I need?</h3>
+               <p>A practical range is <b>10–15× annual income</b>or a human‑life‑value method that covers
+                  liabilities+future goals.</p>
+            </div>
+            <div class="card">
+               <h3>Are mutual fund returns guaranteed?</h3>
+               <p>No. They are market‑linked. Use asset allocation and a long horizon to reduce risk,
+                  and review annually.
+               </p>
+            </div>
+            <div class="card">
+               <h3>Is NPS better than mutual funds?</h3>
+               <p>They serve different purposes. NPS shines for <b>tax+retirement discipline</b>;
+                  MFs give more flexibility and liquidity.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section id="sip" class="page hide">
+      <div class="container">
+         <div class="section-title">
+            <h2>SIP & Top-up Calculator</h2>
+            <span class="section-sub">Estimate future value of monthly SIPs with yearly top-up fixed amount and expected
+               annual return (CAGR).</span>
+         </div>
+         <div class="card">
+            <div style="overflow:auto">
+               <div class="grid cols-2">
+                  <div><label>Monthly SIP Amount (₹)</label><input id="sipAmt" type="number" value="5000"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Expected Annual Return (%)</label><input id="rate" type="number" value="12"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Investment Horizon (years)</label><input id="years" type="number" value="20"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Fixed Top-Up (₹ per year)</label><input id="topup" type="number" value="1000"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+               </div>
+               <div class="cta" style="margin-top:10px"><button class="btn btn-primary"
+                     onclick="calculateSIP()">Calculate</button><button class="btn btn-ghost"
+                     onclick="resetCalc()">Reset</button></div>
+               <div id="calcResult" class="result muted">Result will appear here.</div>
+               <small class="muted">Formula: monthly SIP invested with yearly top-up;
+                  returns compounded monthly based on annual CAGR.</small>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="swp" class="page hide">
+      <div class="container">
+         <div class="section-title">
+            <h2>SWP Calculator</h2>
+            <span class="section-sub">Estimate the future value of monthly SWP withdrawals for a fixed amount based on
+               the expected annual return (CAGR).</span>
+         </div>
+         <div class="card">
+            <div style="overflow:auto">
+               <div class="grid cols-2">
+                  <div><label>Initial Investment (₹)</label><input id="investment" type="number" value="2000000"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Expected Annual Return (%)</label><input id="rateSWP" type="number" value="10"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Duration (Years)</label><input id="yearsSWP" type="number" value="20"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Monthly Withdrawal (₹)</label><input id="withdraw" type="number" value="5000"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+               </div>
+               <div class="cta" style="margin-top:10px"><button class="btn btn-primary"
+                     onclick="calculateSWP()">Calculate</button><button class="btn btn-ghost"
+                     onclick="resetCalcSWP()">Reset</button></div>
+               <div id="calcResultSWP" class="result muted">Result will appear here.</div>
+               <small class="muted">Formula: Monthly SWP withdrawals are calculated based on the selected withdrawal
+                  amount,
+                  and the returns are provided according to the chosen amount.</small>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="fd" class="page hide">
+      <div class="container">
+         <div class="section-title">
+            <h2>FD Calculator</h2>
+            <span class="section-sub">Investment amount,
+               interest rate,
+               tenure,
+               compounding frequency.</span>
+         </div>
+         <div class="card">
+            <div style="overflow:auto">
+               <div class="grid cols-2">
+                  <div><label>Initial Investment (₹)</label><input id="amount" type="number" value="2000000"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Annual Interest Rate (%)</label><input id="rateFD" type="number" value="6"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div><label>Tenure (Years)</label><input id="yearsFD" type="number" value="20"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)" />
+                  </div>
+                  <div>
+                     <label>Compounding Frequency</label>
+                     <select id="frequency" type="number" value="1"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(225 14 14 / 4%); color:#9cb0e4">
+                        <option value="1">Yearly</option>
+                        <option value="2">Half-Yearly</option>
+                        <option value="4">Quarterly</option>
+                        <option value="12">Monthly</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="cta" style="margin-top:10px"><button class="btn btn-primary"
+                     onclick="calculateFD()">Calculate</button><button class="btn btn-ghost"
+                     onclick="resetCalcFD()">Reset</button></div>
+               <div id="calcResultFD" class="result muted">Result will appear here.</div>
+               <small class="muted">Formula: Simple FD Calculator with inputs for investment amount,
+                  interest rate,
+                  tenure,
+                  and compounding frequency.</small>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="inflation" class="page hide">
+      <div class="container">
+         <div class="section-title">
+            <h2>Inflation Calculator</h2>
+            <span class="section-sub">
+               Calculate the future cost of an item after inflation.
+            </span>
+         </div>
+
+         <div class="card">
+            <div class="grid cols-2">
+
+               <div>
+                  <label>Current Cost (₹)</label>
+                  <input type="number" id="currentCost" value="100000"
+                     style="width:100%;padding:12px;margin-top:6px;border-radius:12px;">
+               </div>
+
+               <div>
+                  <label>Inflation Rate (%)</label>
+                  <input type="number" id="inflationRate" value="6" step="0.1"
+                     style="width:100%;padding:12px;margin-top:6px;border-radius:12px;">
+               </div>
+
+               <div>
+                  <label>Years</label>
+                  <input type="number" id="inflationYears" value="20"
+                     style="width:100%;padding:12px;margin-top:6px;border-radius:12px;">
+               </div>
+
+            </div>
+
+            <div class="cta" style="margin-top:15px">
+
+               <button class="btn btn-primary" onclick="calculateInflation()">
+                  Calculate
+               </button>
+
+               <button class="btn btn-secondary" onclick="resetInflation()">
+                  Reset
+               </button>
+
+            </div>
+
+            <div id="inflationResult" class="result muted">
+               Result will appear here.
+            </div>
+
+         </div>
+      </div>
+   </section>
+
+   <!-- ===========================
+   KYC SERVICES
+   =========================== -->
+   <section id="kyc" class="section">
+      <div class="container">
+
+         <div class="section-title">
+            <h2>KYC Services</h2>
+            <p>Complete your KYC seamlessly before investing in Mutual Funds and other financial products.</p>
+         </div>
+
+         <div class="kyc-grid">
+
+
+            <!-- KYC Entry -->
+            <div class="kyc-card">
+               <div class="kyc-icon">📝</div>
+               <h3>KYC Entry</h3>
+               <p>
+                  Submit your KYC details and upload the required documents.
+               </p>
+
+               <a href="https://www.cvlkra.com/" target="_blank" class="btn-primary">
+                  KYC Entry
+               </a>
+            </div>
+
+            <!-- KYC Validation -->
+            <div class="kyc-card">
+               <div class="kyc-icon">✅</div>
+               <h3>KYC Validation</h3>
+               <p>
+                  Verify your PAN and check whether your KYC is valid.
+               </p>
+
+               <a href="https://validate.cvlindia.com/CVLKRAVerification_V1/" target="_blank" class="btn-primary">
+                  CVL eKYC Validation
+               </a>
+               <a href="https://camskra.com/investorservices#validate-kyc" target="_blank" class="btn-ghost">Cams eKYC Validation</a>
+            </div>
+
+
+            <!-- Do KYC -->
+            <div class="kyc-card">
+               <div class="kyc-icon">🆕</div>
+               <h3>Do KYC</h3>
+               <p>
+                  Complete your Online KYC for first-time investments.
+               </p>
+
+               <a href="https://www.dspim.com/invest/#goto=kyc" target="_blank" class="btn-primary">
+                  Do KYC
+               </a>
+            </div>
+
+         </div>
+
+         <!-- Awareness Box -->
+         <div class="kyc-awareness">
+
+            <h3>🔒 Why is KYC Important?</h3>
+
+            <ul>
+               <li>Mandatory for investing in Mutual Funds.</li>
+               <li>Required as per SEBI regulations.</li>
+               <li>Protects against identity fraud.</li>
+               <li>Enables smooth purchases, SIPs and redemptions.</li>
+               <li>One-time process with easy updates whenever required.</li>
+               <li>Valid KYC helps avoid transaction rejections.</li>
+            </ul>
+
+            <div class="kyc-note">
+               <strong>Note:</strong>
+               Investors without a valid KYC may not be able to invest or transact in Mutual Funds until their KYC is
+               completed and verified.
+            </div>
+
+            <div class="kyc-contact">
+               Need help completing your KYC?<br>
+               📞 <strong>9886291668</strong><br>
+               <strong>Vemuri Financial Services</strong>
+            </div>
+
+         </div>
+
+      </div>
+   </section>
+
+   <section id="testimonialsSec" class="page hide testimonials">
+      <div class="container">
+         <div class="section-title">
+            <h2>What Clients Are Saying</h2>
+         </div>
+         <div id="testimonials" class="testimonial-container">
+         </div>
+      </div>
+   </section>
+
+   <section id="compliance">
+      <div class="container">
+         <div class="section-title">
+            <h2>Regulatory Disclosures &amp; Grievance Redressal</h2>
+            <span class="section-sub">As mandated by AMFI, IRDAI, PFRDA and RBI for regulated financial
+               distribution.</span>
+         </div>
+         <div class="grid cols-2">
+
+            <!-- AMFI / SEBI -->
+            <article class="card" aria-labelledby="comp-amfi">
+               <span class="badge">Mutual Funds — AMFI / SEBI</span>
+               <h3 id="comp-amfi">Mutual Fund Distribution</h3>
+               <p>Vemuri Financial Services is an <b>AMFI-registered Mutual Fund Distributor</b> (ARN‑<span
+                     class="muted">[ARN number]</span>, valid till <span class="muted">[validity date]</span>). We
+                  facilitate distribution only and do not provide investment advice or portfolio management services
+                  unless separately registered to do so.</p>
+               <ul class="list">
+                  <li>Mutual Fund investments are subject to market risks. Read all scheme related documents
+                     carefully.</li>
+                  <li>No assured or guaranteed returns are offered on any scheme.</li>
+                  <li>Past performance is not indicative of future results.</li>
+               </ul>
+               <p style="margin-top:8px"><b>Grievance escalation:</b> Contact our Grievance Officer first (see
+                  Contact section) → AMFI investor helpline → SEBI SCORES if unresolved.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">🌐
+                     AMFI</a>
+                  <a class="chip" href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">🌐 SEBI
+                     SCORES</a>
+               </div>
+            </article>
+
+            <!-- IRDAI -->
+            <article class="card" aria-labelledby="comp-irdai">
+               <span class="badge">Insurance — IRDAI</span>
+               <h3 id="comp-irdai">Insurance Distribution</h3>
+               <p>Vemuri Financial Services is a registered Insurance Agent / Corporate Agent / POSP with IRDAI
+                  (Registration No. <span class="muted">[IRDAI registration no.]</span>, valid till <span
+                     class="muted">[validity date]</span>). <b>Insurance is the subject matter of solicitation.</b>
+               </p>
+               <ul class="list">
+                  <li>For more details on risk factors, terms & conditions, read the product brochure before
+                     concluding a sale.</li>
+                  <li>IRDAI does not sell policies, invest premiums or announce bonuses — beware of fraudulent
+                     calls/offers.</li>
+               </ul>
+               <p style="margin-top:8px"><b>Grievance escalation:</b> Insurer's grievance cell → our Grievance
+                  Officer → IRDAI Bima Bharosa (Toll‑free 155255 / 1800‑4254‑732).</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://bimabharosa.irdai.gov.in/" target="_blank" rel="noopener noreferrer">🌐
+                     IRDAI Bima
+                     Bharosa</a>
+               </div>
+            </article>
+
+            <!-- PFRDA / NPS -->
+            <article class="card" aria-labelledby="comp-pfrda">
+               <span class="badge">NPS — PFRDA</span>
+               <h3 id="comp-pfrda">NPS Distribution</h3>
+               <p>Vemuri Financial Services facilitates NPS onboarding as an authorised Point of Presence (POP) /
+                  subscriber-facilitation channel registered with PFRDA (POP Reg. No. <span class="muted">[PFRDA POP
+                     reg. no.]</span>). NPS returns are market-linked and <b>not guaranteed</b>
+                  by PFRDA or the Government of India.</p>
+               <ul class="list">
+                  <li>Subscribers should read the NPS Offer Document and scheme information before investing.</li>
+                  <li>PFRDA does not collect any charges directly from subscribers for grievance redressal.</li>
+               </ul>
+               <p style="margin-top:8px"><b>Grievance escalation:</b> POP grievance officer → CRA (NSDL/KFintech/CAMS)
+                  → PFRDA Pension Sahayak Portal → NPS Trust Ombudsman (Toll‑free NPS: 1800 110 708).</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://pensionsahayak.pfrda.org.in/" target="_blank"
+                     rel="noopener noreferrer">🌐 Pension Sahayak
+                     (PFRDA)</a>
+               </div>
+            </article>
+
+            <!-- RBI -->
+            <article class="card" aria-labelledby="comp-rbi">
+               <span class="badge">Loans — RBI</span>
+               <h3 id="comp-rbi">Loan Referral Disclosure</h3>
+               <p>For Loan Against Mutual Funds, Home Loan and Personal Loan services, Vemuri Financial Services acts
+                  <b>only as a referral partner / Direct Selling Agent (DSA)</b> for RBI-regulated Banks and NBFCs
+                  (e.g., our lending partners). We are <b>not a lender</b> and do not sanction, disburse or hold
+                  custody of loan funds — all approvals, interest rates and disbursement remain solely at the
+                  discretion of the respective RBI-regulated lender.
+               </p>
+               <ul class="list">
+                  <li>Please read the Key Fact Statement (KFS) and loan agreement carefully before signing, as per
+                     RBI's Fair Practices Code.</li>
+                  <li>We do not charge you anything for referring you to a lending partner.</li>
+               </ul>
+               <p style="margin-top:8px"><b>Grievance escalation:</b> Lender's Nodal/Grievance Officer → RBI
+                  Complaint Management System, CMS (Toll‑free 14448), if unresolved after 30 days.</p>
+               <div class="svc-links">
+                  <a class="chip" href="https://cms.rbi.org.in/" target="_blank" rel="noopener noreferrer">🌐 RBI
+                     CMS Portal</a>
+               </div>
+            </article>
+
+         </div>
+         <p class="muted" style="margin-top:16px; font-size:.85rem">Disclaimer: Registration numbers above are
+            placeholders and will be updated with our current AMFI ARN, IRDAI and PFRDA POP registration details.
+            Vemuri Financial Services does not guarantee returns on any investment, insurance or loan product; all
+            products are offered by their respective regulated principals (AMCs, insurers, PFRDA-registered pension
+            funds, banks &amp; NBFCs) and are subject to their terms, conditions and regulatory guidelines.</p>
+      </div>
+   </section>
+
+   <section id="contact">
+      <div class="container">
+         <div class="section-title">
+            <h2>Start Your Plan</h2>
+            <span class="section-sub">Share basic details and we’ll tailor a plan to your goals.</span>
+         </div>
+         <div class="split">
+            <form id="card" class="card" aria-label="Contact form" action="#" method="get" onsubmit="return false;">
+               <div class="grid cols-2">
+                  <div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name"
+                        required
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)">
+                  </div>
+                  <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="+91-"
+                        required
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)">
+                  </div>
+                  <div><label for="email">Email</label><input id="email" name="email" type="email"
+                        placeholder="name@example.com"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)">
+                  </div>
+                  <div>
+                     <label for="goal">Primary Goal</label>
+                     <select id="goal" name="goal"
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:#111a2e">
+                        <option>Children's Education</option>
+                        <option>Retirement Planning</option>
+                        <option>Tax Saving</option>
+                        <option>Wealth Creation</option>
+                        <option>Insurance Planning</option>
+                     </select>
+                  </div>
+               </div>
+               <div style="margin-top:12px"><label for="message">Message</label><textarea id="message" name="message"
+                     rows="4" placeholder="Tell us about your timeline, budget, and preferences"
+                     style="width:100%; padding:12px; margin-top:6px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgb(134 33 33 / 4%); color:var(--text)"></textarea>
+               </div>
+               <div class="cta" style="margin-top:14px"><button class="btn btn-primary" type="submit">Request
+                     Call‑Back</button>
+                  <a class="btn btn-secondary" href="#home">Back to top</a>
+               </div>
+            </form>
+            <div class="card">
+               <h3>What you’ll get</h3>
+               <ul class="list">
+                  <li>Personalized coverage & investment plan</li>
+                  <li>SIP suggestions with top‑up strategy</li>
+                  <li>Tax‑efficient allocation (incl. NPS)</li>
+                  <li>Annual review & rebalancing roadmap</li>
+               </ul>
+               <div class="cta" style="margin-top:10px"><a class="btn btn-secondary" href="#faq">View FAQs</a></div>
+               <p class="muted" style="margin-top:10px">SEBI: Mutual Fund investments are subject to market risks.
+                  IRDAI: Insurance is a subject matter of solicitation. Read all scheme documents and policy wordings
+                  carefully.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <footer>
+      <div class="container foot">
+         <div>
+            <h3>Vemuri Financial Services</h3>
+            <small>Goal‑based financial planning that combines protection and growth. Suitable for families and
+               professionals seeking clarity and peace of mind.</small>
+         </div>
+         <div>
+            <h4>Quick Links</h4>
+            <ul class="list">
+               <li><a href="#pillars">Pillars</a></li>
+               <li><a href="#solutions">Solutions</a></li>
+               <li><a href="#services">Services</a></li>
+               <li><a href="#compliance">Regulatory Disclosures</a></li>
+               <li><a href="#compare">Compare</a></li>
+               <li><a href="#contact">Get Advice</a></li>
+               <li><a href="#sip">SIP Calculator</a></li>
+            </ul>
+         </div>
+         <div>
+            <h4>Disclaimers</h4>
+            <small>Content is for education only,
+               not investment advice. Returns are not guaranteed. Tax rules may change. Consult a qualified advisor for
+               personalized recommendations.</small>
+         </div>
+      </div>
+      <div class="container" style="padding:14px 10px; text-align:center; color:var(--muted)">© <span id="year"></span>
+         Vemuri Financial Services. All rights reserved. </div>
+   </footer>
+   <script>
+      // Tiny enhancement without frameworks
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Request callback
+      document.getElementById("card").addEventListener("submit", function (e) {
+         e.preventDefault();
+
+         const formData = {
+            name: this.name.value,
+            phone: this.phone.value,
+            email: this.email.value,
+            goal: this.goal.value,
+            message: this.message.value
+         }
+
+            ;
+
+         fetch("https://script.google.com/macros/s/AKfycbywfr-RRwWlApZeBybKXynYytnKoEXWKYDrQQkLa16n8cgvTTJW8vi_mx9Ttc-gZwra/exec", {
+            method: "POST",
+            body: JSON.stringify(formData)
+
+         }).then(res => res.text()).then(data => {
+            alert("✅ Thank you! We will call you back soon.");
+            this.reset();
+         }).catch(err => alert("❌ Something went wrong. Try again later."));
+      });
+
+      //SWP 
+      function calculateSWP() {
+
+         let investment = parseFloat(document.getElementById("investment").value);
+         let annualRate = parseFloat(document.getElementById("rateSWP").value);
+         let withdrawal = parseFloat(document.getElementById("withdraw").value);
+         let years = parseFloat(document.getElementById("yearsSWP").value);
+
+
+         let months = years * 12;
+         let monthlyRate = annualRate / 12 / 100;
+
+         let balance = investment;
+         let totalWithdraw = 0;
+
+         for (let i = 1; i <= months; i++) {
+            balance = balance * (1 + monthlyRate); // growth
+
+            if (balance >= withdrawal) {
+               balance -= withdrawal;
+               totalWithdraw += withdrawal;
+            } else {
+               totalWithdraw += balance;
+               balance = 0;
+               break; // money finished
+            }
+         }
+
+         let totalValue = balance + totalWithdraw;
+         let resultHTML =
+            ` <b>Total Investment:</b><span class='result1'>₹${roundValue(investment)} </span><br><b>Total Withdrawal:</b><span class='result2'>₹${roundValue(totalWithdraw)} </span><br><b>Final Balance:</b><span class='result3'>₹${roundValue(balance)} </span><br><b>Total Value (Withdrawal + Balance):</b><span class='result4'>₹${roundValue(totalValue)} </span>`;
+
+         document.getElementById("calcResultSWP").innerHTML = resultHTML;
+      }
+
+      function resetCalcSWP() {
+         document.getElementById('investment').value = 2000000;
+         document.getElementById('rateSWP').value = 10;
+         document.getElementById('yearsSWP').value = 20;
+         document.getElementById('withdraw').value = 5000;
+         document.getElementById('calcResultSWP').textContent = 'Result will appear here.'
+      }
+
+
+      // Fixed topup
+      function calculateSIP() {
+         let sip = parseFloat(document.getElementById("sipAmt").value);
+         let topup = parseFloat(document.getElementById("topup").value);
+         let rate = parseFloat(document.getElementById("rate").value) / 100 / 12; // monthly rate
+         let years = parseInt(document.getElementById("years").value);
+         let months = years * 12;
+
+         let invested = 0;
+         let futureValue = 0;
+
+         let currentSip = sip;
+
+         for (let year = 1; year <= years; year++) {
+            for (let month = 1; month <= 12; month++) {
+               invested += currentSip;
+               futureValue = (futureValue + currentSip) * (1 + rate);
+            }
+
+            currentSip += topup; // increase SIP every year
+         }
+
+         document.getElementById("calcResult").innerHTML =
+            ` <b>Total Invested:</b><span class='result1'>₹${roundValue(invested)} </span><br><b>Future Value:</b><span class='result2'>₹${roundValue(futureValue)} </span><br><b>Wealth Gain:</b><span class='result3'>₹${roundValue(futureValue - invested)} </span>`;
+      }
+
+      function resetCalc() {
+         document.getElementById('sipAmt').value = 5000;
+         document.getElementById('rate').value = 12;
+         document.getElementById('years').value = 20;
+         document.getElementById('topup').value = 1000;
+         document.getElementById('calcResult').textContent = 'Result will appear here.'
+      }
+
+      function roundValue(value) {
+         return Math.round(value).toLocaleString("en-IN");
+      }
+
+      // FD
+      function formatNumber(num) {
+         return num.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+         });
+      }
+
+      function calculateFD() {
+         let principal = parseFloat(document.getElementById("amount").value);
+         let rate = parseFloat(document.getElementById("rateFD").value);
+         let years = parseInt(document.getElementById("yearsFD").value);
+         let frequency = parseInt(document.getElementById("frequency").value);
+
+         if (isNaN(principal) || isNaN(rate) || isNaN(years)) {
+            alert("Please enter all values correctly!");
+            return;
+         }
+
+
+         let r = rate / 100;
+         let n = frequency;
+         let total = principal * Math.pow(1 + r / n, n * years);
+         let benefit = total - principal;
+
+         document.getElementById("calcResultFD").innerHTML =
+            `<b>Invested Value:</b><span class='result1'>${roundValue(principal)}</span><br><b>Maturity Value:</b><span class='result2'>${roundValue(total)}</span><br><b>Benfited Value:</b><span class='result3'>${roundValue(benefit)}</span><br>`;
+      }
+
+      function resetCalcFD() {
+         document.getElementById('amount').value = 2000000;
+         document.getElementById('rateFD').value = 6;
+         document.getElementById('yearsFD').value = 20;
+         document.getElementById('frequency').value = 1;
+         document.getElementById('calcResultFD').textContent = 'Result will appear here.'
+      }
+
+      function calculateInflation() {
+         let current =
+            parseFloat(document.getElementById("currentCost").value);
+
+         let rate =
+            parseFloat(document.getElementById("inflationRate").value);
+
+         let years =
+            parseInt(document.getElementById("inflationYears").value);
+
+         if (isNaN(current) || isNaN(rate) || isNaN(years)) {
+
+            alert("Please enter valid values.");
+            return;
+
+         }
+
+         let future =
+            current * Math.pow((1 + rate / 100), years);
+
+         let increase =
+            future - current;
+
+         document.getElementById("inflationResult").innerHTML =
+            `
+            <b>Current Cost :</b>
+            <span class='result1'>
+            ₹${roundValue(current)}
+            </span><br>
+
+            <b>Future Cost :</b>
+            <span class='result2'>
+            ₹${roundValue(future)}
+            </span><br>
+
+            <b>Increase Due to Inflation :</b>
+            <span class='result3'>
+            ₹${roundValue(increase)}
+            </span>
+            `;
+      }
+
+      function resetInflation() {
+         document.getElementById("currentCost").value = 100000;
+         document.getElementById("inflationRate").value = 6;
+         document.getElementById("inflationYears").value = 20;
+
+         document.getElementById("inflationResult").innerHTML =
+            "Result will appear here.";
+      }
+
+      // Array of testimonials (can later be fetched from Google Sheet / API)
+      const testimonialsData = [{
+         text: "Its been over 5 years since I started my financial journey with Vemuri Financial Services and I couldnt be more satisfied Their expert guidance has helped me stay disciplined with my SIPs build a strong mutual fund portfolio and plan ahead for my familys future What I appreciate most is their personalized approach they always listen patiently and suggest what truly suits my goals not just whats trending Regular reviews and proactive communication have made me feel confident and stressfree about my investments A big thank you to the Vemuri team for being my trusted financial partner for the last 5 years M Swathi Bangalore Auditor of ITI PVT LTD",
+         author: "Mamedipaka Swathi"
+      },
+      {
+         text: "Its been 3 years since I started working with Vemuri Financial Services and the experience has been excellent Their guidance on mutual funds NPS and insurance has helped me build a solid financial foundation They explain everything in a simple way and regularly follow up to make sure my investments are on track I feel confident and secure about my future thanks to their support Mr Muralidhar N Bangalore Client Since 2021",
+         author: "Muralidhar Nayani"
+      },
+      {
+         text: "I have been associated with Vemuri Financial Services for the past 10 years and I can confidently say it has been one of the best financial decisions Ive made Right from mutual fund investments and NPS to insurance and retirement planning every recommendation has been well thoughtout and tailored to my goals Their consistent support regular reviews and honest advice have helped me grow my wealth while feeling completely secure I truly appreciate their professionalism and personal care in managing my financial journey over this decade Thank you for being a trusted partner in my life Mr Ramkumar Madanapalli Client Since 2015",
+         author: "Ramkumar Devatha"
+      },
+      {
+         text: "I have been associated with Vemuri Financial Services for over a decade now and the journey has been nothing short of exceptional From the very first day their approach has always been personal transparent and driven by my financial goals Whether it was planning for my childrens education taxsaving investments or retirement planning their advice has always been timely and spoton Their consistency market knowledge and ethical practices make them a trusted partner in my financial journey Im proud to say that with their guidance Ive not only grown my wealth but also gained confidence in managing my finances Thank you for being a reliable partner for the last 10 years A Himabindu Bangalore Entrepreneur LongTerm Client",
+         author: "Achutha Himabindu"
+      },
+      {
+         text: "Ive been associated with Vemuri Financial Services for the past 3 years and it has been a truly rewarding experience From guiding me on the right mutual funds to helping with taxefficient investments theyve always offered honest and practical advice Their team regularly checks in to review my goals and update strategies based on market changes The personalized service and clarity they provide make financial planning simple and stressfree I highly recommend Vemuri Financial Services to anyone looking for longterm financial peace of mind M SateeshKumar Vizianagaram Accountant",
+         author: "Mamidipaka Sateeshkumar"
+      }
+      ];
+
+      // Load testimonials dynamically
+      const container = document.getElementById("testimonials");
+
+      testimonialsData.forEach(t => {
+         const div = document.createElement("div");
+         div.classList.add("testimonial");
+         div.innerHTML = `
+         <p>"${t.text}"</p>
+         <div class="author">- ${t.author}</div>
+         `;
+         container.appendChild(div);
+      });
+
+
+      (function () {
+         const MOBILE_BREAKPOINT = 940; // match your CSS media query
+         const menuToggle = document.getElementById('menu-toggle');
+         const menuList = document.getElementById('menuList');
+
+         if (!menuList) return;
+
+         /* ---------- Helper: Header Offset Scrolling ---------- */
+         const headerHeight = () => {
+            const v = getComputedStyle(document.documentElement).getPropertyValue('--header-h');
+            return v ? parseInt(v) : 76;
+         };
+
+         function scrollToHash(hash) {
+            if (!hash || hash === '#') {
+               window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+               });
+               return;
+            }
+            const id = hash.replace('#', '');
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            const offset = headerHeight() + 8;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({
+               top,
+               behavior: 'smooth'
+            });
+         }
+
+         /* ---------- Smooth scroll for anchor links ---------- */
+         document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+               const hash = a.getAttribute('href');
+               if (!hash.startsWith('#')) return;
+
+               e.preventDefault();
+
+               // Close mobile menu if open
+               if (window.innerWidth <= MOBILE_BREAKPOINT) closeMobileMenu();
+
+               scrollToHash(hash);
+            });
+         });
+
+         if (window.location.hash) {
+            setTimeout(() => scrollToHash(window.location.hash), 50);
+         }
+
+         window.addEventListener('hashchange', () => scrollToHash(window.location.hash));
+
+         /* ---------- Mobile Menu Toggle ---------- */
+         if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+               if (window.innerWidth <= MOBILE_BREAKPOINT) {
+                  menuList.style.display =
+                     menuList.style.display === 'block' ? 'none' : 'block';
+               }
+            });
+         }
+
+         /* ---------- Submenu Toggle (Mobile) ---------- */
+         menuList.addEventListener('click', e => {
+            const anchor = e.target.closest('a');
+            if (!anchor) return;
+
+            const li = anchor.closest('li');
+            const submenu = li ? li.querySelector('.submenu') : null;
+
+            // Mobile: toggle submenu if exists
+            if (window.innerWidth <= MOBILE_BREAKPOINT && submenu) {
+               e.preventDefault();
+
+               const isOpen = submenu.style.display === 'block';
+               // Close other open submenus
+               menuList.querySelectorAll('.submenu').forEach(s => {
+                  if (s !== submenu) s.style.display = 'none';
+               });
+
+               submenu.style.display = isOpen ? 'none' : 'block';
+               return;
+            }
+
+            // If leaf link (no submenu), close mobile menu after small delay
+            if (window.innerWidth <= MOBILE_BREAKPOINT && !submenu) {
+               setTimeout(closeMobileMenu, 150);
+            }
+         });
+
+         /* ---------- Helper: Close Mobile Menu ---------- */
+         function closeMobileMenu() {
+            if (menuToggle) menuToggle.checked = false;
+            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+               menuList.style.display = 'none';
+               menuList.querySelectorAll('.submenu').forEach(s => (s.style.display = 'none'));
+            }
+         }
+
+         /* ---------- Resize Handling ---------- */
+         let resizeTimer;
+         window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+               if (window.innerWidth > MOBILE_BREAKPOINT) {
+                  // Desktop view: restore default styles
+                  menuList.style.display = '';
+                  menuList.querySelectorAll('.submenu').forEach(s => (s.style.display = ''));
+               } else {
+                  // Mobile view: hide everything initially
+                  if (menuToggle && !menuToggle.checked) {
+                     menuList.style.display = 'none';
+                     menuList.querySelectorAll('.submenu').forEach(s => (s.style.display = 'none'));
+                  }
+               }
+            }, 150);
+         });
+
+         /* ---------- Accessibility ---------- */
+         document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeMobileMenu();
+         });
+
+         /* ---------- On Load: Ensure Clean State ---------- */
+         window.addEventListener('load', () => {
+            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+               menuList.style.display = 'none';
+               menuList.querySelectorAll('.submenu').forEach(s => (s.style.display = 'none'));
+            }
+         });
+      })();
+
+      const contactModal = document.getElementById('contactModal');
+      const contactModalClose = document.getElementById('contactModalClose');
+
+      function openContactModal() {
+         if (!contactModal) return;
+         contactModal.classList.add('is-open');
+         contactModal.setAttribute('aria-hidden', 'false');
+         document.body.style.overflow = 'hidden';
+      }
+
+      function closeContactModal() {
+         if (!contactModal) return;
+         contactModal.classList.remove('is-open');
+         contactModal.setAttribute('aria-hidden', 'true');
+         document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.chip-phone').forEach(link => {
+         link.addEventListener('click', (event) => {
+            event.preventDefault();
+            openContactModal();
+         });
+      });
+
+      if (contactModalClose) {
+         contactModalClose.addEventListener('click', closeContactModal);
+      }
+
+      if (contactModal) {
+         contactModal.addEventListener('click', (event) => {
+            if (event.target === contactModal) closeContactModal();
+         });
+      }
+
+      document.addEventListener('keydown', (event) => {
+         if (event.key === 'Escape' && contactModal && contactModal.classList.contains('is-open')) {
+            closeContactModal();
+         }
+      });
+
+      document.addEventListener('click', (event) => {
+         const link = event.target.closest('a[href]');
+         if (!link) return;
+
+         const href = link.getAttribute('href');
+         if (!href || href === '#' || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
+            return;
+         }
+
+         const isExternal = /^https?:\/\//i.test(href) && !href.startsWith(window.location.origin);
+         if (!isExternal) return;
+
+         event.preventDefault();
+         const confirmOpen = window.confirm('You are about to open an external site.\n\nDo you want to continue?');
+         if (!confirmOpen) return;
+
+         window.open(href, '_blank', 'noopener,noreferrer');
+      });
+
+      function openIframe(url) {
+         const confirmOpen = window.confirm('You are about to open an external site.\n\nDo you want to continue?');
+         if (!confirmOpen) return;
+
+         try {
+            window.open(url, '_blank', 'noopener,noreferrer');
+         } catch (err) {
+            console.error('External link failed:', err);
+         }
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vemuri Financial Services - Partner Information</title>
+  <style>
+    :root {
+      --bg-100: #f4f8fb;
+      --bg-80: #e6f6f8;
+      --card: #ffffff;
+      --muted: #071124;
+      --text: #2563eb;
+      --brand: #0ea5a4;
+      --accent: #2563eb;
+      --good: #16a34a;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 12px 40px rgba(11, 20, 40, 0.08);
+      --radius-xl: 16px;
+      --radius: 12px;
+      --border: rgba(11, 20, 40, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      scroll-margin-top: 90px;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, #1b2b4d 0%, transparent 60%),
+            radial-gradient(900px 600px at -10% 10%, #10213e 0%, transparent 60%),
+            var(--bg-100);
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    .container { width: min(1200px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      padding: 20px 0 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: #0b63ff;
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(1.2) blur(10px);
+    }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .brand { font-size: 1.2rem; font-weight: 800; color: white; letter-spacing: 0.2px; }
+    .brand span { color: #8dd4ff; }
+    .btn {
+      display: inline-block; text-decoration: none; color: white; background: var(--accent); padding: 10px 16px; border-radius: 999px; font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    .btn.secondary { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; box-shadow: none; }
+    h1 { font-size: clamp(1.7rem, 3vw, 2.6rem); margin: 24px 0 10px; color: var(--text); }
+    .lead { color: #1f2c49; max-width: 800px; }
+    .section { margin: 28px 0; }
+    .section h2 { margin-bottom: 8px; font-size: 1.2rem; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .amc-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px; box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
+    .meta { color: #334155; font-size: 0.95rem; margin: 4px 0; }
+    .meta strong { color: var(--muted); }
+    .links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-block; text-decoration: none; color: var(--text); border: 1px solid rgba(37, 99, 235, 0.16); padding: 8px 10px; border-radius: 999px; background: rgba(37, 99, 235, 0.06); font-size: 0.92rem; transition: all 0.2s ease;
+    }
+    .chip:hover { border-color: var(--brand); color: var(--brand); background: rgba(14, 165, 164, 0.08); }
+    .chip.connect-btn {
+      display: none;
+      background: rgba(22, 163, 74, 0.1);
+      border-color: rgba(22, 163, 74, 0.2);
+      color: #15803d;
+      cursor: pointer;
+    }
+    .chip.connect-btn.is-visible {
+      display: inline-block;
+    }
+    .toggle-row { display: flex; justify-content: flex-end; margin: 16px 0 8px; }
+    .toggle-btn {
+      border: 1px solid rgba(37,99,235,0.16); background: rgba(255,255,255,0.8); color: var(--accent); padding: 8px 12px; border-radius: 999px; font-weight: 700; cursor: pointer;
+    }
+    .toggle-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .rm-details { display: none; }
+    .rm-details.is-visible { display: block; }
+    .amc-collapsed .amc-grid { display: none; }
+    .amc-collapsed .amc-preview { display: block; }
+    .amc-preview { display: none; }
+    .amc-preview .preview-card { padding: 12px 14px; border: 1px dashed rgba(37,99,235,0.2); border-radius: 12px; color: #334155; background: rgba(37,99,235,0.04); }
+    .amc-toggle-row { display: flex; justify-content: flex-end; margin: 8px 0 12px; }
+    .amc-toggle-btn {
+      border: 1px solid rgba(37,99,235,0.16); background: rgba(255,255,255,0.8); color: var(--accent); padding: 8px 12px; border-radius: 999px; font-weight: 700; cursor: pointer;
+    }
+    .amc-toggle-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .contact-modal-overlay {
+      position: fixed; inset: 0; background: rgba(7, 17, 36, 0.62); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 200;
+    }
+    .contact-modal-overlay.is-open { display: flex; }
+    .contact-modal {
+      background: white; width: min(420px, 100%); border-radius: 18px; padding: 24px; box-shadow: 0 18px 60px rgba(7, 17, 36, 0.22); position: relative;
+    }
+    .contact-modal-close {
+      position: absolute; top: 12px; right: 12px; border: 0; background: transparent; font-size: 1.3rem; cursor: pointer; color: #64748b;
+    }
+    .contact-modal h3 { margin: 0 0 8px; color: var(--accent); }
+    .contact-modal p { margin: 0 0 16px; color: #475569; }
+    .contact-modal a {
+      display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; background: rgba(37, 99, 235, 0.08); color: var(--accent); font-weight: 600; margin-bottom: 8px; text-decoration: none;
+    }
+    .contact-modal a:hover { background: rgba(37, 99, 235, 0.16); }
+    .note { color: var(--muted); font-size: 0.92rem; margin-top: 8px; }
+    .rm { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
+    .muted { color: #475569; }
+    .highlight { color: var(--brand); font-weight: 700; }
+    .category-nav {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 12px;
+    }
+    .category-nav a {
+      text-decoration: none; color: var(--accent); background: rgba(255,255,255,0.7); border: 1px solid rgba(37,99,235,0.14); padding: 8px 12px; border-radius: 999px; font-weight: 600;
+    }
+    .category-nav a:hover { border-color: var(--brand); color: var(--brand); background: rgba(14, 165, 164, 0.08); }
+    .section-title {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .section-title h2 { margin: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
+    .section-title .section-tag { color: #475569; font-size: 0.92rem; }
+    .template-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .template-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px; box-shadow: var(--shadow); }
+    .template-card h3 { margin: 0 0 8px; font-size: 1.02rem; color: var(--accent); }
+    .template-card p { margin: 0 0 8px; color: #475569; font-size: 0.95rem; }
+    .template-card textarea {
+      width: 100%; min-height: 180px; border: 1px solid rgba(37,99,235,0.16); border-radius: 12px; padding: 10px 12px; background: rgba(244,248,251,0.95); color: var(--muted); font: inherit; resize: vertical;
+    }
+    .template-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .template-actions button {
+      border: 0; background: var(--accent); color: white; border-radius: 999px; padding: 8px 12px; font-weight: 700; cursor: pointer;
+    }
+    .template-actions button.secondary {
+      background: #e2e8f0; color: var(--muted);
+    }
+    .template-actions button:hover { background: var(--brand); }
+    .template-actions button.secondary:hover { background: #cbd5e1; }
+    .template-card textarea[readonly] {
+      cursor: default;
+      background: rgba(248, 250, 252, 0.95);
+    }
+    .template-card textarea:not([readonly]) {
+      border-color: rgba(14, 165, 164, 0.35);
+      background: white;
+    }
+    @media (max-width: 1000px) { .amc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .template-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } .amc-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body id="partner-hub">
+  <header>
+    <div class="container topbar">
+      <div class="brand">Vemuri Financial Services  <span><a href="#partner-hub">Partner Hub</a></span></div>
+      <a class="btn secondary" href="index.html">Back to Website</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Partner Information & Login Links</h1>
+    <p class="lead">This page brings together the partner dashboards, distributor portals, and relationship-manager details for loans, investments, insurance, and other partner services.</p>
+
+    <div class="toggle-row">
+      <button class="toggle-btn" id="rmToggle" type="button" data-visible="false">Show RM Details</button>
+    </div>
+
+    <div class="category-nav">
+      <a href="#loans">Loans</a>
+      <a href="#mutual-funds">Mutual Funds</a>
+      <a href="#insurance">Insurance</a>
+      <a href="#global-investments">Global Investments</a>
+      <a href="#commodity">Commodity</a>
+      <a href="#nps">NPS</a>
+      <a href="#compliance">Compliance</a>
+      <a href="#templates">Templates</a>
+    </div>
+
+    <section id="loans" class="section">
+      <div class="section-title">
+        <h2>Loans</h2>
+        <span class="section-tag">Personal Loan • Home Loan • Loan Against Mutual Funds</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Personal Loan / Home Loan</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Vemuri Financial Services Team</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <!-- <p class="meta"><strong>Portal:</strong> <span class="highlight">www.fin.vemurigroup.in</span></p> -->
+          <div class="links">
+            <a class="chip" href="https://tinyurl.com/vfsloans" target="_blank" rel="noopener noreferrer">Open Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Voltmoney</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://voltmoney.in/partner/dashboard" target="_blank" rel="noopener noreferrer">Partner Dashboard</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Quicklend</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://www.quicklend.in/partners/user/dashboard" target="_blank" rel="noopener noreferrer">Partner Dashboard</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Yenmo</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://partner.yenmo.in/login" target="_blank" rel="noopener noreferrer">Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>NJ Capital</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+            <p class="meta"><strong>Login:</strong> IFA00000649</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://www.njcapital.in/partner/partner/login" target="_blank" rel="noopener noreferrer">NJ Capital Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Mirae Asset</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://partner.miraeassetfin.com/" target="_blank" rel="noopener noreferrer">Mirae Asset Login</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="mutual-funds" class="section">
+      <div class="section-title">
+        <h2>Mutual Funds</h2>
+        <span class="section-tag">Distributor & partner portals</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>MFU Online</h3>
+          <p class="meta"><strong>Username:</strong> BRGHV302882</p>
+          <div class="links">
+            <a class="chip" href="https://www.mfuonline.com/" target="_blank" rel="noopener noreferrer">MFU Login</a>
+            <a class="chip" href="https://finbo.vemurigroup.in/" target="_blank" rel="noopener noreferrer">VemuriFin BackOffice</a>
+            <a class="chip" href="https://edge360.camsonline.com/signin" target="_blank" rel="noopener noreferrer">Edge360</a>
+            <a class="chip" href="https://iris.kfintech.com/auth/login" target="_blank" rel="noopener noreferrer">IRIS</a>
+            <a class="chip" href="https://fundsnet.camsonline.com/ecrms/index.aspx" target="_blank" rel="noopener noreferrer">Cams FundsNet</a>
+          </div>
+          <p class="meta"><strong>Mobile Apps:</strong></p>
+          <div class="links">
+            <a class="chip" href="https://play.google.com/store/apps/details?id=com.intellect.mfu&hl=en_IN" target="_blank" rel="noopener noreferrer">🤖 MFU Android</a>
+            <a class="chip" href="https://apps.apple.com/in/app/gomf-by-mf-utilities/id1168654858" target="_blank" rel="noopener noreferrer">📱 MFU iOS</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Wylth CRM</h3>
+          <div class="links">
+            <a class="chip" href="https://crm.wylth.com/" target="_blank" rel="noopener noreferrer">CRM Login</a>
+            <a class="chip" href="https://vfs.vemurigroup.in/" target="_blank" rel="noopener noreferrer">VFS MF Login</a>
+          </div>
+          <p class="meta"><strong>Mobile Apps:</strong></p>
+          <div class="links">
+            <a class="chip" href="https://play.google.com/store/apps/details?id=com.wylth.wylthinvestorapp&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">🤖 VFS Android App</a>
+            <a class="chip" href="https://apps.apple.com/in/app/wylth/id6456452937" target="_blank" rel="noopener noreferrer">📱 VFS iOS App</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Nirmal Bang</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Jaya</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://mflogin.nirmalbang.com/non-client-dashboard" target="_blank" rel="noopener noreferrer">Dashboard</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>NJ India</h3>
+          <p class="meta"><strong>Username:</strong> 41968</p>
+          <div class="links">
+            <a class="chip" href="https://www.njindiaonline.in/pdesk/index.fin#" target="_blank" rel="noopener noreferrer">Partner Desk</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Imperial Finvest</h3>
+          <p class="meta"><strong>Username:</strong> 41968</p>
+          <div class="links">
+            <a class="chip" href="https://imperialfin.investwell.app/app/#/login" target="_blank" rel="noopener noreferrer">Imperial Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>FundsIndia</h3>
+          <p class="meta"><strong>Username:</strong> arn-302882@partner.fundsindia.com</p>
+          <div class="links">
+            <a class="chip" href="https://www.partner.fundsindia.com/ifa-onboarding/login" target="_blank" rel="noopener noreferrer">Partner Manual</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>AssetPlus</h3>
+          <p class="meta"><strong>Username:</strong> ARN-302882</p>
+          <div class="links">
+            <a class="chip" href="https://partner.assetplus.in/login" target="_blank" rel="noopener noreferrer">Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Wealthy</h3>
+          <p class="meta"><strong>Username:</strong> ARN-302882</p>
+          <div class="links">
+            <a class="chip" href="https://www.wealthy.in/partner#login" target="_blank" rel="noopener noreferrer">Partner Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>One Digital</h3>
+          <p class="meta"><strong>Username:</strong> ARN-302882</p>
+          <div class="links">
+            <a class="chip" href="https://onedigital.centricity.co.in/login" target="_blank" rel="noopener noreferrer">Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>ZFunds</h3>
+          <p class="meta"><strong>Username:</strong> ARN-302882</p>
+          <div class="links">
+            <a class="chip" href="https://zfunds.in/dashboard" target="_blank" rel="noopener noreferrer">Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Prudent Corporate</h3>
+          <p class="meta"><strong>Username:</strong> ARN-302882</p>
+          <div class="links">
+            <a class="chip" href="https://www.prudentcorporate.com/login" target="_blank" rel="noopener noreferrer">Login</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="insurance" class="section">
+      <div class="section-title">
+        <h2>Insurance</h2>
+        <span class="section-tag">Term • Health • General Insurance</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>AxisMax Life</h3>
+          <p class="meta"><strong>Username:</strong> 31453E</p>
+          <div class="links">
+            <a class="chip" href="https://pc.axismaxlife.com/products" target="_blank" rel="noopener noreferrer">mQuote</a>
+            <a class="chip" href="https://mpro.axismaxlife.com/" target="_blank" rel="noopener noreferrer">mPro</a>
+            <a class="chip" href="https://mpower.axismaxlife.com/" target="_blank" rel="noopener noreferrer">mPower</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Tata AIG</h3>
+          <p class="meta"><strong>Username:</strong> imdasu@gmail.com</p>
+          <div class="links">
+            <a class="chip" href="https://sellonline.tataaig.com/ipdsv2/login/" target="_blank" rel="noopener noreferrer">Partner Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>PB Partners</h3>
+          <p class="meta"><strong>Username:</strong> 9886291668</p>
+          <div class="links">
+            <a class="chip" href="https://www.pbpartners.com/" target="_blank" rel="noopener noreferrer">Portal Login</a>
+            <a class="chip" href="https://www.pbpartners.com/v2/partner/vemurifinancialservi-bengaluru-1lYg#186" target="_blank" rel="noopener noreferrer">Partner Info</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="global-investments" class="section">
+      <div class="section-title">
+        <h2>Global Investments</h2>
+        <span class="section-tag">Gift City • International investing</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Samco Wealth Partners</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://partners.samcowealth.com/dashboard" target="_blank" rel="noopener noreferrer">Dashboard</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>DSP Gift City Distributor</h3>
+          <div class="links">
+            <a class="chip" href="https://giftcity.dspim.com/distributor/dashboard" target="_blank" rel="noopener noreferrer">Distributor Dashboard</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="commodity" class="section">
+      <div class="section-title">
+        <h2>Commodity</h2>
+        <span class="section-tag">Gold • Silver • Bonds</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Batuk Gold Partner</h3>
+          <p class="meta"><strong>Partner Name:</strong> Sita Rama Ranganadha Ramanujadasu Vemuri</p>
+          <p class="meta"><strong>Partner Code:</strong> SRRRV461</p>
+          <div class="links">
+            <a class="chip" href="https://partner.batuk.gold/login" target="_blank" rel="noopener noreferrer">Partner Login</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>NDX Finserv</h3>
+          <div class="rm-details">
+            <p class="meta"><strong>RM Name:</strong> Relationship Manager</p>
+            <p class="meta"><strong>RM Number:</strong> +91 98862 91668</p>
+            <p class="meta"><strong>RM Email:</strong> vemurifin@gmail.com</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://ndxfinserv.com/" target="_blank" rel="noopener noreferrer">Visit Portal</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="nps" class="section">
+      <div class="section-title">
+        <h2>NPS</h2>
+        <span class="section-tag">Pension & retirement planning</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>NPS Login</h3>
+          <div class="links">
+            <a class="chip" href="https://tinyurl.com/vfsnps" target="_blank" rel="noopener noreferrer">Open NPS Portal</a>
+            <a class="chip" href="https://www.icicipension.in/login" target="_blank" rel="noopener noreferrer">Web Pension Login</a>
+            <a class="chip" href="https://tinyurl.com/anpsapp" target="_blank" rel="noopener noreferrer">NPS Android App</a>
+            <a class="chip" href="https://www.pfrda.org.in/" target="_blank" rel="noopener noreferrer">PFRDA Portal</a>
+            <a class="chip" href="https://tinyurl.com/inpsappi" target="_blank" rel="noopener noreferrer">NPS iOS App</a>
+            <a class="chip" href="https://www.camsnps.in/" target="_blank" rel="noopener noreferrer">CAMSNPS Portal</a>
+            <a class="chip" href="https://nps.kfintech.in/Login/Login" target="_blank" rel="noopener noreferrer">NPS Login</a>
+            <a class="chip" href="https://cra.nps-proteantech.in/CRA/" target="_blank" rel="noopener noreferrer">NPS CRA Portal</a>
+            <a class="chip" href="https://npslite-nsdl.com/CRAlite/" target="_blank" rel="noopener noreferrer">NPS AtalPension Portal</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="compliance" class="section">
+      <div class="section-title">
+        <h2>Compliance & Regulatory Portals</h2>
+        <span class="section-tag">AMFI • IRDAI • PFRDA • NPS • Loans • NSIM</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>AMFI</h3>
+          <div class="links">
+            <a class="chip" href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">AMFI Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>IRDAI</h3>
+          <div class="links">
+            <a class="chip" href="https://irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>PFRDA</h3>
+          <div class="links">
+            <a class="chip" href="https://www.pfrda.org.in/" target="_blank" rel="noopener noreferrer">PFRDA Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>NSIM</h3>
+          <div class="links">
+            <a class="chip" href="https://nsim.org.in/" target="_blank" rel="noopener noreferrer">NSIM Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Loan Compliance</h3>
+          <div class="links">
+            <a class="chip" href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">RBI Portal</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Investor Grievance / Vigilance</h3>
+          <div class="links">
+            <a class="chip" href="https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=13" target="_blank" rel="noopener noreferrer">SEBI Grievance</a>
+            <a class="chip" href="https://www.sebi.gov.in/vigilance-app.html" target="_blank" rel="noopener noreferrer">SEBI Vigilance</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="templates" class="section">
+      <div class="section-title">
+        <h2>Document & Success Templates</h2>
+        <span class="section-tag">Use the placeholder [Customer Name] for quick customer messaging</span>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h2>1. Required Documents / Enquiry Lists</h2>
+          <span class="section-tag">Mutual fund • Term insurance • Health insurance</span>
+        </div>
+        <div class="template-grid">
+          <article class="template-card">
+            <h3>Mutual Fund Enquiry</h3>
+            <p>Required documents checklist for mutual fund enquiry.</p>
+            <textarea readonly id="mf-docs">**📋 Open a Mutual Fund Account – Required Documents**
+
+To open your Mutual Fund account, please share the following:
+
+1. 📄 PAN Card & Aadhaar Card copies
+2. 📧 Email ID & 📱 Mobile Number
+3. 🏦 Any one of the following:
+   * Cancelled Cheque, or
+   * Last 3 months' Bank Statement (showing Account Number), or
+   * Bank Passbook (First Page + Last 3 months' entries)
+4. 🌍 Place of Birth (City, State & Country)
+5. 👨‍👩‍👧 Nominee Details:
+   * PAN Card or Aadhaar Card
+   * Email ID
+   * Mobile Number
+
+Once I receive the above, I'll complete your account opening process.
+
+**Vemuri Financial Services**
+*Simple. Smart. Secure Finance.*
+
+📞 9886291668
+📧 [vemurifin@gmail.com](mailto:vemurifin@gmail.com)
+🌐 https://fin.vemurigroup.in</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="mf-docs">Edit</button><button type="button" data-copy-target="mf-docs">Copy</button></div>
+          </article>
+          <article class="template-card">
+            <h3>Term Insurance Enquiry</h3>
+            <p>Required documents checklist for term insurance enquiry.</p>
+            <textarea readonly id="term-docs">**📋 Term Insurance Quote – Required Details**
+To provide you with the most suitable **Term Insurance** quote, please share the following details:
+
+* 👤 Full Name:
+* 🚻 Gender:
+* 🎂 Date of Birth:
+* 💼 Occupation:
+* 💰 Gross Annual Income:
+* 📍 PIN Code:
+* 🎓 Highest Qualification:
+* 📅 Policy Term:
+* 💳 Premium Payment Term:
+* 🚭 Smoker (Yes/No):
+* 🛡️ Required Sum Assured:
+* 📄 Existing Life Insurance Details (if any):
+
+Once I receive the above information, I'll compare plans and recommend the best option based on your needs.
+**Vemuri Financial Services**
+*Simple. Smart. Secure Finance.*
+
+📞 9886291668
+📧 [vemurifin@gmail.com](mailto:vemurifin@gmail.com)
+🌐 https://fin.vemurigroup.in
+</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="term-docs">Edit</button><button type="button" data-copy-target="term-docs">Copy</button></div>
+          </article>
+          <article class="template-card">
+            <h3>Health Insurance Enquiry</h3>
+            <p>Required documents checklist for health insurance enquiry.</p>
+            <textarea readonly id="health-docs">**📋 Health Insurance Quote – Required Details**
+Please share the following details:
+* 👤 Name
+* 🎂 Date of Birth
+* 📏 Height & Weight
+* 📧 Email ID
+* 📱 Mobile Number
+* 🆔 PAN Number
+* 🏠 Address & PIN Code
+* 💼 Occupation & Annual Income
+* 💍 Marital Status
+* 🏥 Existing Illnesses / Medications / Surgeries (if any)
+* 🛡️ Required Sum Assured & Policy Term
+* 👨‍👩‍👧 Nominee Name, DOB & Relationship
+Thank you! Once I receive the details, I'll recommend the best health insurance plan for you.
+
+**Vemuri Financial Services**
+📞 9886291668 | 🌐 https://fin.vemurigroup.in</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="health-docs">Edit</button><button type="button" data-copy-target="health-docs">Copy</button></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h2>2. Success Messages</h2>
+          <span class="section-tag">Account created • transaction initiated</span>
+        </div>
+        <div class="template-grid">
+          <article class="template-card">
+            <h3>Mutual Fund Success</h3>
+            <p>Success message after account creation and transaction initiation.</p>
+            <textarea readonly id="mf-success">🌟 **Welcome to Your Financial Planning Journey!**
+Your investment account has been created successfully.
+
+📱 **App:** https://tinyurl.com/vemuriapp
+🌐 **Portal:** https://tinyurl.com/vemurimf
+
+🔐 **Login Credentials**
+👤 Username: **PAN Number**
+🔑 Password: **Welcome@123**
+
+I'm here to help you with:
+✅ Mutual Funds & SIPs
+✅ Portfolio Review
+✅ Financial Planning
+
+**Insurance | Mutual Funds | NPS | Tax Saving | Retirement | Loans**
+Thank you for choosing **Vemuri Financial Services**.
+
+📞 9886291668
+📧 [vemurifin@gmail.com](mailto:vemurifin@gmail.com)
+🌐 https://fin.vemurigroup.in
+</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="mf-success">Edit</button><button type="button" data-copy-target="mf-success">Copy</button></div>
+          </article>
+          <article class="template-card">
+            <h3>Term Insurance Success</h3>
+            <p>Success message after policy application initiation.</p>
+            <textarea readonly id="term-success">
+✅ Your **Axis Max Life Term Insurance** application has been successfully submitted.
+
+Please log in to review your policy and update your personal & nominee details.
+
+🌐 **Web:** https://www.axismaxlife.com/cs/login
+📱 **App:** https://tinyurl.com/axismaxapp
+
+Thank you for choosing **Vemuri Financial Services**. If you're happy with my service, kindly refer your friends and family.
+
+**Vemuri Financial Services**
+*Simple. Smart. Secure Finance.*
+Insurance | Mutual Funds | NPS | Tax Saving | Retirement | Home & Personal Loans
+
+📞 9886291668
+📧 [vemurifin@gmail.com](mailto:vemurifin@gmail.com)
+🌐 https://fin.vemurigroup.in
+</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="term-success">Edit</button><button type="button" data-copy-target="term-success">Copy</button></div>
+          </article>
+          <article class="template-card">
+            <h3>Health Insurance Success</h3>
+            <p>Success message after health insurance application initiation.</p>
+            <textarea readonly id="health-success">✅ Your Health Insurance application has been successfully submitted.
+
+You will receive updates from the insurer shortly. If any additional documents are required, I'll assist you throughout the process.
+
+Thank you for choosing Vemuri Financial Services.
+
+Insurance | Mutual Funds | NPS | Tax Saving | Retirement | Home & Personal Loans
+
+📞 9886291668
+📧 vemurifin@gmail.com
+🌐 https://fin.vemurigroup.in</textarea>
+            <div class="template-actions"><button type="button" data-edit-target="health-success">Edit</button><button type="button" data-copy-target="health-success">Copy</button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section amc-collapsed" id="amcSection">
+      <div class="section-title">
+        <h2>AMCs</h2>
+        <span class="section-tag">RM contact details for mutual fund partners</span>
+      </div>
+      <div class="amc-toggle-row">
+        <button class="amc-toggle-btn" id="amcToggle" type="button" data-visible="false">Show AMC List</button>
+      </div>
+      <div class="amc-preview">
+        <div class="preview-card">Click to expand and view all AMC partners with RM names and mobile numbers.</div>
+      </div>
+      <div class="amc-grid">
+        <article class="card"><h3>HDFC Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>SBI Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>ICICI Prudential AMC</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Nippon India AMC</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Axis Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Kotak Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Aditya Birla Sun Life AMC</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>UTI Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>DSP Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Tata Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Mirae Asset Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Franklin Templeton</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Canara Robeco Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>HSBC Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>IDBI Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Invesco Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>LIC Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Mahindra Manulife Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Motilal Oswal Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>PPFAS Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Quant Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Union Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Sundaram Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Baroda BNP Paribas Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Edelweiss Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>IDFC FIRST Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Bank Of India Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Shriram Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Bandhan Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Groww Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Zerodha Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Navi Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Samco Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>JM Financial Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>JIO Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>ITI Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Quantum Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Trust Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>WhiteOak Capital Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>PGIM India Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Bajaj Finserv Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Helios Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Nuvama Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>360 ONE Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>PPFAS Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>AlphaGrep Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Sundaram Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>WhiteOak Capital AMC</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Monarch Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>ASK Mutual Fund</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+        <article class="card"><h3>Lakshya Asset Management</h3><p class="meta rm-details"><strong>RM Name:</strong> Vemuri Financial Services Team</p><p class="meta rm-details"><strong>Mobile:</strong> +91 98862 91668</p></article>
+      </div>
+    </section>
+  </main>
+
+  <div class="contact-modal-overlay" id="contactModal" aria-hidden="true">
+    <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <button class="contact-modal-close" id="contactModalClose" type="button" aria-label="Close">×</button>
+      <h3 id="contactModalTitle">Contact Details</h3>
+      <p id="contactModalMessage">Get in touch with the relationship manager.</p>
+      <a id="contactModalPhone" href="tel:+919886291668">📞 +91 98862 91668</a>
+      <a id="contactModalEmail" href="mailto:vemurifin@gmail.com">✉️ vemurifin@gmail.com</a>
+    </div>
+  </div>
+
+  <script>
+    const rmToggle = document.getElementById('rmToggle');
+    const rmDetails = document.querySelectorAll('.rm-details');
+    const amcSection = document.getElementById('amcSection');
+    const amcToggle = document.getElementById('amcToggle');
+    const contactModal = document.getElementById('contactModal');
+    const contactModalClose = document.getElementById('contactModalClose');
+    const contactModalTitle = document.getElementById('contactModalTitle');
+    const contactModalMessage = document.getElementById('contactModalMessage');
+    const contactModalPhone = document.getElementById('contactModalPhone');
+    const contactModalEmail = document.getElementById('contactModalEmail');
+
+    function openContactModal(name, phone, email) {
+      if (!contactModal) return;
+      contactModalTitle.textContent = `${name} — Contact`;
+      contactModalMessage.textContent = 'Use the details below to connect with the RM team.';
+      contactModalPhone.href = `tel:${phone}`;
+      contactModalPhone.textContent = `📞 ${phone}`;
+      contactModalEmail.href = `mailto:${email}`;
+      contactModalEmail.textContent = `✉️ ${email}`;
+      contactModal.classList.add('is-open');
+      contactModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+      if (!contactModal) return;
+      contactModal.classList.remove('is-open');
+      contactModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (contactModalClose) {
+      contactModalClose.addEventListener('click', closeContactModal);
+    }
+
+    if (contactModal) {
+      contactModal.addEventListener('click', (event) => {
+        if (event.target === contactModal) closeContactModal();
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && contactModal && contactModal.classList.contains('is-open')) {
+        closeContactModal();
+      }
+    });
+
+    if (rmToggle) {
+      rmToggle.addEventListener('click', () => {
+        const isVisible = rmToggle.getAttribute('data-visible') === 'true';
+        rmDetails.forEach((item) => item.classList.toggle('is-visible', !isVisible));
+        document.querySelectorAll('.connect-btn').forEach((btn) => btn.classList.toggle('is-visible', !isVisible));
+        rmToggle.setAttribute('data-visible', String(!isVisible));
+        rmToggle.textContent = isVisible ? 'Show RM Details' : 'Hide RM Details';
+      });
+    }
+
+    if (amcToggle && amcSection) {
+      amcToggle.addEventListener('click', () => {
+        const isVisible = amcToggle.getAttribute('data-visible') === 'true';
+        amcSection.classList.toggle('amc-collapsed', isVisible);
+        amcToggle.setAttribute('data-visible', String(!isVisible));
+        amcToggle.textContent = isVisible ? 'Show AMC List' : 'Hide AMC List';
+      });
+    }
+
+    const amcLinks = {
+      'HDFC Mutual Fund': { url: 'https://www.hdfcfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'SBI Mutual Fund': { url: 'https://www.sbimf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'ICICI Prudential AMC': { url: 'https://www.icicipruamc.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Nippon India AMC': { url: 'https://www.nipponindiaim.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Axis Mutual Fund': { url: 'https://www.axismf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Kotak Mutual Fund': { url: 'https://www.kotakmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Aditya Birla Sun Life AMC': { url: 'https://abslmfpartner.abslamc.com/ifa/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'UTI Mutual Fund': { url: 'https://www.utimf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'DSP Mutual Fund': { url: 'https://www.dspim.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Tata Mutual Fund': { url: 'https://www.tatamutualfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Mirae Asset Mutual Fund': { url: 'https://www.miraeassetmf.co.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Franklin Templeton': { url: 'https://www.franklintempletonindia.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Canara Robeco Mutual Fund': { url: 'https://www.canararobeco.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'HSBC Mutual Fund': { url: 'https://www.assetmanagement.hsbc.co.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'IDBI Mutual Fund': { url: 'https://www.idbimutual.co.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Invesco Mutual Fund': { url: 'https://www.invescomutualfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'LIC Mutual Fund': { url: 'https://www.licmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Mahindra Manulife Mutual Fund': { url: 'https://www.mahindramanulife.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Motilal Oswal Mutual Fund': { url: 'https://www.motilaloswalmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'NJ Mutual Fund': { url: 'https://www.njindiaonline.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'PPFAS Mutual Fund': { url: 'https://www.ppfas.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Quant Mutual Fund': { url: 'https://www.quantmutual.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Sundaram Mutual Fund': { url: 'https://www.sundarammutual.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Union Mutual Fund': { url: 'https://www.unionmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Baroda BNP Paribas Mutual Fund': { url: 'https://www.barodabnpparibasmf.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Edelweiss Mutual Fund': { url: 'https://www.edelweissmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'IDFC FIRST Mutual Fund': { url: 'https://www.idfcfirstmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Bank Of India Mutual Fund': { url: 'https://www.bankofindiamutualfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Shriram Mutual Fund': { url: 'https://www.shrirammf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Bandhan Mutual Fund': { url: 'https://www.bandhanmutual.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Groww Mutual Fund': { url: 'https://groww.in/mutual-funds', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Zerodha Mutual Fund': { url: 'https://zerodhafundhouse.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Navi Mutual Fund': { url: 'https://www.navimutualfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Samco Mutual Fund': { url: 'https://partners.samcomf.com/login', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'JM Financial Mutual Fund': { url: 'https://www.jmfinancialmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'JIO Mutual Fund': { url: 'https://www.jiofinance.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'ITI Mutual Fund': { url: 'https://www.itimutualfund.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Quantum Mutual Fund': { url: 'https://www.quantumamc.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Trust Mutual Fund': { url: 'https://www.trustmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'WhiteOak Capital Mutual Fund': { url: 'https://www.whiteoakamc.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'PGIM India Mutual Fund': { url: 'https://www.pgimindiamf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Bajaj Finserv Mutual Fund': { url: 'https://www.bajajfinserv.in/finance/mutual-funds', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Helios Mutual Fund': { url: 'https://www.heliosmf.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Nuvama Asset Management': { url: 'https://www.nuvamawealth.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      '360 ONE Asset Management': { url: 'https://edge360.camsonline.com/signin', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'PPFAS Asset Management': { url: 'https://partners.ppfas.com/dashboard', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'AlphaGrep Asset Management': { url: 'https://www.alphagrep.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Sundaram Asset Management': { url: 'https://www.sundarammutual.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'WhiteOak Capital AMC': { url: 'https://www.whiteoakamc.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' },
+      'Monarch Mutual Fund': { url: 'https://monarchamc.in/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'Amc.compliance@monarchamc.in' },
+      'ASK Mutual Fund': { url: 'https://askmutualfund.com', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'compliance@askmutualfund.com' },
+      'Lakshya Asset Management': { url: 'https://lakshyafunds.com/', rmName: 'Vemuri Financial Services Team', mobile: '+91 98862 91668', email: 'vemurifin@gmail.com' }
+    };
+
+    document.querySelectorAll('#amcSection .card').forEach((card) => {
+      const title = card.querySelector('h3')?.textContent.trim();
+      const amcData = amcLinks[title];
+
+      if (amcData) {
+        card.querySelectorAll('.rm-details').forEach((item) => item.remove());
+
+        const linksWrap = document.createElement('div');
+        linksWrap.className = 'links';
+
+        const details = document.createElement('p');
+        details.className = 'meta rm-details';
+        details.innerHTML = `<strong>RM Name:</strong> ${amcData.rmName}<br><strong>Mobile:</strong> ${amcData.mobile}<br><strong>Email:</strong> ${amcData.email}`;
+        card.appendChild(details);
+
+        const connectBtn = document.createElement('button');
+        connectBtn.className = 'chip connect-btn';
+        connectBtn.type = 'button';
+        connectBtn.textContent = '📞 Connect';
+        connectBtn.addEventListener('click', () => openContactModal(title, amcData.mobile.replace('+91 ', '+91'), amcData.email));
+        linksWrap.appendChild(connectBtn);
+
+        const link = document.createElement('a');
+        link.className = 'chip';
+        link.href = amcData.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Visit Site';
+        linksWrap.appendChild(link);
+        card.appendChild(linksWrap);
+      }
+    });
+
+    const amcGrid = document.querySelector('#amcSection .amc-grid');
+    if (amcGrid) {
+      const sortedCards = Array.from(amcGrid.querySelectorAll('.card')).sort((a, b) => {
+        const nameA = a.querySelector('h3')?.textContent.trim().toLowerCase() || '';
+        const nameB = b.querySelector('h3')?.textContent.trim().toLowerCase() || '';
+        return nameA.localeCompare(nameB);
+      });
+
+      sortedCards.forEach((card) => amcGrid.appendChild(card));
+    }
+
+    document.querySelectorAll('[data-edit-target]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-edit-target');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.removeAttribute('readonly');
+        target.focus();
+        target.setSelectionRange(target.value.length, target.value.length);
+        button.textContent = 'Editing';
+        button.classList.add('secondary');
+      });
+    });
+
+    document.querySelectorAll('[data-copy-target]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const targetId = button.getAttribute('data-copy-target');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        const text = target.value;
+        try {
+          await navigator.clipboard.writeText(text);
+          const originalText = button.textContent;
+          button.textContent = 'Copied';
+          setTimeout(() => {
+            button.textContent = originalText;
+          }, 1500);
+        } catch (error) {
+          const fallback = document.createElement('textarea');
+          fallback.value = text;
+          fallback.setAttribute('readonly', '');
+          fallback.style.position = 'fixed';
+          fallback.style.left = '-9999px';
+          document.body.appendChild(fallback);
+          fallback.select();
+          document.execCommand('copy');
+          document.body.removeChild(fallback);
+          button.textContent = 'Copied';
+          setTimeout(() => {
+            button.textContent = 'Copy';
+          }, 1500);
+        }
+      });
+    });
+    document.querySelectorAll("textarea").forEach(textarea => {
+    textarea.value = textarea.value.replace(/\\n/g, "\n");
+    });
+  </script>
+</body>
+</html>

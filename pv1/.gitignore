@@ -1,0 +1,22 @@
+# Database backups — may contain real user data (password hashes, PII).
+# Never commit these; keep them local or in a secured, separate backup
+# location. See backoffice/backup.php for how they're generated.
+*.sql.bak
+backup_*.sql
+backoffice/backups/
+
+# Real credentials. config.php holds live DB/SMTP/Razorpay secrets and
+# was never meant to be committed (config.example.php is the template
+# that IS tracked) — explicit here as defense-in-depth, since until now
+# nothing actually enforced that beyond "no one has run git add -A yet."
+backoffice/config.php
+
+# Credential exports (e.g. downloaded from a payment gateway dashboard
+# while debugging a key issue) have no reason to live inside the repo at
+# all — this repo has no legitimate tracked .csv use today.
+*.csv
+
+# Runtime error logs (inc/error-handler.php) — contain real usernames,
+# IPs, request URLs and stack traces. Not web-exposed (inc/ is blocked by
+# .htaccess) but has no reason to be in version control either.
+backoffice/inc/logs/

@@ -1,0 +1,920 @@
+/* Component classes — one class per repeated visual pattern, replacing the
+   original page's inline style="" attributes. Ported 1:1 from the original
+   design values (colors, sizes, spacing) with no visual changes intended. */
+
+/* — blueprint frame: the corner-bracket decoration used on cards — */
+.blueprint {
+  position: relative;
+  border: 1px solid var(--color-divider);
+}
+
+.blueprint > .corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  color: var(--color-accent);
+}
+
+.blueprint > .corner::before,
+.blueprint > .corner::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.blueprint > .corner::before { left: 5px; top: 0; width: 1px; height: 100%; }
+.blueprint > .corner::after { top: 5px; left: 0; width: 100%; height: 1px; }
+.blueprint > .corner.tl { top: -1px; left: -1px; }
+.blueprint > .corner.tr { top: -1px; right: -1px; }
+.blueprint > .corner.bl { bottom: -1px; left: -1px; }
+.blueprint > .corner.br { bottom: -1px; right: -1px; }
+
+/* — buttons — */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid var(--color-divider);
+  border-radius: 0;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover { background: var(--color-accent-700); color: #fff; }
+
+.btn-secondary {
+  border-color: #1b214040;
+  background: transparent;
+}
+
+.btn-on-dark {
+  background: transparent;
+  border-color: #ffffff40;
+  color: #fff;
+}
+
+.btn-header-cta {
+  flex: none;
+  padding: 9px 18px;
+  font-size: 13px;
+  background: #fff;
+  color: var(--color-navy-mid);
+  border-color: #fff;
+}
+
+.btn-header-cta:hover { background: var(--color-amber); border-color: var(--color-amber); color: var(--color-navy-mid); }
+
+.btn-header-cta__icon { display: none; font-size: 16px; }
+
+/* Same look as .btn-header-cta, for header links that aren't a phone
+   CTA (e.g. "Back to website") — deliberately has no icon-collapse
+   behavior at small widths, so it never turns into a phone glyph. */
+.btn-header-back {
+  flex: none;
+  padding: 9px 18px;
+  font-size: 13px;
+  background: #fff;
+  color: var(--color-navy-mid);
+  border-color: #fff;
+}
+
+.btn-header-back:hover { background: var(--color-amber); border-color: var(--color-amber); color: var(--color-navy-mid); }
+
+.btn-block { width: 100%; }
+.btn-sm { padding: 9px 16px; font-size: 13px; border-color: #1b214040; }
+.btn-tab { flex: 1 1 130px; padding: 15px 12px; border: 0; border-right: 1px solid var(--color-divider); transition: background .2s ease; }
+.btn-tab:last-child { border-right: 0; }
+.btn-tab[aria-selected="true"] { background: var(--color-accent); color: #fff; }
+
+/* — form fields — */
+.field label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1b214099;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid var(--color-divider);
+  background: #fff;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+textarea.input { resize: vertical; }
+
+/* — site header / nav — */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-accent-600) 62%, var(--color-accent) 100%);
+}
+
+.site-header__bar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 12px var(--pad-inline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+  color: #fff;
+}
+
+.brand img { width: 30px; height: 30px; }
+
+.brand__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.brand__sub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffffb3;
+  font-family: var(--font-body);
+}
+
+.brand__text { display: flex; flex-direction: column; gap: 1px; }
+
+/* AMFI Code of Conduct §5(g): "MFDs shall mention/display a tagline,
+   'AMFI-registered Mutual Fund Distributor' along with / below their
+   name, in a clear and legible font of at least font size 12, ...
+   website, mobile app, printed or electronic materials..." — this is
+   that tagline, sitewide, directly under the brand name. Don't shrink
+   below 12px or remove without checking that requirement first. */
+.brand__tagline {
+  font-size: 12px;
+  font-family: var(--font-body);
+  color: #ffffffcc;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+}
+
+.site-nav a { color: #ffffffd9; }
+.site-nav a:hover { color: #fff; }
+
+/* Services submenu (The Plan / Compare / Regulatory) — desktop: floats
+   below "Services", opens on hover (mouse) or on click of the caret
+   (keyboard/touch, via nav.js toggling .nav-item--open). Below 1100px
+   (responsive.css) the nav becomes an off-canvas hamburger menu instead,
+   where this submenu is overridden to expand inline. */
+.nav-item { position: relative; display: flex; align-items: center; gap: 2px; }
+.nav-item__caret {
+  background: none;
+  border: none;
+  color: #ffffffd9;
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1;
+  padding: 4px;
+}
+.nav-item__caret:hover { color: #fff; }
+
+.nav-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  min-width: 200px;
+  background: var(--color-navy-mid);
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  display: none;
+  flex-direction: column;
+  z-index: 60;
+}
+
+/* Dropdowns for nav items near the right edge of the bar: open aligned
+   to their own right edge instead of their left, so the popover doesn't
+   run off the viewport (a plain left:0 dropdown on the rightmost items
+   was previously going off-screen on common desktop widths). */
+@media (min-width: 1100px) {
+  .nav-submenu--end { left: auto; right: 0; }
+}
+
+.nav-submenu a {
+  display: block;
+  padding: 9px 18px;
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-body);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media (min-width: 1100px) {
+  .nav-item--has-sub:hover .nav-submenu { display: flex; }
+}
+
+.nav-item--open .nav-submenu { display: flex; }
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #ffffff59;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+}
+
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bar::before { top: -6px; }
+.nav-toggle__bar::after { top: 6px; }
+
+/* — hero — */
+.hero-bg {
+  min-height: 100vh;
+  background: var(--page-bg);
+  background-image: linear-gradient(#1b214008 1px, transparent 1px), linear-gradient(90deg, #1b214008 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  /* Top padding trimmed from the original clamp(36px,7vw,84px): the
+     sticky header grew from a single ~70px row to a two-row ~113.6px
+     header (brand/CTA row + full nav row — see .site-header__bar), so
+     the unchanged hero padding was stacking on top of that and pushing
+     the headline down by an extra ~35-45px versus before. This restores
+     roughly the original total "space before the headline" instead of
+     compounding the two. */
+  padding: clamp(24px, 4vw, 52px) var(--pad-inline) clamp(28px, 5vw, 56px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: flex-start;
+}
+
+.hero__copy { flex: 1 1 420px; min-width: 300px; }
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+.hero__eyebrow-line { width: 28px; height: 1px; background: var(--color-accent); }
+
+.hero__title {
+  font-size: clamp(44px, 8.5vw, 88px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.hero__title em { color: var(--color-accent); font-style: normal; }
+
+.hero__lede {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.6;
+  max-width: 46ch;
+  color: #1b2140cc;
+  margin: 0 0 28px;
+  text-wrap: pretty;
+}
+
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+
+.hero__badges { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; font-size: 12px; color: #1b214099; }
+.hero__badges span { padding: 4px 10px; border: 1px solid #1b214029; }
+
+.hero__calc { flex: 1 1 380px; min-width: 300px; }
+
+.calc-card {
+  padding: clamp(18px, 3vw, 28px);
+  background: #ffffff80;
+}
+
+.calc-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.calc-card__head h2 { font-size: 22px; letter-spacing: 0.01em; }
+
+.fig-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #1b214099; }
+
+.slider-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.slider-row label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #1b214099; }
+.slider-row output { font-family: var(--font-heading); font-size: 21px; line-height: 1; }
+
+input[type=range].input { border: 0; padding: 0; width: 100%; margin: 0 0 20px; height: 22px; }
+input[type=range].input.tight { margin-bottom: 26px; }
+
+.grow-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 130px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #1b214029;
+}
+
+.grow-bar-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.grow-bar-col span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #1b214099; margin-bottom: 6px; }
+.grow-bar-col.is-value span { color: var(--color-accent); }
+
+.grow-bar {
+  border: 1px solid var(--color-accent);
+  background: repeating-linear-gradient(135deg, #3b56e026 0 4px, transparent 4px 8px);
+  transition: height .35s ease;
+}
+
+.grow-bar.is-value { background: var(--color-accent); }
+
+.grow-figures { display: flex; gap: 14px; margin-bottom: 22px; }
+.grow-figures span { font-family: var(--font-heading); font-size: 20px; }
+.grow-figures .is-value { color: var(--color-accent); }
+
+.gain-block { border-top: 1px solid #1b214029; padding-top: 18px; }
+.gain-block .fig-label { display: block; }
+.gain-block__value {
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 6vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-navy-mid);
+  margin: 4px 0 10px;
+}
+.gain-block p { font-size: 12px; line-height: 1.5; color: #1b214099; margin: 0; }
+
+/* — stat band — */
+.stat-band {
+  border-top: 1px solid #1b214029;
+  border-bottom: 1px solid #1b214029;
+  background: #ffffff66;
+}
+
+.stat-band__grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-inline);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.stat-band__item { padding: 28px 20px; border-right: 1px solid #1b214029; }
+.stat-band__item:first-child { padding-left: 0; }
+.stat-band__item:last-child { border-right: 0; padding-right: 0; }
+
+.stat-band__value { font-family: var(--font-heading); font-size: clamp(34px, 5vw, 46px); line-height: 1; }
+.stat-band__label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #1b214099; margin-top: 6px; }
+
+/* — section shell — */
+/* Top padding intentionally smaller than bottom (was symmetric
+   clamp(48px,8vw,96px) both sides). Every nav click / anchor jump lands
+   on a section's top edge (scroll-margin-top above compensates for the
+   sticky header only, not for extra breathing room) — with the old
+   symmetric 96px top padding, that stacked into a large, clearly
+   reported dead gap between the header and the heading on every single
+   nav click. Bottom padding is unchanged since that's what gives
+   consecutive sections their breathing room during normal scrolling. */
+.section { max-width: var(--max-width); margin: 0 auto; padding: clamp(28px, 4vw, 56px) var(--pad-inline) clamp(48px, 8vw, 96px); }
+.section--tight-top { padding-top: clamp(44px, 7vw, 84px); padding-bottom: clamp(44px, 7vw, 84px); }
+.section--bordered { border-top: 1px solid #1b214029; }
+.section--surface { background: #ffffff66; }
+
+/* Reduced padding for content-light sections (short placeholder/stub
+   copy — a couple of lines of text does not need the full 96px section
+   rhythm on both sides, which previously read as a large dead gap). */
+.section--compact { padding-top: clamp(28px, 4vw, 48px); padding-bottom: clamp(28px, 4vw, 48px); }
+
+/* Two stub blocks side by side inside one .section--compact, instead of
+   each getting its own full section (and therefore its own double dose
+   of section padding) — see #learning/#blogs and #downloads/#amcs. */
+.stub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(28px, 4vw, 56px);
+  margin-top: 8px;
+}
+.section--dark {
+  color: #fff;
+  border-top: 1px solid #1b214029;
+}
+.section--dark.quiz-section { background: linear-gradient(120deg, var(--color-teal) 0%, var(--color-accent-600) 58%, var(--color-accent) 100%); }
+.section--dark.trust-section { background: linear-gradient(120deg, var(--color-navy) 0%, var(--color-navy-mid) 60%, var(--color-accent-600) 100%); }
+
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.section__head--tight { margin-bottom: 28px; }
+.section__eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+.section__title { font-size: clamp(32px, 5.5vw, 54px); line-height: 1; letter-spacing: -0.02em; margin: 12px 0 14px; }
+.section__lede { font-size: 17px; line-height: 1.6; color: #1b2140cc; margin: 0; text-wrap: pretty; }
+.section__lede--on-dark { color: #ffffffcc; }
+.section__tag { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #1b214099; border: 1px solid #1b214029; padding: 10px 14px; }
+
+/* — plan pillars — */
+/* minmax(320px, 1fr) alone doesn't let a column shrink below 320px even
+   when the grid container itself is narrower than that (e.g. a 320px
+   viewport minus 16px padding each side = 288px available) — causes
+   horizontal page overflow on small phones (iPhone SE and similar),
+   found via direct measurement, not assumed. min(320px, 100%) caps the
+   floor at the container's own width when the container can't fit
+   320px, while still preferring 320px on anything wider. */
+.pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px; }
+
+.pillar-card { padding: clamp(20px, 3vw, 30px); background: #ffffff66; }
+
+.pillar-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pillar-card__head h3 { font-size: 26px; }
+.pillar-card__flag { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #1b214099; }
+
+.pillar-list { display: flex; flex-direction: column; gap: 18px; }
+.pillar-item { display: flex; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid #1b214029; }
+.pillar-item:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.pillar-item__num {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  flex: none;
+  width: 30px;
+}
+
+.pillar-item h4 { font-size: 18px; margin: 0 0 4px; }
+.pillar-item p { font-size: 14px; line-height: 1.55; color: #1b2140b3; margin: 0; }
+
+.sequence-strip {
+  margin-top: 20px;
+  border: 1px solid #1b214029;
+  padding: 18px clamp(18px, 3vw, 26px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  font-size: 14px;
+  color: #1b2140cc;
+}
+
+.sequence-strip__label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); }
+.sequence-strip__arrow { color: var(--color-teal); }
+
+/* — quiz — */
+.quiz-wrap { display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 64px); }
+.quiz-wrap__intro { flex: 1 1 320px; min-width: 280px; }
+.quiz-wrap__panel { flex: 1 1 400px; min-width: 300px; }
+
+.quiz-progress { display: flex; align-items: center; gap: 12px; }
+.quiz-progress__track { flex: 1; height: 2px; background: #ffffff33; }
+.quiz-progress__fill { height: 2px; background: var(--color-amber); transition: width .3s ease; }
+.quiz-progress__label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff99; }
+
+.quiz-panel {
+  padding: clamp(20px, 3vw, 30px);
+  border-color: #ffffff40;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-panel .corner { color: var(--color-amber); }
+
+.quiz-question h3 { font-size: clamp(22px, 3vw, 30px); line-height: 1.1; margin: 0 0 24px; color: #fff; }
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0; }
+
+.quiz-option {
+  text-align: left;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #ffffff40;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.quiz-option:hover { background: #ffffff14; border-color: var(--color-amber); }
+.quiz-option__arrow { color: var(--color-amber); font-size: 13px; }
+
+.quiz-result__eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-amber); }
+.quiz-result h3 { font-size: clamp(24px, 3.4vw, 34px); line-height: 1.05; margin: 10px 0 12px; color: #fff; }
+.quiz-result p { font-size: 16px; line-height: 1.6; color: #ffffffcc; margin: 0 0 18px; }
+
+.quiz-steps { display: flex; flex-direction: column; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+.quiz-steps li { display: flex; gap: 10px; font-size: 15px; color: #ffffffe6; border-bottom: 1px solid #ffffff1f; padding-bottom: 8px; }
+.quiz-steps__num { color: var(--color-amber); }
+
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.quiz-actions .btn { padding: 13px 22px; font-size: 14px; }
+.quiz-actions .btn-on-light { background: #fff; color: var(--color-navy-mid); border: 0; }
+
+/* — services grid — */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: #1b214029;
+  border: 1px solid #1b214029;
+}
+
+.service-card { background: #fff; padding: 24px; }
+.service-card__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.service-card__kicker { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); }
+.service-card__code { font-family: var(--font-heading); font-size: 12px; color: #1b214066; }
+.service-card h3 { font-size: 21px; margin: 0 0 8px; }
+.service-card p { font-size: 14px; line-height: 1.55; color: #1b2140b3; margin: 0 0 16px; }
+.service-card__links { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.service-card__links a,
+.service-card__link {
+  font-size: 13px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #3b56e040;
+  padding-bottom: 2px;
+}
+
+/* — calculators — */
+.calc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid #1b214029;
+  border-bottom: 0;
+}
+
+.calc-panel { padding: clamp(20px, 3vw, 34px); background: #fff; }
+.calc-panel__body { display: none; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px); }
+.calc-panel__body.is-active { display: flex; }
+
+.calc-panel__inputs { flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; }
+.calc-panel__result {
+  flex: 1 1 260px;
+  border-left: 1px solid #1b214029;
+  padding-left: clamp(20px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calc-panel__result-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1b214099; }
+.calc-panel__result-value {
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 6vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-navy-mid);
+  margin: 6px 0 20px;
+}
+
+.calc-panel__breakdown { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.calc-panel__breakdown-row { display: flex; justify-content: space-between; border-bottom: 1px solid #1b214029; padding-bottom: 7px; }
+.calc-panel__breakdown-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.calc-panel__breakdown-row .label { color: #1b214099; }
+.calc-panel__breakdown-row .is-accent { color: var(--color-accent); }
+
+.calc-footnote { font-size: 12px; color: #1b214099; margin: 14px 0 0; }
+
+/* — compare table — */
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.table-scroll { overflow-x: auto; border: 1px solid #1b214029; }
+.compare-table { width: 100%; font-size: 14px; min-width: 760px; }
+.compare-table th { padding: 14px 16px; text-align: left; }
+.compare-table td { padding: 14px 16px; }
+.compare-table td:first-child { font-family: var(--font-heading); font-size: 16px; }
+.compare-table tr[hidden] { display: none; }
+.table-scroll-hint {
+  display: none;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1b214099;
+  margin: 8px 0 0;
+}
+
+/* — testimonials — */
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.testimonial-card { padding: 26px; background: #fff; }
+.testimonial-card p { font-size: 17px; line-height: 1.55; margin: 0 0 18px; text-wrap: pretty; }
+.testimonial-card__source { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); }
+.testimonial-card__stars { color: var(--color-amber-dark); font-size: 16px; letter-spacing: 2px; margin-bottom: 10px; }
+
+.testimonial-more-row { text-align: center; margin-top: 20px; }
+
+/* — testimonial summary header (Part 7): total reviews + average
+   rating, computed client-side in testimonials.js from the same feed
+   response already being fetched — no extra endpoint. — */
+.testimonial-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 24px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #1b214020;
+}
+.testimonial-summary__stars { color: var(--color-amber-dark); font-size: 20px; letter-spacing: 2px; }
+.testimonial-summary__avg { font-family: var(--font-heading); font-size: 28px; letter-spacing: -0.01em; }
+.testimonial-summary__count { font-size: 13px; color: #1b214099; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.testimonial-card__meta { font-size: 12px; color: #1b214099; margin-top: 4px; }
+
+.review-form-wrap { margin-top: 28px; }
+.review-form-toggle summary { cursor: pointer; }
+.review-form-toggle summary::-webkit-details-marker { display: none; }
+.review-form-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px #3b56e030;
+  transition: transform .15s ease;
+}
+.review-form-toggle__btn:hover { transform: scale(1.03); }
+.review-form { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; max-width: 640px; }
+
+.star-input { display: flex; gap: 4px; margin-top: 6px; }
+.star-input button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  padding: 2px;
+  color: var(--color-amber-dark);
+}
+
+/* — start / contact — */
+.start-grid { display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 56px); }
+.start-grid__copy { flex: 1 1 340px; min-width: 290px; }
+.start-grid__form { flex: 1 1 380px; min-width: 290px; }
+
+.start-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.start-steps__row { display: flex; gap: 12px; font-size: 15px; color: #1b2140cc; border-bottom: 1px solid #1b214029; padding-bottom: 12px; }
+.start-steps__row:last-child { border-bottom: 0; padding-bottom: 0; }
+.start-steps__num { color: var(--color-accent); }
+
+.contact-links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 15px; }
+.contact-links a { font-family: var(--font-heading); font-size: 18px; }
+.contact-links__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #3b56e040;
+  border-radius: 50%;
+  color: var(--color-accent);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.contact-links__item:hover { background: #3b56e014; border-color: var(--color-accent); }
+.contact-links__item svg { flex-shrink: 0; }
+
+.form-card { padding: clamp(20px, 3vw, 30px); background: #ffffff80; }
+.form-card__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.form-card__head h3 { font-size: 24px; }
+
+.callback-form { display: flex; flex-direction: column; gap: 16px; }
+.callback-form__row { display: flex; flex-wrap: wrap; gap: 16px; }
+.callback-form__row .field { flex: 1 1 150px; }
+.form-hint { font-size: 12px; color: #1b214099; margin: 0; }
+.form-hint.is-error { color: var(--color-red); }
+.form-fallback { margin-top: -4px; }
+.form-fallback a { color: var(--color-accent); font-weight: 600; }
+
+.thanks-block { display: none; flex-direction: column; gap: 14px; min-height: 300px; justify-content: center; }
+.thanks-block.is-active { display: flex; }
+.callback-form.is-hidden { display: none; }
+.thanks-block__eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); }
+.thanks-block h3 { font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; }
+.thanks-block p { font-size: 16px; line-height: 1.6; color: #1b2140cc; margin: 0; }
+
+/* — trust / regulatory — */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: #ffffff33;
+  border: 1px solid #ffffff33;
+}
+
+.trust-card { background: #ffffff10; padding: 24px; }
+.trust-card__kicker { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-amber); margin-bottom: 12px; }
+.trust-card h3 { font-size: 20px; margin: 0 0 8px; color: #fff; }
+.trust-card p { font-size: 13.5px; line-height: 1.55; color: #ffffffb3; margin: 0 0 14px; }
+.trust-card__escalate { font-size: 12px; color: #ffffff99; margin-bottom: 12px; }
+.trust-card__links { display: flex; gap: 14px; }
+.trust-card__links a { color: var(--color-amber); font-size: 13px; border-bottom: 1px solid #ffc95c40; }
+
+.trust-extra {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 48px);
+  border-top: 1px solid #ffffff33;
+  padding-top: 34px;
+}
+
+.trust-extra__col { flex: 1 1 280px; }
+.trust-extra__col h3 { font-size: 22px; margin: 0 0 10px; color: #fff; }
+.trust-extra__col > p { font-size: 14px; line-height: 1.55; color: #ffffffb3; margin: 0 0 16px; }
+
+.kyc-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+/* var(--color-amber) (#ffc95c, a light gold) was near-invisible on the
+   light page background both places .kyc-links is actually used
+   (#downloads and the #kyc "steps" accordion) — both already tried to
+   fix this with an inline color:var(--color-accent) on the wrapping
+   div, but that couldn't win against this rule's own color on the <a>
+   itself (a more specific selector beats an inherited value), so the
+   override silently did nothing. Fixed at the source instead. This
+   class isn't used anywhere on a dark background, so no light/dark
+   modifier split needed here. */
+.kyc-links a { color: var(--color-accent); font-family: var(--font-heading); font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 1px solid #3b56e040; }
+
+.faq-list { display: flex; flex-direction: column; gap: 14px; }
+.faq-item { border-bottom: 1px solid #ffffff1f; padding-bottom: 12px; }
+.faq-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.faq-item__q { font-family: var(--font-heading); font-size: 17px; color: #fff; margin-bottom: 4px; }
+.faq-item__a { font-size: 13.5px; line-height: 1.55; color: #ffffffb3; margin: 0; }
+
+/* Default .faq-item colors above are white-on-dark (the Regulatory
+   accordion's own gradient background, in #kyc). The standalone #faq
+   section sits on the plain light page background instead — without
+   this modifier its white text was invisible (white-on-white, reported
+   directly). Apply .faq-list--on-light wherever a faq-list renders on
+   the light page background instead of a dark card. */
+.faq-list--on-light .faq-item { border-bottom-color: #1b214020; }
+.faq-list--on-light .faq-item__q { color: #1b2140; }
+.faq-list--on-light .faq-item__a { color: #1b2140b3; }
+
+/* — WhatsApp floating button — */
+.whatsapp-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px #00000040;
+  transition: transform .15s ease;
+}
+
+.whatsapp-fab:hover { transform: scale(1.06); color: #fff; }
+
+/* — Consolidated FAB cluster (Pricing / Share your experience / Request
+   a call back), stacked above the WhatsApp FAB. Same interaction
+   pattern as the backoffice's .bo-fab (backoffice/assets/css/
+   backoffice.css) — kept as a separate class here since the public
+   site's tokens/colors are a different file, but the visual language
+   (round "+" toggle, rotates on open, pill menu above it) matches. */
+.site-fab { position: fixed; right: 20px; bottom: 86px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.site-fab__toggle {
+  width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--color-navy); color: #fff; font-size: 24px; line-height: 1;
+  box-shadow: 0 4px 14px #00000040; transition: transform .15s ease;
+}
+.site-fab__toggle:hover { transform: scale(1.06); }
+.site-fab--open .site-fab__toggle { transform: rotate(45deg); }
+.site-fab__menu {
+  display: none; flex-direction: column; gap: 4px; background: #fff; border-radius: 12px;
+  padding: 8px; box-shadow: 0 6px 20px #00000030; min-width: 190px;
+}
+.site-fab--open .site-fab__menu { display: flex; }
+.site-fab__menu a { padding: 8px 12px; border-radius: 8px; font-size: 13.5px; color: var(--color-text); text-decoration: none; }
+.site-fab__menu a:hover { background: #1b21400d; }
+
+/* — footer — */
+.site-footer { background: var(--color-navy); color: #fff; border-top: 1px solid #ffffff33; }
+.site-footer__inner { max-width: var(--max-width); margin: 0 auto; padding: clamp(32px, 5vw, 56px) var(--pad-inline); }
+.footer-grid { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); margin-bottom: 32px; }
+.footer-grid__brand { flex: 1 1 300px; }
+.footer-grid__brand-name { font-family: var(--font-heading); font-size: 22px; margin-bottom: 10px; }
+.footer-grid__brand p { font-size: 14px; line-height: 1.6; color: #ffffffb3; margin: 0 0 14px; max-width: 40ch; }
+.footer-social { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; }
+.footer-social a { color: var(--color-amber); }
+
+.footer-col { flex: 0 1 180px; }
+.footer-col__label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff99; margin-bottom: 12px; }
+.footer-col__links { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.footer-col__links a { color: #ffffffcc; }
+
+.footer-legal { font-size: 12px; line-height: 1.6; color: #ffffff99; margin: 0 0 12px; max-width: 90ch; }
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ffffff99;
+  border-top: 1px solid #ffffff1f;
+  padding-top: 16px;
+}
+.footer-bottom a { color: var(--color-amber); }

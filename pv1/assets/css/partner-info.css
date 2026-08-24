@@ -1,0 +1,169 @@
+/* Partner Info hub — page-specific styles. Reuses tokens.css/base.css/
+   components.css for the header, buttons, blueprint frame, and section
+   shell; this file covers what's unique to this page: the link/RM
+   directory cards, chips, AMC grid, message templates, and modal. */
+
+/* This page is a dense reference directory, not a spacious marketing
+   page — deliberately tighter vertical rhythm than index.html's
+   .section (which uses clamp(48px,8vw,96px), sized for hero-style
+   content and far too much air between short card grids here). */
+.hub-container-outer,
+.hub-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px var(--pad-inline);
+}
+
+.hub-intro { max-width: 760px; }
+.hub-intro p { font-size: 16px; line-height: 1.6; color: #1b2140cc; }
+
+.hub-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 28px;
+}
+
+.category-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.category-nav a {
+  font-size: 13px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1px solid #1b214029;
+  color: var(--color-text);
+}
+.category-nav a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* .hub-section wraps a .section (which already supplies max-width +
+   clamp() padding) — no extra padding here, just the divider. */
+.hub-section + .hub-section { border-top: 1px solid #1b214029; }
+
+.hub-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.hub-section-head h2 {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+.hub-section-tag { font-size: 12px; color: #1b214099; }
+
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+.hub-card { padding: 20px; background: #ffffff; }
+.hub-card h3 { font-size: 17px; margin: 0 0 10px; }
+
+.hub-meta { font-size: 13px; color: #1b2140b3; margin: 3px 0; }
+.hub-meta strong { color: var(--color-text); }
+
+.hub-rm-details { display: none; margin: 10px 0; padding: 10px 12px; background: var(--color-accent-100); border-left: 2px solid var(--color-accent); }
+.hub-rm-details.is-visible { display: block; }
+
+.hub-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.hub-chip {
+  font-size: 12.5px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+  padding: 7px 12px;
+  border: 1px solid #1b214029;
+  color: var(--color-text);
+  cursor: pointer;
+  background: transparent;
+}
+.hub-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.hub-chip.is-connect {
+  display: none;
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+.hub-chip.is-connect.is-visible { display: inline-block; }
+
+/* — AMC directory — */
+.amc-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+.amc-preview { display: none; }
+.hub-amc.is-collapsed .amc-grid { display: none; }
+.hub-amc.is-collapsed .amc-preview { display: block; }
+.amc-preview-card {
+  padding: 16px 18px;
+  border: 1px dashed #1b214040;
+  color: #1b2140b3;
+  font-size: 14px;
+}
+
+/* — templates — */
+/* min(300px, 100%) — see components.css .pillar-grid for why: a bare
+   300px minimum doesn't shrink on narrow phones (320px viewport minus
+   padding leaves less than 300px available), causing horizontal
+   overflow. */
+.template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+.template-card { padding: 20px; background: #fff; }
+.template-card h3 { font-size: 17px; margin: 0 0 6px; }
+.template-card p { font-size: 13.5px; color: #1b2140b3; margin: 0 0 10px; }
+.template-card textarea {
+  width: 100%;
+  min-height: 200px;
+  border: 1px solid #1b214029;
+  padding: 10px 12px;
+  background: var(--page-bg);
+  color: var(--color-text);
+  font: 13px/1.55 ui-monospace, monospace;
+  resize: vertical;
+}
+.template-card textarea:not([readonly]) { border-color: var(--color-accent); background: #fff; }
+.template-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+
+/* — contact modal — */
+.hub-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #16204ac7;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
+}
+.hub-modal-overlay.is-open { display: flex; }
+.hub-modal {
+  background: #fff;
+  width: min(420px, 100%);
+  padding: 26px;
+  position: relative;
+  border-top: 3px solid var(--color-accent);
+}
+.hub-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #1b214099;
+}
+.hub-modal h3 { font-size: 20px; margin: 0 0 8px; }
+.hub-modal p { font-size: 14px; color: #1b2140b3; margin: 0 0 16px; }
+.hub-modal a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--color-accent-100);
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.hub-modal a:hover { background: #dbe1ff; }
+
+@media (max-width: 640px) {
+  .hub-grid, .template-grid { grid-template-columns: 1fr; }
+}

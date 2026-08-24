@@ -1,0 +1,122 @@
+/* MFD Tools (PDF Signature Generator + Excel Mapping + GST Filing
+   Workflow) — page-specific styles. Reuses tokens.css/base.css/
+   components.css for the header, buttons, and blueprint frame. */
+
+.mfd-intro { max-width: 720px; }
+.mfd-intro p { font-size: 16px; line-height: 1.6; color: #1b2140cc; }
+
+.mfd-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.mfd-card { padding: 24px; background: #fff; }
+.mfd-card h2 { font-size: 20px; margin: 0 0 16px; }
+
+.mfd-notice {
+  padding: 12px 14px;
+  background: var(--color-accent-100);
+  border-left: 3px solid var(--color-accent);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.mfd-field { margin-bottom: 18px; }
+.mfd-field label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1b214099;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.mfd-radio-group { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.mfd-radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+input[type=file].input {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.mfd-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+
+.mfd-checklist { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.mfd-checklist li { font-size: 14px; color: #1b2140b3; }
+
+.mfd-hr { border: 0; border-top: 1px solid #1b214029; margin: 20px 0; }
+
+/* — GST workflow — */
+.mfd-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 18px 0 26px;
+}
+.mfd-step {
+  padding: 16px;
+  background: var(--page-bg);
+  border-left: 3px solid var(--color-accent);
+  font-size: 14px;
+}
+.mfd-step b { color: var(--color-accent); margin-right: 4px; }
+
+.mfd-security-list { margin: 10px 0 0; padding-left: 20px; font-size: 14px; color: #1b2140b3; }
+.mfd-security-list li { margin-bottom: 6px; }
+
+/* — loading overlay — */
+.mfd-loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #f7f8fdd9;
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mfd-loading-overlay.is-active { display: flex; }
+.mfd-loader {
+  width: 46px;
+  height: 46px;
+  border: 5px solid #1b214029;
+  border-top: 5px solid var(--color-accent);
+  border-radius: 50%;
+  animation: mfd-spin 1s linear infinite;
+}
+@keyframes mfd-spin { 100% { transform: rotate(360deg); } }
+.mfd-loading-overlay p { margin-top: 14px; color: var(--color-text); font-size: 14px; }
+
+/* — about modal (reuses the same visual pattern as partner-info's hub-modal) — */
+.mfd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #16204ac7;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
+}
+.mfd-modal-overlay.is-open { display: flex; }
+.mfd-modal { background: #fff; width: min(380px, 100%); padding: 26px; position: relative; border-top: 3px solid var(--color-accent); }
+.mfd-modal-close { position: absolute; top: 10px; right: 10px; border: 0; background: transparent; font-size: 22px; line-height: 1; cursor: pointer; color: #1b214099; }
+.mfd-modal h3 { font-size: 20px; margin: 0 0 10px; }
+.mfd-modal p { font-size: 14px; color: #1b2140b3; margin: 0 0 6px; }
+
+@media (max-width: 900px) {
+  .mfd-grid { grid-template-columns: 1fr; }
+}

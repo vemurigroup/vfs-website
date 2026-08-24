@@ -1,0 +1,112 @@
+/* Element defaults and global resets. */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Anchor-jump offset for the sticky header. Without this, clicking any
+   nav link (or the footer's #section links, or a goal-shortcut anchor)
+   scrolls the target to the very top of the viewport — directly behind
+   the sticky header — so the destination looks like it "didn't appear."
+   One value now covers every width (2026-08): the header used to grow to
+   113.6px at ≥901px (a two-row brand+CTA / full-nav split), needing a
+   separate larger offset there, but that split is gone — nav sits beside
+   the CTA button on one row again (or collapses to the hamburger below
+   1100px, see responsive.css), so the header is a uniform ~68.6px at
+   every width now (see components.css .site-header__bar). 72px matches
+   that plus only a few px of rounding buffer — NOT a large visual gap on
+   top of it. Each section already carries its own top padding (see
+   .section in components.css) for breathing room; stacking a big
+   scroll-margin buffer on top of that padding was double-spacing every
+   anchor-jump landing. Applies broadly to every in-page anchor target
+   (section ids and the smaller span/div anchors used for sub-section
+   jumps like #insurance, #mutualfunds, #features) rather than
+   enumerating each one. */
+main [id], .site-footer [id] {
+  scroll-margin-top: 72px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-700);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input[type=range] {
+  accent-color: var(--color-accent);
+}
+
+::selection {
+  background: #cfd8ff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--pad-inline);
+  padding-right: var(--pad-inline);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scroll-reveal — JS toggles [data-in] once a section enters the viewport. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s cubic-bezier(.2,.7,.3,1), transform .6s cubic-bezier(.2,.7,.3,1);
+}
+
+[data-reveal][data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

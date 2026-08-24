@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Signature Generator & GST Workflow | Vemuri Financial Services</title>
+<meta name="description" content="Internal tool: bulk-sign CAMS/KFINTECH commission PDFs, map signed filenames into the commission Excel, and follow the monthly GST filing workflow.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233b56e0'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/utilities.css">
+<link rel="stylesheet" href="../assets/css/mfd-tools.css">
+<link rel="stylesheet" href="../assets/css/responsive.css">
+
+<script src="../assets/vendor/pdf-lib.min.js"></script>
+<script src="../assets/vendor/jszip.min.js"></script>
+<script src="../assets/vendor/xlsx.full.min.js"></script>
+<script src="../assets/vendor/pdf.min.js" defer></script>
+<script src="../assets/vendor/pdf.worker.min.js" defer></script>
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    console.log(pdfjsLib);
+  });
+</script>
+</head>
+<body>
+
+<div class="hero-bg">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <a href="index.html" class="brand">
+        <img src="assets/images/vemurifin.png" alt="Vemuri Financial Services" width="30" height="30">
+        <span class="brand__name">Vemuri Financial<span class="brand__sub">Services</span></span>
+      </a>
+      <button type="button" class="btn btn-header-back blueprint" onclick="openAbout()">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        Contact
+      </button>
+      <a href="index.html" class="btn btn-header-back blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        Back to website
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hub-container-outer">
+      <div class="mfd-intro">
+        <span class="section__eyebrow" style="color:var(--color-teal);">Internal tool</span>
+        <h1 class="section__title" style="font-size:clamp(28px,4.5vw,44px);">PDF signature generator &amp; GST workflow</h1>
+        <p>Bulk-sign CAMS/KFINTECH commission PDFs, map the generated filenames into the commission Excel, then follow the monthly GST filing checklist below. All processing happens in your browser — nothing is uploaded anywhere.</p>
+      </div>
+    </section>
+
+    <section class="hub-section">
+      <div class="hub-container">
+        <div class="mfd-grid">
+          <div class="mfd-card blueprint">
+            <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+            <h2>PDF Signature Generator</h2>
+
+            <div class="mfd-notice">Automatically places the signature based on the selected CAMS/KFINTECH template.</div>
+
+            <div class="mfd-field">
+              <label>Template</label>
+              <div class="mfd-radio-group">
+                <label><input type="radio" name="pdfType" value="KFINTECH" checked> KFINTECH</label>
+                <label><input type="radio" name="pdfType" value="CAMS"> CAMS</label>
+              </div>
+            </div>
+
+            <div class="mfd-field">
+              <label>Input mode</label>
+              <div class="mfd-radio-group">
+                <label><input type="radio" name="inputMode" value="single" checked onchange="toggleMode()"> Single PDF</label>
+                <label><input type="radio" name="inputMode" value="zip" onchange="toggleMode()"> ZIP of PDFs</label>
+              </div>
+            </div>
+
+            <div id="singleModeBlock" class="mfd-field">
+              <label>Select PDF</label>
+              <input type="file" id="pdfFile" class="input" accept=".pdf">
+            </div>
+
+            <div id="zipModeBlock" class="mfd-field" style="display:none;">
+              <label>Select ZIP (containing PDFs)</label>
+              <input type="file" id="zipFile" class="input" accept=".zip">
+            </div>
+
+            <div class="mfd-field">
+              <label>Select signature image</label>
+              <input type="file" id="signFile" class="input" accept="image/png,image/jpeg">
+            </div>
+
+            <div class="mfd-actions">
+              <button id="btn" type="button" class="btn btn-primary" onclick="generatePDF()">Generate &amp; download</button>
+              <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+            </div>
+          </div>
+
+          <div class="mfd-card blueprint">
+            <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+            <h2>Excel Mapping</h2>
+
+            <div class="mfd-field">
+              <label>Select CAMS / KFINTECH Excel</label>
+              <input type="file" id="excelFile" class="input" accept=".xlsx,.xls">
+            </div>
+
+            <div class="mfd-actions">
+              <button type="button" class="btn btn-primary" onclick="generateExcel()">Download updated Excel</button>
+            </div>
+
+            <hr class="mfd-hr">
+
+            <h2 style="font-size:16px;">Monthly checklist</h2>
+            <ul class="mfd-checklist">
+              <li>☐ PDF signed</li>
+              <li>☐ Excel updated</li>
+              <li>☐ Invoice numbers verified</li>
+              <li>☐ GST ready</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hub-section">
+      <div class="hub-container">
+        <div class="mfd-card blueprint">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          <h2>GST Filing Workflow</h2>
+          <div class="mfd-steps">
+            <div class="mfd-step"><b>1.</b>Download CAMS/KFINTECH commission reports.</div>
+            <div class="mfd-step"><b>2.</b>Generate signed PDFs.</div>
+            <div class="mfd-step"><b>3.</b>Update Excel mapping.</div>
+            <div class="mfd-step"><b>4.</b>Verify invoice numbers.</div>
+            <div class="mfd-step"><b>5.</b>Upload invoices to GST portal.</div>
+            <div class="mfd-step"><b>6.</b>File GSTR-1.</div>
+            <div class="mfd-step"><b>7.</b>File GSTR-3B.</div>
+            <div class="mfd-step"><b>8.</b>Archive reports for audit.</div>
+          </div>
+
+          <h2 style="font-size:16px;">Security recommendations</h2>
+          <ul class="mfd-security-list">
+            <li>Validate file type and size before processing.</li>
+            <li>Never upload confidential files to unknown systems.</li>
+            <li>Verify invoice mapping before GST filing.</li>
+            <li>Keep monthly backups of signed PDFs and Excel.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> <span data-cfg="business-name">Vemuri Financial Services</span>. Internal tool — not for public distribution.</span>
+        <a href="index.html">Back to website</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<div id="loading" class="mfd-loading-overlay">
+  <div class="mfd-loader"></div>
+  <p id="loadingText">Processing...</p>
+</div>
+
+<div id="aboutModal" class="mfd-modal-overlay">
+  <div class="mfd-modal">
+    <button type="button" class="mfd-modal-close" onclick="closeAbout()" aria-label="Close">×</button>
+    <h3 data-cfg="business-name">Vemuri Financial Services</h3>
+    <p>Email: <a href="mailto:vemurifin@gmail.com" data-cfg="email-link"><span data-cfg="email-text">vemurifin@gmail.com</span></a></p>
+    <p>This utility digitally places a signature image onto supported CAMS and KFINTECH PDF forms.</p>
+    <button type="button" class="btn btn-secondary" style="margin-top:10px;" onclick="closeAbout()">Close</button>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/mfd-tools.js"></script>
+</body>
+</html>

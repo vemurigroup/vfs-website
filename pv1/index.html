@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vemuri Financial Services — SIP, Insurance & NPS Planning | Bengaluru</title>
+<meta name="description" content="Goal-based financial planning in Bengaluru: mutual fund SIPs, term and health insurance, NPS, KYC services, Loans against mutual funds and free SIP/SWP/FD/inflation calculators. Zero fee to you.">
+<link rel="canonical" href="https://fin.vemurigroup.in/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vemuri Financial Services — Protection first, then compounding">
+<meta property="og:description" content="Start a SIP, get covered, and stop guessing. Goal-based mutual fund, insurance and NPS planning from Bengaluru.">
+<meta property="og:url" content="https://fin.vemurigroup.in/">
+<meta property="og:image" content="https://fin.vemurigroup.in/assets/images/vemurifin.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vemuri Financial Services">
+<meta name="twitter:description" content="Goal-based mutual fund, insurance and NPS planning from Bengaluru. Zero fee to you.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233b56e0'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/utilities.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "Vemuri Financial Services",
+  "url": "https://fin.vemurigroup.in/",
+  "telephone": "+91-98862-91668",
+  "email": "vemurifin@gmail.com",
+  "areaServed": "IN",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ITI Colony",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "postalCode": "560016",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/vemuri-financial-services-282a37376/",
+    "https://www.facebook.com/profile.php?id=61589120577437",
+    "https://www.instagram.com/vemurifinancialservices/",
+    "https://www.youtube.com/@VemuriFinancialServices-x5j"
+  ]
+}
+</script>
+
+<!-- AggregateRating schema intentionally omitted (Part 11): this is a
+     static HTML file with no server-side rendering, so any count/
+     average would either (a) be computed at runtime by testimonials.js
+     after the page has already loaded — too late for crawlers that
+     don't execute JS — or (b) be hardcoded here and drift from the
+     real, live testimonials-feed.php data over time. Neither is
+     honest. If this becomes worth doing, the right fix is a small
+     server-side (PHP) step that regenerates this block from the same
+     `feedback` table testimonials-feed.php already reads, not a
+     hand-maintained number. -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to redo KYC for every fund house?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. KYC done through a KRA (KYC Registration Agency) is valid across every SEBI-registered intermediary — that's the point of CKYC." }
+    },
+    {
+      "@type": "Question",
+      "name": "When would I need Re-KYC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "If your KYC status shows as \"on hold\" or \"registered but not verified,\" or if key details like address or ID proof have changed since you first registered." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is FATCA declaration only for NRIs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No — every investor, resident or non-resident, must complete a FATCA/CRS self-declaration as part of onboarding." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I check my KYC status myself?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, using the KYC validation link on this page with your PAN — no need to call anyone." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="hero-bg">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <a href="#top" class="brand">
+        <img src="assets/images/vemurifin.png" alt="Vemuri Financial Services" data-cfg="business-name-alt" width="30" height="30">
+        <span class="brand__text">
+          <span class="brand__name">Vemuri Financial<span class="brand__sub">Services</span></span>
+          <span class="brand__tagline">AMFI-registered Mutual Fund Distributor</span>
+        </span>
+      </a>
+
+      <button type="button" id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+
+      <!-- Mega-menu, consolidated (2026-08). Previously had 7 dropdown
+           groups incl. a separate "Investment" menu that pointed into
+           the exact same 3 sections (#protect/#grow/#retire) as
+           "Services" under different labels, plus a "Community" menu
+           of mostly social links — both read as duplicate/low-value
+           top-level items and made the desktop bar wrap/overflow.
+           Consolidated to 5 dropdowns + Home/Contact, each pointing at
+           a unique destination (no two items land on the same anchor).
+           Testimonials/social moved into About and the footer, where
+           they belong on a financial-advisory site's primary nav.
+           Desktop layout: two-row header (brand+CTA row, then a
+           full-width nav row) — see .site-header__bar in
+           components.css. Reuses the "has-sub" caret dropdown pattern
+           (styles in components.css, toggle behavior in nav.js). -->
+      <nav id="siteNav" class="site-nav" aria-label="Primary">
+        <a href="#top">Home</a>
+
+        <div class="nav-item nav-item--has-sub">
+          <a href="#about">About</a>
+          <button type="button" class="nav-item__caret" aria-expanded="false" aria-label="Toggle About submenu">▾</button>
+          <ul class="nav-submenu">
+            <li><a href="#about">About VFS</a></li>
+            <li><a href="#whyus">Why Choose Us</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#journey">Our Journey</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#testimonials">Client Experiences</a></li>
+            <li><a href="#feedback">Share Your Experience</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item nav-item--has-sub">
+          <a href="#grow">Services</a>
+          <button type="button" class="nav-item__caret" aria-expanded="false" aria-label="Toggle Services submenu">▾</button>
+          <ul class="nav-submenu">
+            <li><a href="#grow">Grow Wealth &amp; Mutual Funds</a></li>
+            <li><a href="#protect">Protect &amp; Insurance</a></li>
+            <li><a href="#retire">Retire, NPS &amp; Tax Planning</a></li>
+            <li><a href="#childplans">Child Education</a></li>
+            <li><a href="#goalplanner">Goal Planning</a></li>
+            <li><a href="#portfolio">Portfolio Review</a></li>
+            <li><a href="#loans">Loans</a></li>
+            <li><a href="#epf">EPF Services</a></li>
+            <li><a href="#kyc">KYC Services</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item nav-item--has-sub">
+          <a href="#tools">Tools</a>
+          <button type="button" class="nav-item__caret" aria-expanded="false" aria-label="Toggle Tools submenu">▾</button>
+          <ul class="nav-submenu">
+            <li><a href="#tools">Financial Calculators</a></li>
+            <li><a href="#compare">Fund Comparison</a></li>
+            <li><a href="#riskprofile">Risk Profiler</a></li>
+            <li><a href="#sipplanner">SIP Planner</a></li>
+            <li><a href="#retirementcalc">Retirement Calculator</a></li>
+            <li><a href="#goalcalc">Goal Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item nav-item--has-sub">
+          <a href="#learning">Resources</a>
+          <button type="button" class="nav-item__caret" aria-expanded="false" aria-label="Toggle Resources submenu">▾</button>
+          <ul class="nav-submenu nav-submenu--end">
+            <li><a href="#learning">Learning Center</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#faq">FAQs</a></li>
+            <li><a href="#downloads">Downloads</a></li>
+            <li><a href="#amcs">AMCs</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item nav-item--has-sub">
+          <a href="#platform">MFD Platform</a>
+          <button type="button" class="nav-item__caret" aria-expanded="false" aria-label="Toggle Platform submenu">▾</button>
+          <ul class="nav-submenu nav-submenu--end">
+            <li><a href="#platform">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#demo">Request Demo</a></li>
+            <li><a data-cfg="backoffice-link" data-cfg-path="index.php" target="_blank" rel="noopener">BackOffice login ↗</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <a href="#start" class="btn btn-header-cta blueprint" aria-label="Get a call back">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <span class="btn-header-cta__icon" aria-hidden="true">&#9742;</span>
+        <span class="btn-header-cta__label">Get a call back</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+  <span id="top"></span>
+
+  <!-- Grow leads the page (2026-08): moved above the hero/quiz itself,
+       so it's the literal first thing on the page, not just first among
+       the numbered sections. "Then put money to work." / "Then scale"
+       (leftover from when this followed About/Protect) were reworded to
+       drop the "Then" framing for the same reason. This does sit in some
+       tension with the Mission line in #about ("protection before
+       growth") and the Protect section's own sequence-strip ("...→ Then
+       grow") further down — left as-is since those describe the
+       recommended financial-planning sequence for a client's own plan,
+       not a claim about page layout, and weren't asked to change. -->
+  <section id="grow" data-reveal class="section">
+    <div class="section__head">
+      <div style="max-width:620px;">
+        <span class="section__eyebrow" style="color:var(--color-green);">01 — Grow</span>
+        <h2 class="section__title">Put your money to work.</h2>
+        <p class="section__lede">One SIP per goal. Automate it, top it up every year you get a raise, ignore the noise.</p>
+      </div>
+      <div class="section__tag">Start here</div>
+    </div>
+
+    <figure class="blueprint" style="margin:0 0 20px;padding:clamp(16px,3vw,26px);background:#ffffff66;">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <svg viewBox="0 0 900 220" role="img" aria-label="A bar chart of six years, each bar taller than the last, with a smooth line rising above them showing compounding growth accelerating over time." style="width:100%;height:auto;display:block;">
+        <defs>
+          <marker id="growArrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-green)"></path>
+          </marker>
+        </defs>
+
+        <!-- baseline -->
+        <line x1="60" y1="190" x2="860" y2="190" stroke="var(--color-divider)" stroke-width="1"></line>
+
+        <!-- six years of a growing SIP, last bar highlighted as "today's value" -->
+        <rect x="85"  y="174" width="50" height="16"  fill="var(--color-accent-100)" stroke="var(--color-accent)" stroke-width="1"></rect>
+        <rect x="215" y="160" width="50" height="30"  fill="var(--color-accent-100)" stroke="var(--color-accent)" stroke-width="1"></rect>
+        <rect x="345" y="138" width="50" height="52"  fill="var(--color-accent-100)" stroke="var(--color-accent)" stroke-width="1"></rect>
+        <rect x="475" y="108" width="50" height="82"  fill="var(--color-accent-100)" stroke="var(--color-accent)" stroke-width="1"></rect>
+        <rect x="605" y="70"  width="50" height="120" fill="var(--color-accent-100)" stroke="var(--color-accent)" stroke-width="1"></rect>
+        <rect x="735" y="28"  width="50" height="162" fill="var(--color-green)" fill-opacity="0.18" stroke="var(--color-green)" stroke-width="1.5"></rect>
+
+        <!-- the compounding curve, accelerating past the last bar -->
+        <path d="M60,175 C220,160 350,130 480,95 C600,65 700,45 815,22" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#growArrowHead)"></path>
+
+        <!-- year ticks -->
+        <text x="110" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y1</text>
+        <text x="240" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y2</text>
+        <text x="370" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y3</text>
+        <text x="500" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y4</text>
+        <text x="630" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y5</text>
+        <text x="760" y="207" font-size="12" text-anchor="middle" fill="var(--color-text)" fill-opacity="0.55">Y6</text>
+
+        <text x="825" y="16" font-size="13" font-weight="700" text-anchor="end" fill="var(--color-green)">Compounding</text>
+      </svg>
+      <figcaption class="section__lede" style="margin-top:10px;font-size:13px;">Small, regular contributions — the same SIP, automated — compound into a much larger value the longer they're left alone.</figcaption>
+    </figure>
+
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head">
+          <h3>Where to put it</h3>
+          <span class="pillar-card__flag">Start here</span>
+        </div>
+        <div class="pillar-list">
+          <div class="pillar-item">
+            <span id="mutualfunds" class="pillar-item__num" style="color:var(--color-green);">B1</span>
+            <div><h4>Mutual fund SIPs</h4><p>Open a fresh folio or move an existing one across. Web or app, whichever you'll actually use.</p><a href="https://vfs.vemurigroup.in/" target="_blank" rel="noopener" class="service-card__link">VFS web login</a></div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-item__num" style="color:var(--color-green);">B2</span>
+            <div><h4>Global funds &amp; demat</h4><p>International exposure through GIFT City's IFSC route, plus a demat for US stocks and bonds.</p>
+              <div class="service-card__links"><a href="https://tinyurl.com/dspgiftcity" target="_blank" rel="noopener">GIFT City</a><a href="https://sam-co.in/bkJzRDhiZGg1SVdOSWdRemVCS3FXUT09" target="_blank" rel="noopener">US trade login</a></div>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-item__num" style="color:var(--color-green);">B3</span>
+            <div><h4>Bonds, FD, gold &amp; silver</h4><p>Predictable income, plus a hedge that isn't jewellery, for anything you need inside three years.</p>
+              <div class="service-card__links"><a href="https://ndxfinserv.com/signUp/NDX0001197" target="_blank" rel="noopener">Explore bonds</a><a href="https://qrcode.batuk.gold/partner/?ref=SRRRV461" target="_blank" rel="noopener">Gold &amp; silver</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="calc-card__head">
+          <h2>Quick SIP check</h2>
+          <span class="fig-label">Fig. 01 / SIP</span>
+        </div>
+
+        <div class="slider-row">
+          <label for="heroAmount">Monthly SIP</label>
+          <output id="heroAmountOut" for="heroAmount">₹2,000</output>
+        </div>
+        <input id="heroAmount" class="input" type="range" min="500" max="100000" step="500" value="2000">
+
+        <div class="slider-row">
+          <label for="heroYears">For how long</label>
+          <output id="heroYearsOut" for="heroYears">15 years</output>
+        </div>
+        <input id="heroYears" class="input tight" type="range" min="3" max="35" step="1" value="15">
+
+        <div class="grow-bars">
+          <div class="grow-bar-col">
+            <span>You put in</span>
+            <div id="heroBarInvested" class="grow-bar"></div>
+          </div>
+          <div class="grow-bar-col is-value">
+            <span>It becomes</span>
+            <div id="heroBarValue" class="grow-bar is-value"></div>
+          </div>
+        </div>
+        <div class="grow-figures">
+          <div><span id="heroInvested">0</span></div>
+          <div><span id="heroValue" class="is-value">0</span></div>
+        </div>
+
+        <div class="gain-block">
+          <span class="fig-label">Growth on your money</span>
+          <div class="gain-block__value">₹<span id="heroGain">0</span></div>
+          <p>At 12% assumed annual return, compounded monthly. Illustrative only — mutual funds are market-linked and not guaranteed. Want every calculator? <a href="#tools" style="color:var(--color-accent);">Jump to Tools →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero is the 4-tap quiz itself (Direction 1b), not a SIP slider.
+       id changed from "top" to "quiz" (2026-08) when Grow moved above
+       this section and took the page's literal top spot — #top now
+       anchors just above Grow (see the span right after <main>) so
+       Home/logo/"Back to top" still land at the actual top of the page
+       instead of jumping past Grow to here. -->
+  <section id="quiz" class="hero section--dark quiz-section">
+    <div class="hero__copy">
+      <div class="hero__eyebrow" style="color:var(--color-amber);"><span class="hero__eyebrow-line" aria-hidden="true" style="background:var(--color-amber);"></span>Est. 2017 · Bengaluru</div>
+      <h1 class="hero__title" style="color:#fff;">What should you<br>do first?</h1>
+      <p class="hero__lede" style="color:#ffffffcc;">Answer four questions and we'll tell you the one move to make this month — not a shopping list of products.</p>
+      <div class="hero__ctas">
+        <a href="#start" class="btn btn-primary blueprint">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          See my move
+        </a>
+        <a href="#sipplanner" class="btn btn-on-light">Skip, run SIP calc</a>
+      </div>
+      <div class="quiz-progress" style="max-width:420px;">
+        <div class="quiz-progress__track"><div id="quizProgressFill" class="quiz-progress__fill" style="width:0%;"></div></div>
+        <span id="quizProgressLabel" class="quiz-progress__label">Step 1 of 4</span>
+      </div>
+    </div>
+
+    <div class="hero__calc">
+      <div class="quiz-panel blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+
+        <div id="quizQuestion" class="quiz-question" style="height:100%;">
+          <h3 id="quizQuestionText"></h3>
+          <ul id="quizOptions" class="quiz-options"></ul>
+        </div>
+
+        <div id="quizResult" class="quiz-result" style="display:none;height:100%;flex-direction:column;">
+          <span class="quiz-result__eyebrow">Your first move</span>
+          <h3 id="quizResultTitle"></h3>
+          <p id="quizResultBody"></p>
+          <ul id="quizSteps" class="quiz-steps"></ul>
+          <div class="quiz-actions">
+            <a href="#start" class="btn btn-on-light">Get this set up</a>
+            <button id="quizRestart" type="button" class="btn btn-on-dark">Start over</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="statBand" data-reveal class="stat-band">
+    <div class="stat-band__grid">
+      <div class="stat-band__item">
+        <div class="stat-band__value" style="color:var(--color-teal);"><span id="statYears">0+</span></div>
+        <div class="stat-band__label">Years advising families</div>
+      </div>
+      <div class="stat-band__item">
+        <div class="stat-band__value" style="color:var(--color-accent);"><span id="statFamilies">0+</span></div>
+        <div class="stat-band__label">Clients onboarded</div>
+      </div>
+      <div class="stat-band__item">
+        <div class="stat-band__value" style="color:var(--color-green);"><span id="statAum">₹0 Cr</span></div>
+        <div class="stat-band__label">Assets under advice</div>
+      </div>
+      <div class="stat-band__item">
+        <div class="stat-band__value" style="color:var(--color-red);">₹0</div>
+        <div class="stat-band__label">You pay us directly</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-reveal class="section">
+    <div style="max-width:680px;margin-bottom:24px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">02 — Who we are</span>
+      <h2 class="section__title"><span data-cfg="business-name">Vemuri Financial Services</span>.</h2>
+      <p class="section__lede">Bengaluru-based, AMFI-registered — an AMFI-registered mutual fund distributor (ARN-302882), IRDAI-licensed insurance agent, and PFRDA Point of Presence: one team across mutual funds, insurance and NPS, so your plan doesn't get split across three advisors who don't talk to each other. Part of <a href="https://vemurigroup.co.in/" target="_blank" rel="noopener">Vemuri Group</a>, Est. 2017.</p>
+    </div>
+
+    <p class="calc-footnote" style="max-width:680px;"><strong>Vision:</strong> to be the financial partner families trust for a lifetime, not just a single transaction. <strong>Mission:</strong> protection before growth, in plain language, with nothing sold that we wouldn't buy for our own family.</p>
+
+    <div class="hero__badges" style="margin:20px 0;">
+      <span>AMFI registered · ARN-302882</span>
+      <span>IRDAI licensed</span>
+      <span>PFRDA POP</span>
+      <span>Zero fee to you</span>
+    </div>
+
+    <div class="sequence-strip" style="flex-wrap:wrap;">
+      <span class="sequence-strip__label">Our values</span>
+      <span>Transparency</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Client-first advice</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Zero fee to you</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Long-term relationships</span>
+    </div>
+  </section>
+
+  <section id="whyus" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Why Choose Us</span>
+      <h2 class="section__title">Four reasons clients stay.</h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>What we're built on</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">1</span><div><h4>One team, three licences</h4><p>AMFI-registered (ARN-302882), IRDAI-licensed, PFRDA Point of Presence — mutual funds, insurance and NPS under one advisor instead of three who don't talk to each other.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">2</span><div><h4>Zero fee to you</h4><p>We're paid commission by the product manufacturers, disclosed in every scheme document — not by charging you directly.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">3</span><div><h4>Protection before growth</h4><p>Every plan starts with the downside — emergency fund, term cover, health cover — before a single SIP into equity.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">4</span><div><h4>Long-term relationship, not a transaction</h4><p>An annual review and rebalancing roadmap, not a one-time sale.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Team: PLACEHOLDER — no real names/roles/bios supplied yet.
+       Replace the single card below with one card per team member
+       (name, role, ARN/licence if applicable, a line of bio) once
+       provided. Left honest rather than invented, since this is a
+       SEBI/IRDAI/PFRDA-regulated business. -->
+  <section id="team" data-reveal class="section section--compact">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Our Team</span>
+      <h2 class="section__title">The people behind the advice.</h2>
+    </div>
+    <div class="pillar-card blueprint">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>Team bios coming soon</h3></div>
+      <p class="section__lede" style="max-width:none;">We're putting together names, roles and credentials for this section. In the meantime, every enquiry reaches the same AMFI/IRDAI/PFRDA-registered advisor who signs off on your plan — <a href="#start" class="service-card__link">get in touch</a> and ask directly.</p>
+    </div>
+  </section>
+
+  <!-- Our Journey: PLACEHOLDER milestones — only "Est. 2017" and the
+       three licences are confirmed elsewhere on this page. Exact dates
+       for ARN registration, IRDAI licensing, PFRDA POP approval and
+       any AUM/client-count milestones need to be supplied before this
+       becomes a real timeline. -->
+  <section id="journey" data-reveal class="section section--compact">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Our Journey</span>
+      <h2 class="section__title">Since 2017.</h2>
+      <p class="section__lede">A full milestone-by-milestone timeline is in progress. Confirmed so far:</p>
+    </div>
+    <div class="sequence-strip" style="flex-wrap:wrap;">
+      <span class="sequence-strip__label">Milestones</span>
+      <span>Founded, 2017</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>AMFI registration (ARN-302882)</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>IRDAI licence</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>PFRDA Point of Presence</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>VFS Backoffice platform launch</span>
+    </div>
+    <p class="calc-footnote" style="margin-top:16px;">Exact dates and any AUM/client milestones to be added.</p>
+  </section>
+
+  <!-- Partners: the four partner links below already exist elsewhere
+       on this page (Protect/Grow sections) and are genuine — surfaced
+       here in one place rather than invented. The lending partner for
+       #loans is intentionally unnamed, matching the disclosure already
+       in that section ("we source loans through our lending partner
+       and are not the lender"). Add official partner names/logos here
+       once confirmed. -->
+  <section id="partners" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Partners</span>
+      <h2 class="section__title">Who we work with.</h2>
+      <p class="section__lede">We distribute; we don't manufacture. These are the partners behind specific products on this site.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Confirmed on this site</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><h4>Term &amp; health insurance</h4><p>Plans sourced through our insurance partner.</p><a href="https://sitaramaranganadharamanujadasuvemuri.axismaxlife.agency/website/" target="_blank" rel="noopener" class="service-card__link">Check plans</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><h4>GIFT City / IFSC route</h4><p>International fund exposure via the GIFT City route.</p><a href="https://tinyurl.com/dspgiftcity" target="_blank" rel="noopener" class="service-card__link">Explore</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><h4>Bonds</h4><p>Fixed-income products via our bonds partner.</p><a href="https://ndxfinserv.com/signUp/NDX0001197" target="_blank" rel="noopener" class="service-card__link">Explore bonds</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><h4>Gold &amp; silver</h4><p>Digital gold and silver via our precious-metals partner.</p><a href="https://qrcode.batuk.gold/partner/?ref=SRRRV461" target="_blank" rel="noopener" class="service-card__link">Explore</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><h4>Loans</h4><p>Home, personal and loan-against-property, sourced through our lending partner. We are not the lender.</p></div></div>
+        </div>
+        <p class="calc-footnote" style="margin-top:12px;">Official partner brand names and logos to be added once confirmed for public display.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="protect" data-reveal class="section">
+    <div class="section__head">
+      <div style="max-width:620px;">
+        <span class="section__eyebrow" style="color:var(--color-red);">03 — Protect</span>
+        <h2 class="section__title">Cover the downside first.</h2>
+        <p class="section__lede">One uninsured event can undo ten years of saving. Do these three before any SIP into equity.</p>
+      </div>
+      <div class="section__tag">Do first</div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head">
+          <h3>The three moves</h3>
+          <span class="pillar-card__flag">Do first</span>
+        </div>
+        <div class="pillar-list">
+          <div class="pillar-item">
+            <span class="pillar-item__num" style="color:var(--color-red);">A1</span>
+            <div><h4>Emergency fund</h4><p>6–12 months of expenses in liquid or arbitrage funds. Better than a savings account, out in a day.</p></div>
+          </div>
+          <div class="pillar-item">
+            <span id="insurance" class="pillar-item__num" style="color:var(--color-red);">A2</span>
+            <div><h4>Term insurance</h4><p>10–15× your annual income, pure cover, no investment bundled in. Cheapest in your twenties.</p><a href="https://sitaramaranganadharamanujadasuvemuri.axismaxlife.agency/website/" target="_blank" rel="noopener" class="service-card__link">Check plans</a></div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-item__num" style="color:var(--color-red);">A3</span>
+            <div><h4>Health cover</h4><p>A family floater plus a super top-up. Your employer's policy ends the day the job does.</p><a href="#start" data-goal="Insurance — term or health" class="service-card__link goal-shortcut">Get a quote</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sequence-strip">
+      <span class="sequence-strip__label">Sequence</span>
+      <span>Emergency fund</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>Term cover</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>Health cover</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>Then grow</span>
+    </div>
+  </section>
+
+  <section id="retire" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:32px;">
+      <span class="section__eyebrow" style="color:var(--color-teal);">04 — Retire</span>
+      <h2 class="section__title">Retire well, save tax now.</h2>
+      <p class="section__lede">Add NPS if you're paying tax under the old regime, and get a real tax-efficient allocation — not just an ELSS bought at the last minute in March.</p>
+    </div>
+
+    <div class="pillar-grid">
+      <div id="nps" class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>NPS</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><p>An extra ₹50,000 deduction under 80CCD(1B), low cost, locked till retirement — which is the point.</p></div></div>
+        </div>
+        <a href="https://tinyurl.com/vfsnps" target="_blank" rel="noopener" class="service-card__link">NPS login</a>
+      </div>
+
+      <div id="financialplanning" class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Financial &amp; tax planning</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><p>Goal-based investing mapped to a date and a number, plus <span id="taxplanning">tax-efficient allocation</span> including ELSS and NPS.</p></div></div>
+        </div>
+        <a href="#start" data-goal="Saving tax" class="service-card__link goal-shortcut">Build my plan</a>
+      </div>
+    </div>
+
+    <div class="sequence-strip">
+      <span class="sequence-strip__label">Sequence</span>
+      <span>Start / scale SIPs</span><span class="sequence-strip__arrow" aria-hidden="true">→</span>
+      <span>NPS for tax</span>
+    </div>
+  </section>
+
+  <section id="childplans" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-accent);">Child Education</span>
+      <h2 class="section__title">A goal with a fixed deadline.</h2>
+      <p class="section__lede">Unlike retirement, a child's education date doesn't move — which makes it one of the clearest goals to plan for: a target amount, a target year, and a SIP sized to get there.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>How we approach it</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-accent);">1</span><div><h4>Cost today, cost at admission</h4><p>Education inflation runs ahead of general inflation — we work out what today's cost becomes by the year your child needs it. The <a href="#tools" class="service-card__link">inflation calculator</a> shows the same math.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-accent);">2</span><div><h4>A dedicated SIP, not a side pot</h4><p>A separate SIP mapped to this one goal, so it doesn't get raided for something else along the way.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-accent);">3</span><div><h4>De-risk as the date nears</h4><p>Equity while the horizon is long, shifting to debt/hybrid in the last 2–3 years so a bad year in the market doesn't collide with the admission deadline.</p></div></div>
+        </div>
+        <a href="#start" data-goal="Children's education" class="service-card__link goal-shortcut">Plan for my child's education</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="goalplanner" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Goal Planning</span>
+      <h2 class="section__title">Every goal gets its own number.</h2>
+      <p class="section__lede">A house, a wedding, a sabbatical, education, retirement — each one gets a target amount, a target date, and its own SIP, instead of one blended pot that's actually funding all of them badly.</p>
+    </div>
+    <div class="pillar-card blueprint">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>How it works</h3></div>
+      <div class="pillar-list">
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">1</span><div><h4>Name the goal and the date</h4><p>Specific, not vague — "flat down payment, 2031," not "buy a house someday."</p></div></div>
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">2</span><div><h4>Size the SIP</h4><p>Worked out with the <a href="#tools" class="service-card__link">SIP calculator</a> against a realistic assumed return for that time horizon.</p></div></div>
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">3</span><div><h4>Review annually</h4><p>Top up with raises, and check the goal is still on track — covered in your annual review.</p></div></div>
+      </div>
+      <a href="#start" data-goal="Starting my first SIP" class="service-card__link goal-shortcut">Build my goal plan</a>
+    </div>
+  </section>
+
+  <!-- Portfolio Review: generic service description (annual review is
+       already referenced in the #start section's "start-steps" list),
+       not a new claim requiring separate verification. -->
+  <section id="portfolio" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">Portfolio Review</span>
+      <h2 class="section__title">An annual check, not a set-and-forget.</h2>
+      <p class="section__lede">Funds drift out of your target allocation, goals move closer, and rules change. A yearly review keeps the plan matched to where you actually are.</p>
+    </div>
+    <div class="pillar-card blueprint">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>What we check</h3></div>
+      <div class="pillar-list">
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><p>Asset allocation vs. target, and whether it needs rebalancing.</p></div></div>
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><p>Underperforming or overlapping funds worth consolidating.</p></div></div>
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><p>Cover adequacy — has income, debt or dependents changed since the last review?</p></div></div>
+        <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-navy-mid);">•</span><div><p>Whether SIPs need a top-up this year.</p></div></div>
+      </div>
+      <a href="#start" data-goal="Something else" class="service-card__link goal-shortcut">Request a portfolio review</a>
+    </div>
+  </section>
+
+  <section id="loans" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:32px;">
+      <span class="section__eyebrow" style="color:var(--color-amber-dark);">05 — Loans</span>
+      <h2 class="section__title">Borrow without derailing the plan.</h2>
+      <p class="section__lede">Home, personal and loan-against-property, sourced through our lending partner — sized around what you can actually service alongside your SIPs, not just what you qualify for.</p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>What we help with</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-amber-dark);">C1</span><div><h4>Home loans</h4><p>New purchase, construction or a balance transfer at a sharper rate than your existing lender.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-amber-dark);">C2</span><div><h4>Personal loans</h4><p>Unsecured, fast turnaround — for a genuine need, not to fund a lifestyle you'll regret financing.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-amber-dark);">C3</span><div><h4>Loan against property</h4><p>Unlock equity in property you already own, usually at a lower rate than a personal loan.</p></div></div>
+        </div>
+        <a href="https://tinyurl.com/vfsloans" target="_blank" rel="noopener" class="service-card__link">Check eligibility</a>
+      </div>
+    </div>
+
+    <p class="calc-footnote">We source loans through our lending partner and are not the lender — sanction, rate and terms are decided by the lender after your application.</p>
+  </section>
+
+  <section id="epf" data-reveal class="section">
+    <div style="max-width:620px;margin-bottom:32px;">
+      <span class="section__eyebrow" style="color:var(--color-teal);">06 — EPF Services</span>
+      <h2 class="section__title">PF sorted, without the EPFO runaround.</h2>
+      <p class="section__lede">Need help with your EPF account? Reliable guidance and assistance for e-nomination, withdrawal, UAN, KYC, transfer and more — quickly and efficiently.</p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Account &amp; KYC</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>EPF e-nomination registration</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>UAN activation &amp; account support</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>KYC update — Aadhaar, PAN &amp; bank details</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>Employer change / service history support</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>General EPFO queries &amp; guidance</h4></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Withdrawal &amp; tracking</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>PF withdrawal assistance</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>PF transfer assistance</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>PF passbook &amp; balance guidance</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>Pension (EPS) related assistance</h4></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">✓</span><div><h4>Claim status follow-up</h4></div></div>
+        </div>
+        <a href="#start" data-goal="EPF / PF assistance" class="service-card__link goal-shortcut">Get help with my PF</a>
+      </div>
+    </div>
+
+    <div class="sequence-strip" style="flex-wrap:wrap;">
+      <span class="sequence-strip__label">Why choose us</span>
+      <span>Professional assistance</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Transparent process</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Timely updates</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Customer-focused support</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Personalized guidance</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Quick response</span>
+    </div>
+
+    <p class="calc-footnote">Important: we provide guidance and documentation assistance for EPF-related services. Final approval and processing are carried out by the Employees' Provident Fund Organisation (EPFO) as per applicable rules and regulations.</p>
+  </section>
+
+  <section id="platform" data-reveal class="section">
+    <div style="max-width:680px;margin-bottom:32px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">07 — MFD Platform</span>
+      <h2 class="section__title">The VFS Backoffice, built for distributors.</h2>
+      <p class="section__lede">A single web app that runs the operational side of running a distribution practice — GST filing, eKYC, reports, financial planning and more — behind one login. It's the same platform we use ourselves.</p>
+    </div>
+
+    <div class="pillar-card blueprint" style="margin-bottom:20px;">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>The time it takes</h3></div>
+      <p class="section__lede" style="max-width:none;margin-bottom:18px;">Hours by hand, or a few minutes with us.</p>
+      <div class="pillar-grid">
+        <div>
+          <span class="fig-label" style="display:block;color:#1b214099;">By hand, every month</span>
+          <div class="gain-block__value" style="color:#1b2140;">2–4 hrs</div>
+          <p class="calc-footnote" style="margin-top:8px;">Download files from each registrar → build the invoice → work out GST → sign it → match it against the sheet → repeat for every fund house.</p>
+        </div>
+        <div>
+          <span class="fig-label" style="display:block;color:var(--color-accent);">With the VFS Backoffice</span>
+          <div class="gain-block__value" style="color:var(--color-accent);">~2 min</div>
+          <p class="calc-footnote" style="margin-top:8px;">Upload your KFIN or CAMS file — every invoice comes back signed and the Excel template comes back completed, across every fund house, in one batch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <div id="features" class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>What it does for distributors</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>MFD GST &amp; commission filing</h4><p>Commission PDF signing, Excel mapping, and a monthly GST filing checklist — the paperwork side of running an MFD practice, in one place.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>eKYC &amp; AMC directory</h4><p>PAN/Aadhaar checks, AMC empanelment and login links, and per-customer KYC status tracking.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>Reports &amp; statements</h4><p>Customer and fund report builder, plus CAMS statement and tax report handling.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>Planning &amp; marketing tools</h4><p>Financial planners (single and multi-goal), 12 calculators, and a branded social post composer for client-facing marketing.</p></div></div>
+        </div>
+      </div>
+
+      <div id="pricing" class="pillar-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Plans</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">1</span><div><h4>Basic — Free</h4><p>Always free. eKYC, calculators, multisheet and the certification-prep library, for individual users getting started.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">2</span><div><h4>Medium &amp; Advanced — first month free</h4><p>Every new paid-plan subscriber gets a genuine 30-day free trial before any charge — reports, the AMC directory, the AI Assistant, and (on Advanced) the full GST workflow and advanced planner. Cancel or downgrade any time; no card required to start.</p></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">3</span><div><h4>Enterprise — Contact us</h4><p>Custom limits and support for large distribution houses.</p></div></div>
+        </div>
+        <p class="calc-footnote" style="margin-top:12px;">Prices and full module-by-module comparison are always current on the <a data-cfg="backoffice-link" data-cfg-path="pricing.php" target="_blank" rel="noopener">Pricing &amp; Plans page →</a></p>
+      </div>
+    </div>
+
+    <div class="sequence-strip" style="margin-top:24px;flex-wrap:wrap;">
+      <span class="sequence-strip__label">Included in every plan</span>
+      <span>AI Assistant</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Calculators</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Knowledge base &amp; certification prep</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+      <span>Support ticketing</span>
+    </div>
+
+    <div id="mfd-help" class="pillar-card blueprint" style="margin-top:20px;">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>Help</h3></div>
+      <p class="calc-footnote" style="margin:-4px 0 16px;">Common questions about generating and paying for signed invoices.</p>
+      <div class="faq-list faq-list--on-light">
+        <div class="faq-item"><div class="faq-item__q">What is an ARN?</div><p class="faq-item__a">Your AMFI Registration Number. It's how we manage your subscription and label every invoice we generate for you.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Where do I get the files to upload?</div><p class="faq-item__a">From your registrar portal — KFIN or CAMS. You need two things each month: the unsigned invoice ZIP and the Excel template.</p></div>
+        <div class="faq-item"><div class="faq-item__q">What signature should I upload?</div><p class="faq-item__a">A PNG on a transparent or plain white background. Every ARN keeps its own signature, set once on the Signatory tab.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Why does the preview have a watermark?</div><p class="faq-item__a">Previews are free and watermarked so you can check the output before committing. Downloads are free for your first month, then draw on invoice credits — or go unlimited on Professional.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Is my first month really free?</div><p class="faq-item__a">Yes — a genuine 30-day trial: unlimited KFIN and CAMS invoices, GST returns, and Money In, no card required. It starts the moment you verify your email.</p></div>
+        <div class="faq-item"><div class="faq-item__q">What happens after the free month?</div><p class="faq-item__a">Nothing is charged automatically, and nothing is deleted. Keep going pay-as-you-go with a Starter Pack (100 credits for ₹499 + GST), or switch to Professional for unlimited use. Everything you've already generated stays in your account — sign in any time to redownload past invoices.</p></div>
+        <div class="faq-item"><div class="faq-item__q">What is an invoice credit?</div><p class="faq-item__a">After your free month, on pay-as-you-go, one credit signs one fund-house invoice. A Starter Pack adds 100 credits for ₹499 + GST, and they never expire — a credit is only spent when a run actually succeeds.</p></div>
+        <div class="faq-item"><div class="faq-item__q">How do I go unlimited?</div><p class="faq-item__a">Switch to Professional from Billing — ₹599/month or ₹1,999/year + GST, launch pricing that won't stay this low. We raise a GST invoice, and once payment is confirmed, invoices are unlimited for as long as the plan stays active.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Can I change my ARN?</div><p class="faq-item__a">ARN changes go through support review. Request one from the Generate tab and it takes effect from your next billing cycle.</p></div>
+      </div>
+      <p class="calc-footnote" style="margin-top:16px;">Still need help? Email <a href="mailto:vemurifin@gmail.com" data-cfg="email-link">vemurifin@gmail.com</a> — we reply within two working days, faster during filing season.</p>
+    </div>
+
+    <div id="demo" class="pricing-cta-row" style="text-align:center;margin-top:32px;">
+      <a data-cfg="backoffice-link" data-cfg-path="support-request.php?type=demo_request" target="_blank" rel="noopener" class="btn btn-primary blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        Book a demo
+      </a>
+      <a data-cfg="backoffice-link" data-cfg-path="pricing.php" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-left:10px;">See full pricing</a>
+    </div>
+    <p class="calc-footnote" style="text-align:center;margin-top:12px;">Pick a preferred date and time on the demo form — we'll follow up to confirm at <span data-cfg="email-text">vemurifin@gmail.com</span>.</p>
+  </section>
+
+  <section id="community" data-reveal class="section">
+    <div style="max-width:680px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-teal);">08 — Community</span>
+      <h2 class="section__title">Stay updated, on WhatsApp.</h2>
+      <p class="section__lede">Our official WhatsApp Channel is a one-way broadcast you follow — not the same as the 1:1 chat button. No one sees that you've joined, and you won't get messaged directly.</p>
+    </div>
+
+    <div id="whatsapp" class="pillar-card blueprint" style="max-width:820px;">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>What you'll get</h3></div>
+      <div class="sequence-strip" style="flex-wrap:wrap;">
+        <span>Financial market updates</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>Mutual fund updates</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>AMFI &amp; SEBI updates</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>GST updates</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>New features</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>Product releases</span><span class="sequence-strip__arrow" aria-hidden="true">·</span>
+        <span>Educational content</span>
+      </div>
+      <div style="margin-top:20px;">
+        <a href="https://whatsapp.com/channel/0029VawYVDfIN9iib7c6Bl3v" target="_blank" rel="noopener" class="btn btn-primary blueprint" data-cfg="whatsapp-channel-link">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          Join our WhatsApp Channel
+        </a>
+      </div>
+    </div>
+
+    <div class="pillar-grid" style="margin-top:20px;">
+      <div class="pillar-card blueprint" style="max-width:820px;">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+        <div class="pillar-card__head"><h3>Follow us elsewhere</h3></div>
+        <div class="pillar-list">
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>Facebook</h4><p>Updates and posts on our page.</p><a href="https://www.facebook.com/profile.php?id=61589120577437" target="_blank" rel="noopener" class="service-card__link">Follow on Facebook</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>Instagram</h4><p>Shorter-form updates and reels.</p><a href="https://www.instagram.com/vemurifinancialservices/" target="_blank" rel="noopener" class="service-card__link">Follow on Instagram</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>LinkedIn</h4><p>Professional updates and announcements.</p><a href="https://www.linkedin.com/in/vemuri-financial-services-282a37376/" target="_blank" rel="noopener" class="service-card__link">Connect on LinkedIn</a></div></div>
+          <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">•</span><div><h4>YouTube</h4><p>Youttube updates and announcements.</p><a href="https://www.youtube.com/@VemuriFinancialServices-x5j" target="_blank" rel="noopener" class="service-card__link">Connect on LinkedIn</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Reviews: intentionally not a live integration — see the
+         design-only comment above the #experience section (Places API
+         caching restrictions, no verified API key/project yet). This
+         anchor links out to the real Google Business profile once a
+         URL is supplied, rather than faking review content. -->
+    <div id="reviews" class="pillar-card blueprint" style="max-width:820px;margin-top:20px;">
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <div class="pillar-card__head"><h3>Google Reviews</h3></div>
+      <p class="section__lede" style="max-width:none;">Live Google Reviews aren't embedded here yet — pending a verified Google Business Profile link and API setup. In the meantime, see verified client experiences below.</p>
+      <a href="#testimonials" class="service-card__link">See Client Experiences</a>
+    </div>
+  </section>
+
+  <section id="tools" data-reveal class="section--bordered section--surface">
+    <div class="section">
+      <div style="max-width:620px;margin-bottom:32px;">
+        <span class="section__eyebrow" style="color:var(--color-green);">09 — Tools</span>
+        <h2 class="section__title">Calculators that don't lie to you.</h2>
+        <p class="section__lede">Four of them. Real formulas, no sign-up, no email capture.</p>
+      </div>
+
+      <!-- Risk Profiler / Retirement Calculator / Goal Calculator: these
+           reuse the existing 4-question quiz (#top) and SIP/inflation
+           calculators below rather than standing up separate engines —
+           honest reuse, not three new fabricated tools. -->
+      <div class="pillar-grid" style="margin-bottom:28px;">
+        <div id="riskprofile" class="pillar-card blueprint">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          <div class="pillar-card__head"><h3>Risk Profiler</h3></div>
+          <p class="section__lede" style="max-width:none;">Our 4-question quiz near the top of this page sorts your first move by situation, not a generic risk score. Prefer a 1:1 conversation instead? <a href="#start" class="service-card__link goal-shortcut" data-goal="Something else">Talk it through with us</a>.</p>
+          <a href="#quiz" class="service-card__link">Take the quiz</a>
+        </div>
+        <div id="retirementcalc" class="pillar-card blueprint">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          <div class="pillar-card__head"><h3>Retirement Calculator</h3></div>
+          <p class="section__lede" style="max-width:none;">Use the SIP tab below to project your retirement corpus, and the Inflation tab to see what your current expenses will cost by the time you get there.</p>
+          <a href="#retire" class="service-card__link">See retirement planning →</a>
+        </div>
+        <div id="goalcalc" class="pillar-card blueprint">
+          <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+          <div class="pillar-card__head"><h3>Goal Calculator</h3></div>
+          <p class="section__lede" style="max-width:none;">Any goal — education, a house, a wedding — works the same way: target amount, target date, SIP tab below to size it.</p>
+          <a href="#goalplanner" class="service-card__link">See goal planning →</a>
+        </div>
+      </div>
+
+      <div class="calc-tabs" role="tablist">
+        <button id="sipplanner" type="button" class="btn-tab" role="tab" data-calc-tab="sip" aria-selected="true">SIP + top-up</button>
+        <button type="button" class="btn-tab" role="tab" data-calc-tab="swp" aria-selected="false">SWP</button>
+        <button type="button" class="btn-tab" role="tab" data-calc-tab="fd" aria-selected="false">Fixed deposit</button>
+        <button type="button" class="btn-tab" role="tab" data-calc-tab="inf" aria-selected="false">Inflation</button>
+      </div>
+
+      <div class="calc-panel blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+
+        <div class="calc-panel__body is-active" data-calc-panel="sip">
+          <div class="calc-panel__inputs">
+            <div class="field"><label for="calcSipAmt">Monthly SIP (₹)</label><input id="calcSipAmt" class="input" type="number" value="5000"></div>
+            <div class="field"><label for="calcSipRate">Expected annual return (%)</label><input id="calcSipRate" class="input" type="number" value="12"></div>
+            <div class="field"><label for="calcSipYears">Horizon (years)</label><input id="calcSipYears" class="input" type="number" value="20"></div>
+            <div class="field"><label for="calcSipTop">Yearly top-up (₹ added to the monthly amount)</label><input id="calcSipTop" class="input" type="number" value="500"></div>
+          </div>
+          <div class="calc-panel__result">
+            <span class="calc-panel__result-label">Projected value</span>
+            <div class="calc-panel__result-value">₹<span id="calcSipOut">0</span></div>
+            <div class="calc-panel__breakdown">
+              <div class="calc-panel__breakdown-row"><span class="label">Total invested</span><span>₹<span id="calcSipInv">0</span></span></div>
+              <div class="calc-panel__breakdown-row"><span class="label">Gain</span><span class="is-accent">₹<span id="calcSipGain">0</span></span></div>
+              <div class="calc-panel__breakdown-row"><span class="label">Last-year monthly SIP</span><span>₹<span id="calcSipLast">0</span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-panel__body" data-calc-panel="swp">
+          <div class="calc-panel__inputs">
+            <div class="field"><label for="calcSwpP">Starting corpus (₹)</label><input id="calcSwpP" class="input" type="number" value="2500000"></div>
+            <div class="field"><label for="calcSwpR">Expected annual return (%)</label><input id="calcSwpR" class="input" type="number" value="9"></div>
+            <div class="field"><label for="calcSwpY">Duration (years)</label><input id="calcSwpY" class="input" type="number" value="20"></div>
+            <div class="field"><label for="calcSwpW">Monthly withdrawal (₹)</label><input id="calcSwpW" class="input" type="number" value="20000"></div>
+          </div>
+          <div class="calc-panel__result">
+            <span class="calc-panel__result-label">Corpus left at the end</span>
+            <div class="calc-panel__result-value">₹<span id="calcSwpOut">0</span></div>
+            <div class="calc-panel__breakdown">
+              <div class="calc-panel__breakdown-row"><span class="label">Total withdrawn</span><span>₹<span id="calcSwpTotal">0</span></span></div>
+              <div class="calc-panel__breakdown-row"><span class="label">Verdict</span><span id="calcSwpVerdict" class="is-accent"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-panel__body" data-calc-panel="fd">
+          <div class="calc-panel__inputs">
+            <div class="field"><label for="calcFdP">Deposit (₹)</label><input id="calcFdP" class="input" type="number" value="200000"></div>
+            <div class="field"><label for="calcFdR">Annual interest rate (%)</label><input id="calcFdR" class="input" type="number" value="7.1"></div>
+            <div class="field"><label for="calcFdY">Tenure (years)</label><input id="calcFdY" class="input" type="number" value="5"></div>
+            <div class="field"><label for="calcFdM">Compounding</label>
+              <select id="calcFdM" class="input">
+                <option value="1">Yearly</option>
+                <option value="2">Half-yearly</option>
+                <option value="4" selected>Quarterly</option>
+                <option value="12">Monthly</option>
+              </select>
+            </div>
+          </div>
+          <div class="calc-panel__result">
+            <span class="calc-panel__result-label">Maturity value</span>
+            <div class="calc-panel__result-value">₹<span id="calcFdOut">0</span></div>
+            <div class="calc-panel__breakdown">
+              <div class="calc-panel__breakdown-row"><span class="label">Interest earned</span><span class="is-accent">₹<span id="calcFdInt">0</span></span></div>
+              <div class="calc-panel__breakdown-row"><span class="label">Effective yield</span><span><span id="calcFdYield">0.00</span>%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-panel__body" data-calc-panel="inf">
+          <div class="calc-panel__inputs">
+            <div class="field"><label for="calcInfC">Costs today (₹)</label><input id="calcInfC" class="input" type="number" value="100000"></div>
+            <div class="field"><label for="calcInfR">Inflation rate (%)</label><input id="calcInfR" class="input" type="number" value="6"></div>
+            <div class="field"><label for="calcInfY">Years from now</label><input id="calcInfY" class="input" type="number" value="15"></div>
+          </div>
+          <div class="calc-panel__result">
+            <span class="calc-panel__result-label">Same thing will cost</span>
+            <div class="calc-panel__result-value">₹<span id="calcInfOut">0</span></div>
+            <div class="calc-panel__breakdown">
+              <div class="calc-panel__breakdown-row"><span class="label">Extra needed</span><span class="is-accent">₹<span id="calcInfDelta">0</span></span></div>
+              <div class="calc-panel__breakdown-row"><span class="label">Purchasing power left</span><span><span id="calcInfPower">0</span>%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="calc-footnote">All four use standard compounding formulas. Outputs are estimates, not promises — markets and rates move.</p>
+    </div>
+  </section>
+
+  <!-- ── Google Reviews integration — DESIGN ONLY, not implemented ──────
+       See backoffice/docs/google-reviews-integration-design.md for the
+       full writeup. Summary: the official Places API caps Place
+       Details at 5 reviews per request with no pagination, and Google's
+       Maps Platform ToS prohibit long-term caching/storage of review
+       CONTENT (place_id may be cached indefinitely; review text is not
+       covered by that exception). Recommended approach when this gets
+       built: a server-side PHP proxy (e.g. backoffice/google-
+       reviews-proxy.php) that calls Places API with a server-held key
+       (never exposed client-side), holds the response in a short-lived
+       (a few hours) in-memory/transient cache — NOT persisted to the
+       database — and renders at most 5 reviews with a "Verified Google
+       Review" badge, visually distinct from the testimonials below.
+       Fails silently (renders nothing) if unconfigured or the API call
+       fails — it must never block or break this Client Experiences
+       section, which works independently via testimonials-feed.php.
+       Not built yet: no real Google Cloud project/API key exists to
+       verify against, and shipping unverifiable integration code is
+       the same trap as the earlier Razorpay work this session avoided.
+  ───────────────────────────────────────────────────────────────── -->
+  <span id="testimonials"></span>
+  <section id="experience" data-reveal class="section--bordered section--surface">
+    <div class="section">
+      <div class="section__head section__head--tight" style="margin-bottom:32px;">
+        <div>
+          <span class="section__eyebrow" style="color:var(--color-accent);">10 — Client Experiences</span>
+          <h2 style="font-size:clamp(28px,4.5vw,42px);line-height:1;letter-spacing:-0.02em;">Client Experiences</h2>
+        </div>
+        <span class="fig-label">Verified on request</span>
+      </div>
+      <div id="testimonialSummary" class="testimonial-summary" hidden></div>
+      <div id="testimonialGrid" class="testimonial-grid"></div>
+      <div class="testimonial-more-row">
+        <button type="button" id="testimonialMore" class="btn btn-secondary" hidden></button>
+      </div>
+
+      <div class="review-form-wrap" id="reviewFormWrap">
+        <span id="feedback"></span>
+        <details class="review-form-toggle">
+          <summary class="review-form-toggle__btn">★ Share your experience</summary>
+          <form id="reviewForm" class="review-form">
+            <!-- Honeypot: hidden from real visitors (off-screen, not in
+                 tab order), left empty by them, but a naive bot filling
+                 in every field will populate it. testimonial-submit.php
+                 silently accepts (200 ok) but discards anything where
+                 this is non-empty. -->
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+              <label for="review-website">Leave this field empty</label>
+              <input type="text" id="review-website" name="website_url" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="callback-form__row">
+              <div class="field"><label for="review-name">Your name</label><input id="review-name" name="reviewerName" class="input" placeholder="How we should credit you"></div>
+              <div class="field">
+                <label for="reviewRatingInput">Rating</label>
+                <div id="reviewRatingInput" class="star-input">
+                  <button type="button" data-value="1" aria-pressed="false">☆</button>
+                  <button type="button" data-value="2" aria-pressed="false">☆</button>
+                  <button type="button" data-value="3" aria-pressed="false">☆</button>
+                  <button type="button" data-value="4" aria-pressed="false">☆</button>
+                  <button type="button" data-value="5" aria-pressed="false">☆</button>
+                </div>
+                <input type="hidden" id="reviewRatingValue" name="rating" value="5">
+              </div>
+            </div>
+            <div class="callback-form__row">
+              <div class="field"><label for="review-location">Location <span class="form-hint-inline">(optional)</span></label><input id="review-location" name="location" class="input" placeholder="e.g. Hyderabad"></div>
+              <div class="field">
+                <label for="review-service">Service used</label>
+                <select id="review-service" name="serviceUsed" class="input">
+                  <option value="">Select a service</option>
+                  <option value="Mutual Funds">Mutual Funds</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="NPS">NPS</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="review-comment">Your comment</label><textarea id="review-comment" name="reviewComment" class="input" rows="3" placeholder="What was your experience working with us?"></textarea></div>
+            <div class="field"><label for="review-photo">Photo <span class="form-hint-inline">(optional)</span></label><input id="review-photo" name="reviewPhoto" type="file" class="input" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="field field--checkbox">
+              <label><input type="checkbox" id="review-consent" name="consent" required> I consent to my name, rating, and experience being displayed publicly on this website.</label>
+            </div>
+            <button type="submit" class="btn btn-secondary">Submit for review</button>
+            <p id="reviewHint" class="form-hint">Reviews are checked before they're added to this page — it won't appear instantly. Your testimonial will be marked "pending review" until an administrator approves it.</p>
+          </form>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" data-reveal class="section">
+    <div class="section__head section__head--tight">
+      <div style="max-width:560px;">
+        <span class="section__eyebrow" style="color:var(--color-amber-dark);">11 — Compare</span>
+        <h2 class="section__title">Each product has one job.</h2>
+        <p class="section__lede">Filter by what you're actually trying to do.</p>
+      </div>
+      <div class="filter-row">
+        <button type="button" class="btn btn-sm" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="btn btn-sm" data-filter="protect" aria-pressed="false">Protect</button>
+        <button type="button" class="btn btn-sm" data-filter="grow" aria-pressed="false">Grow</button>
+        <button type="button" class="btn btn-sm" data-filter="short" aria-pressed="false">Short term</button>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Product</th><th>Its one job</th><th>Best for</th><th>Horizon</th><th>Getting money out</th></tr>
+        </thead>
+        <tbody>
+          <tr data-cats="protect"><td>Term insurance</td><td>Replaces your income if you're gone</td><td>Anyone with dependents or a loan</td><td>Until retirement</td><td>Claim on event</td></tr>
+          <tr data-cats="protect"><td>Health insurance</td><td>Keeps a hospital bill off your portfolio</td><td>Everyone, from day one</td><td>Ongoing</td><td>Cashless claims</td></tr>
+          <tr data-cats="grow"><td>Equity mutual funds</td><td>Beats inflation over long stretches</td><td>Goals 5+ years away</td><td>5–15+ years</td><td>High (T+2)</td></tr>
+          <tr data-cats="grow"><td>NPS</td><td>Retirement corpus plus a tax break</td><td>Salaried, tax-paying</td><td>Until 60</td><td>Locked in</td></tr>
+          <tr data-cats="short protect"><td>Debt &amp; hybrid funds</td><td>Parks money without much drama</td><td>Emergency fund, near-term goals</td><td>3 months – 3 years</td><td>High (T+2)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-scroll-hint">Scroll the table sideways for more →</p>
+    <p class="calc-footnote">Returns are market-linked or policy-specific. Read the scheme documents and policy wordings.</p>
+  </section>
+
+  <!-- Learning Center / Blogs: PLACEHOLDER — no articles/posts supplied
+       yet. Left as honest "coming soon" rather than invented content.
+       Kept as ONE section (not two) since each individually is only a
+       couple of lines — two separate full-padding sections back to back
+       here previously read as a large dead gap between them. -->
+  <section id="learning" data-reveal class="section section--compact">
+    <span class="section__eyebrow" style="color:var(--color-navy-mid);">Resources</span>
+    <div class="stub-grid">
+      <div>
+        <h2 class="section__title">Learning Center</h2>
+        <p class="section__lede">Plain-language explainers on SIPs, insurance, NPS, tax and KYC are in progress. In the meantime, the <a href="#kyc" class="service-card__link">KYC &amp; Regulatory</a> section below covers the most-asked questions.</p>
+      </div>
+      <div id="blogs">
+        <h2 class="section__title">Blogs</h2>
+        <p class="section__lede">No posts published yet. Our <a href="#whatsapp" class="service-card__link">WhatsApp Channel</a> already carries market and product updates — a blog archive is next.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ: consolidated from real content that already exists elsewhere
+       on this page (schema.org FAQPage in <head>, and the "Common
+       questions" list inside the KYC/Regulatory accordion) rather than
+       invented — same answers, gathered into one place for the nav. -->
+  <section id="faq" data-reveal class="section">
+    <div style="max-width:680px;margin-bottom:28px;">
+      <h2 class="section__title">Frequently asked questions</h2>
+    </div>
+    <div class="trust-extra__col">
+      <div class="faq-list faq-list--on-light">
+        <div class="faq-item"><div class="faq-item__q">Why protection before investing?</div><p class="faq-item__a">One uninsured event can undo ten years of SIPs. Cover the downside and you can afford to be aggressive with the rest.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Are returns guaranteed?</div><p class="faq-item__a">No. Mutual funds and NPS are market-linked. Time in the market and asset allocation are the only real controls you have.</p></div>
+        <div class="faq-item"><div class="faq-item__q">What do you charge me?</div><p class="faq-item__a">Nothing directly. We're paid commission by the product manufacturers, which is disclosed in every scheme document.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Do I need to redo KYC for every fund house?</div><p class="faq-item__a">No. KYC done through a KRA (KYC Registration Agency) is valid across every SEBI-registered intermediary — that's the point of CKYC.</p></div>
+        <div class="faq-item"><div class="faq-item__q">When would I need Re-KYC?</div><p class="faq-item__a">If your KYC status shows as "on hold" or "registered but not verified," or if key details like address or ID proof have changed since you first registered.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Is FATCA declaration only for NRIs?</div><p class="faq-item__a">No — every investor, resident or non-resident, must complete a FATCA/CRS self-declaration as part of onboarding.</p></div>
+        <div class="faq-item"><div class="faq-item__q">Can I check my KYC status myself?</div><p class="faq-item__a">Yes, using the KYC validation link in the KYC section below, with your PAN — no need to call anyone.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads / AMCs: same reasoning as Learning Center / Blogs above —
+       merged into one section instead of two, each too short on its own
+       to justify a separate full-padding section. Downloads has no
+       brochures/PDFs to link yet (the items below are real external
+       links already used elsewhere on this page, not fabricated
+       documents); AMCs is a PLACEHOLDER since naming specific AMC brands
+       without confirmation would be an inaccurate affiliation claim for
+       a regulated distributor. -->
+  <section id="downloads" data-reveal class="section section--compact">
+    <div class="stub-grid">
+      <div>
+        <h2 class="section__title">Downloads</h2>
+        <p class="section__lede">No brochures or forms hosted here yet. Useful official links in the meantime:</p>
+        <div class="kyc-links" style="color:var(--color-accent);">
+          <a href="https://www.cvlkra.com/" target="_blank" rel="noopener">CVL KRA — new KYC</a>
+          <a href="https://validate.cvlindia.com/CVLKRAVerification_V1/" target="_blank" rel="noopener">Validate my KYC status</a>
+          <a href="https://www.dspim.com/invest/#goto=kyc" target="_blank" rel="noopener">Do eKYC</a>
+        </div>
+      </div>
+      <div id="amcs">
+        <h2 class="section__title">AMCs</h2>
+        <p class="section__lede">As an AMFI-registered distributor (ARN-302882), we can transact across SEBI-registered AMCs. A confirmed list of AMCs we're actively empanelled with will be added here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KYC + Regulatory merged into one section with two collapsed
+       accordions (Direction 1b): cuts scroll depth for reference
+       content most visitors don't need to read top-to-bottom. id="trust"
+       is kept on the Regulatory <details> so the old #trust anchor
+       (footer link, etc.) still lands in the right place. The
+       Regulatory accordion's content (trust-card/faq-item components)
+       was styled for a dark section background, so it keeps that same
+       gradient as a self-contained card when expanded instead of
+       relying on the page background. The KYC accordion's content
+       already carries light-background overrides from before, so it
+       needs no extra wrapping. -->
+  <section id="kyc" data-reveal class="section">
+    <div style="max-width:680px;margin-bottom:28px;">
+      <span class="section__eyebrow" style="color:var(--color-navy-mid);">12 — KYC &amp; Regulatory</span>
+      <h2 class="section__title">The paperwork, and who we are on paper.</h2>
+      <p class="section__lede">KYC is a SEBI-mandated, one-time process every investor completes before investing in mutual funds. And since we distribute rather than manage your money, here's exactly who does, and how to escalate past us.</p>
+    </div>
+
+    <details style="margin-bottom:12px;">
+      <summary style="cursor:pointer;font-family:var(--font-heading);font-size:20px;padding:14px 0;border-bottom:1px solid #1b214020;">KYC steps</summary>
+      <div style="padding-top:28px;">
+        <div class="pillar-grid">
+          <div class="pillar-card blueprint">
+            <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+            <div class="pillar-card__head"><h3>The process, in short</h3></div>
+            <div class="pillar-list">
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">1</span><div><h4>New KYC</h4><p>First-time investors register PAN, address and identity proof once, through any SEBI-registered intermediary — it then works across every mutual fund you invest in.</p></div></div>
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">2</span><div><h4>Re-KYC</h4><p>A periodic re-verification SEBI requires to keep records current — typically triggered by a change in address, contact details, or KYC status flags.</p></div></div>
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-teal);">3</span><div><h4>CKYC</h4><p>The Central KYC Registry — a shared KYC record used across SEBI-regulated intermediaries (mutual funds, insurers, banks), so you don't repeat the same paperwork everywhere.</p></div></div>
+            </div>
+          </div>
+
+          <div class="pillar-card blueprint">
+            <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+            <div class="pillar-card__head"><h3>Related checks</h3></div>
+            <div class="pillar-list">
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">4</span><div><h4>FATCA self-declaration</h4><p>A US tax-compliance declaration required from every investor regardless of nationality, done once during onboarding.</p></div></div>
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">5</span><div><h4>Nomination</h4><p>Mandatory (or an explicit opt-out) on every folio — the fastest way to make sure your investments reach the right person without a legal dispute.</p></div></div>
+              <div class="pillar-item"><span class="pillar-item__num" style="color:var(--color-green);">6</span><div><h4>Bank mandate</h4><p>Your registered bank account for both investing and redemptions — keep it current so payouts and SIP debits don't bounce.</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-extra" style="border-top:1px solid #1b214029;color:inherit;">
+          <div class="trust-extra__col">
+            <h3 style="color:inherit;">Documents you'll typically need</h3>
+            <p style="color:#1b2140b3;">PAN card, an address proof (Aadhaar, passport, voter ID or utility bill), and a recent photograph. Some intermediaries also ask for an in-person or video verification step.</p>
+          </div>
+          <div class="trust-extra__col">
+            <h3 style="color:inherit;">Official links</h3>
+            <div class="kyc-links" style="color:var(--color-accent);">
+              <a href="https://www.cvlkra.com/" target="_blank" rel="noopener" style="color:var(--color-accent);border-bottom-color:#3b56e040;">CVL KRA — new KYC</a>
+              <a href="https://validate.cvlindia.com/CVLKRAVerification_V1/" target="_blank" rel="noopener" style="color:var(--color-accent);border-bottom-color:#3b56e040;">Validate my KYC status</a>
+              <a href="https://www.dspim.com/invest/#goto=kyc" target="_blank" rel="noopener" style="color:var(--color-accent);border-bottom-color:#3b56e040;">Do eKYC</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-extra__col" style="margin-top:28px;">
+          <h3>KYC FAQs</h3>
+          <div class="faq-list" id="kycFaqList" style="color:#1b2140;">
+            <div class="faq-item" style="border-bottom-color:#1b214020;"><div class="faq-item__q" style="color:inherit;">Do I need to redo KYC for every fund house?</div><p class="faq-item__a" style="color:#1b2140b3;">No. KYC done through a KRA (KYC Registration Agency) is valid across every SEBI-registered intermediary — that's the point of CKYC.</p></div>
+            <div class="faq-item" style="border-bottom-color:#1b214020;"><div class="faq-item__q" style="color:inherit;">When would I need Re-KYC?</div><p class="faq-item__a" style="color:#1b2140b3;">If your KYC status shows as "on hold" or "registered but not verified," or if key details like address or ID proof have changed since you first registered.</p></div>
+            <div class="faq-item" style="border-bottom-color:#1b214020;"><div class="faq-item__q" style="color:inherit;">Is FATCA declaration only for NRIs?</div><p class="faq-item__a" style="color:#1b2140b3;">No — every investor, resident or non-resident, must complete a FATCA/CRS self-declaration as part of onboarding.</p></div>
+            <div class="faq-item"><div class="faq-item__q" style="color:inherit;">Can I check my KYC status myself?</div><p class="faq-item__a" style="color:#1b2140b3;">Yes, using the "Validate my KYC status" link above with your PAN — no need to call anyone.</p></div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details id="trust">
+      <summary style="cursor:pointer;font-family:var(--font-heading);font-size:20px;padding:14px 0;border-bottom:1px solid #1b214020;">Regulatory — who does what</summary>
+      <div style="margin-top:24px;padding:clamp(24px,4vw,40px);background:linear-gradient(120deg, var(--color-navy) 0%, var(--color-navy-mid) 60%, var(--color-accent-600) 100%);">
+        <p class="section__lede section__lede--on-dark" style="margin-bottom:28px;">We distribute. We don't manage your money, hold it, or sanction loans. Here's exactly who does, and how to escalate past us.</p>
+
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-card__kicker">AMFI / SEBI</div>
+            <h3>Mutual fund distribution</h3>
+            <p>AMFI-registered distributor, ARN-302882<span data-cfg="arn-valid-till"></span> Distribution only — no advisory or PMS. Investments are subject to market risk; past performance means nothing about the future.</p>
+            <div class="trust-card__escalate">Escalate: our grievance officer → AMFI helpline → SEBI SCORES.</div>
+            <div class="trust-card__links"><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a><a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener">SCORES</a></div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-card__kicker">IRDAI</div>
+            <h3>Insurance distribution</h3>
+            <p>Registered agent / POSP. <span data-cfg="irdai-reg-no"></span> Insurance is the subject matter of solicitation. Read the brochure for risk factors and terms before you buy.</p>
+            <div class="trust-card__escalate">Escalate: insurer's cell → our officer → Bima Bharosa (155255).</div>
+            <div class="trust-card__links"><a href="https://bimabharosa.irdai.gov.in/" target="_blank" rel="noopener">Bima Bharosa</a></div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-card__kicker">PFRDA</div>
+            <h3>NPS onboarding</h3>
+            <p>Authorised Point of Presence. <span data-cfg="pfrda-pop-reg-no"></span> NPS returns are market-linked and not guaranteed by PFRDA or the Government of India.</p>
+            <div class="trust-card__escalate">Escalate: POP officer → CRA → Pension Sahayak → NPS Ombudsman (1800 110 708).</div>
+            <div class="trust-card__links"><a href="https://pensionsahayak.pfrda.org.in/" target="_blank" rel="noopener">Pension Sahayak</a></div>
+          </div>
+        </div>
+
+        <div class="trust-extra">
+          <div class="trust-extra__col">
+            <h3>Common questions</h3>
+            <div class="faq-list">
+              <div class="faq-item"><div class="faq-item__q">Why protection before investing?</div><p class="faq-item__a">One uninsured event can undo ten years of SIPs. Cover the downside and you can afford to be aggressive with the rest.</p></div>
+              <div class="faq-item"><div class="faq-item__q">Are returns guaranteed?</div><p class="faq-item__a">No. Mutual funds and NPS are market-linked. Time in the market and asset allocation are the only real controls you have.</p></div>
+              <div class="faq-item"><div class="faq-item__q">What do you charge me?</div><p class="faq-item__a">Nothing directly. We're paid commission by the product manufacturers, which is disclosed in every scheme document.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <span id="contact"></span>
+  <section id="start" data-reveal class="section start-grid">
+    <div class="start-grid__copy">
+      <span class="section__eyebrow" style="color:var(--color-red);">13 — Start</span>
+      <h2 class="section__title" style="margin-bottom:16px;">One call. No pitch deck.</h2>
+      <p class="section__lede" style="margin-bottom:28px;max-width:42ch;">Tell us where you are. We come back with a written plan — coverage, SIP amounts, tax allocation, and what to review each year.</p>
+      <div class="start-steps">
+        <div class="start-steps__row"><span class="start-steps__num">01</span><span>A coverage and investment plan sized to your income</span></div>
+        <div class="start-steps__row"><span class="start-steps__num">02</span><span>SIP amounts per goal, with a top-up schedule</span></div>
+        <div class="start-steps__row"><span class="start-steps__num">03</span><span>Tax-efficient allocation including NPS</span></div>
+        <div class="start-steps__row"><span class="start-steps__num">04</span><span>An annual review and rebalancing roadmap</span></div>
+      </div>
+      <div class="contact-links">
+        <a href="tel:+919886291668" data-cfg="phone-link" class="contact-links__item" aria-label="Call us" title="Call us">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/></svg>
+        </a>
+        <a href="mailto:vemurifin@gmail.com" data-cfg="email-link" class="contact-links__item" aria-label="Email us" title="Email us">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Zm2.4.5 6.6 5.5 6.6-5.5H5.4ZM19 7.3l-6.36 5.3a1 1 0 0 1-1.28 0L5 7.3V18h14V7.3Z"/></svg>
+        </a>
+        <a href="https://wa.me/919886291668" target="_blank" rel="noopener" data-cfg="whatsapp-link" class="contact-links__item" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.01 2C6.48 2 2 6.48 2 12.01c0 1.99.58 3.85 1.58 5.41L2 22l4.7-1.53a9.94 9.94 0 0 0 5.31 1.53h.01c5.52 0 10-4.48 10-10.01C22.02 6.48 17.54 2 12.01 2Zm0 18.17h-.01c-1.66 0-3.28-.44-4.7-1.28l-.34-.2-3.02.98.98-2.94-.22-.35a8.16 8.16 0 0 1-1.26-4.37c0-4.51 3.68-8.19 8.19-8.19a8.15 8.15 0 0 1 8.16 8.19c0 4.51-3.68 8.16-8.18 8.16Zm4.47-6.13c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42-.14-.01-.3-.01-.47-.01-.16 0-.42.06-.65.3-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="start-grid__form">
+      <div class="form-card blueprint">
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+
+        <form id="callbackForm" class="callback-form" novalidate>
+          <div class="form-card__head">
+            <h3>Request a call back</h3>
+            <span class="fig-label">Fig. 02</span>
+          </div>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" class="input" placeholder="Your name"></div>
+          <div class="callback-form__row">
+            <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" class="input" placeholder="10 digits" inputmode="tel"></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" class="input" placeholder="Optional"></div>
+          </div>
+          <div class="field">
+            <label for="f-goal">What's on your mind</label>
+            <select id="f-goal" name="goal" class="input">
+              <option>Starting my first SIP</option>
+              <option>Insurance — term or health</option>
+              <option>Saving tax</option>
+              <option>Retirement / NPS</option>
+              <option>Children's education</option>
+              <option>Loan enquiry</option>
+              <option>EPF / PF assistance</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-msg">Anything we should know</label><textarea id="f-msg" name="message" class="input" rows="3" placeholder="Income range, existing investments, deadlines…"></textarea></div>
+          <div class="field field--checkbox">
+            <label><input type="checkbox" id="f-consent" name="consent" required> I agree to be contacted about this enquiry, per the <a data-cfg="backoffice-link" data-cfg-path="privacy-policy.php" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+          </div>
+          <button id="formSubmit" type="submit" class="btn btn-primary btn-block blueprint">
+            <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+            Request my call back
+          </button>
+          <p id="formHint" class="form-hint">No spam, no drip campaign. One call, then you decide.</p>
+        </form>
+
+        <div id="thanksBlock" class="thanks-block">
+          <span class="thanks-block__eyebrow">Received</span>
+          <h3 id="thanksTitle">Got it.</h3>
+          <p>We'll call within one working day. If it's urgent, ring <span data-cfg="phone-text">+91 98862 91668</span> — that's the same person who'd be calling you.</p>
+          <button id="formReset" type="button" class="btn btn-secondary">Send another</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="footer-grid">
+        <div class="footer-grid__brand">
+          <div class="footer-grid__brand-name" data-cfg="business-name">Vemuri Financial Services</div>
+          <p>Goal-based planning that puts protection before growth. Bengaluru, and wherever your phone is.</p>
+          <p data-cfg="address-text">Corporate Office: ITI Colony, Bangalore - 560016</p>
+          <div class="footer-social">
+            <a href="tel:+919886291668" data-cfg="phone-link">Call</a>
+            <a href="https://wa.me/919886291668" target="_blank" rel="noopener" data-cfg="whatsapp-link">WhatsApp</a>
+            <a href="mailto:vemurifin@gmail.com" data-cfg="email-link">Email</a>
+            <a href="https://www.facebook.com/profile.php?id=61589120577437" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.linkedin.com/in/vemuri-financial-services-282a37376/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/vemurifinancialservices/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col__label">Site</div>
+          <div class="footer-col__links">
+            <a href="#grow">Grow</a>
+            <a href="#about">About</a>
+            <a href="#protect">Protect</a>
+            <a href="#retire">Retire</a>
+            <a href="#loans">Loans</a>
+            <a href="#epf">EPF Services</a>
+            <a href="#platform">MFD Platform</a>
+            <a href="#community">Community</a>
+            <a href="#tools">Calculators</a>
+            <a href="#experience">Client Experiences</a>
+            <a href="#compare">Compare</a>
+            <a href="#kyc">KYC &amp; Regulatory</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col__label">Logins</div>
+          <div class="footer-col__links">
+            <a href="https://vfs.vemurigroup.in/" target="_blank" rel="noopener">VFS web</a>
+            <a href="https://tinyurl.com/vfsnps" target="_blank" rel="noopener">NPS</a>
+            <a href="https://tinyurl.com/vfsloans" target="_blank" rel="noopener">Loans</a>
+            <a href="partner-info.html" target="_blank" rel="noopener">Partner info</a>
+            <a data-cfg="backoffice-link" data-cfg-path="index.php" target="_blank" rel="noopener">MFD Platform</a>
+            <a href="https://www.vemurigroup.co.in/" target="_blank" rel="noopener">Vemuri Group</a>
+          </div>
+        </div>
+      </div>
+      <p class="footer-legal">SEBI: Mutual fund investments are subject to market risks — read all scheme related documents carefully. IRDAI: Insurance is the subject matter of solicitation. Everything on this page is education, not personalised advice. Tax rules change.</p>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> <span data-cfg="business-name">Vemuri Financial Services</span>. All rights reserved.</span>
+        <a data-cfg="backoffice-link" data-cfg-path="privacy-policy.php" target="_blank" rel="noopener">Privacy Policy</a>
+        <a data-cfg="backoffice-link" data-cfg-path="compliance.php" target="_blank" rel="noopener">Compliance</a>
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Consolidated FAB cluster (Part 10): WhatsApp chat stays a standalone
+     always-visible button (highest-intent action). Pricing and "Share
+     Your Experience" (plus Request a Call Back) are grouped into one
+     expandable "+" cluster instead of stacking more bare floating
+     buttons — same interaction pattern as the backoffice's own
+     bo-fab cluster in backoffice/inc/layout.php, adapted for the
+     public site so the two feel like one design language. -->
+<div class="site-fab" id="siteFab">
+  <div class="site-fab__menu" id="siteFabMenu">
+    <a data-cfg="backoffice-link" data-cfg-path="pricing.php">Pricing</a>
+    <a href="#reviewFormWrap" id="siteFabReview">Share your experience</a>
+    <a href="#start">Request a call back</a>
+  </div>
+  <button type="button" class="site-fab__toggle" id="siteFabToggle" aria-haspopup="true" aria-expanded="false" aria-controls="siteFabMenu" aria-label="Quick links">+</button>
+</div>
+
+<a href="https://wa.me/919886291668" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat with us on WhatsApp" data-cfg="whatsapp-link">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12.01 2C6.48 2 2 6.48 2 12.01c0 1.99.58 3.85 1.58 5.41L2 22l4.7-1.53a9.94 9.94 0 0 0 5.31 1.53h.01c5.52 0 10-4.48 10-10.01C22.02 6.48 17.54 2 12.01 2Zm0 18.17h-.01c-1.66 0-3.28-.44-4.7-1.28l-.34-.2-3.02.98.98-2.94-.22-.35a8.16 8.16 0 0 1-1.26-4.37c0-4.51 3.68-8.19 8.19-8.19a8.15 8.15 0 0 1 8.16 8.19c0 4.51-3.68 8.16-8.18 8.16Zm4.47-6.13c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42-.14-.01-.3-.01-.47-.01-.16 0-.42.06-.65.3-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+</a>
+
+<script>
+  // Site FAB cluster: expand/collapse, close on outside click, and the
+  // "Share your experience" item opens the review <details> and
+  // scrolls to it rather than just jumping the anchor (the details
+  // panel is collapsed by default, so a plain anchor jump would land
+  // on a closed disclosure).
+  (function () {
+    var fab = document.getElementById('siteFab');
+    var toggle = document.getElementById('siteFabToggle');
+    var reviewLink = document.getElementById('siteFabReview');
+    if (fab && toggle) {
+      toggle.addEventListener('click', function () {
+        var open = fab.classList.toggle('site-fab--open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (evt) {
+        if (!fab.contains(evt.target)) {
+          fab.classList.remove('site-fab--open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+    if (reviewLink) {
+      reviewLink.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        var wrap = document.getElementById('reviewFormWrap');
+        var details = wrap ? wrap.querySelector('details.review-form-toggle') : null;
+        if (details) details.open = true;
+        if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (fab) { fab.classList.remove('site-fab--open'); toggle.setAttribute('aria-expanded', 'false'); }
+      });
+    }
+  })();
+</script>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/format.js"></script>
+<script src="assets/js/finance.js"></script>
+<script src="assets/js/calculators.js"></script>
+<script src="assets/js/quiz.js"></script>
+<script src="assets/js/contact-form.js"></script>
+<!-- testimonials-data.js is no longer loaded here — testimonials.js now
+     fetches live, approved testimonials from the backoffice instead of
+     this static placeholder list. The file itself is kept in the repo;
+     see testimonials.js's file header. -->
+<script src="assets/js/testimonials.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/reveal.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
