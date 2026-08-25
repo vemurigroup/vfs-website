@@ -308,6 +308,10 @@
           {
             "label": "mPower",
             "url": "https://mpower.axismaxlife.com/"
+          },
+          {
+            "label": "IRDAI PAN Lookup",
+            "url": "https://agencyportal.irdai.gov.in/PublicAccess/LookUpPAN.aspx"
           }
         ],
         "template": ""
