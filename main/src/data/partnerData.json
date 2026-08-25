@@ -2,7 +2,7 @@
   {
     "id": "loans",
     "title": "Loans",
-    "tag": "Personal Loan \u2022 Home Loan \u2022 Loan Against Mutual Funds",
+    "tag": "Personal Loan \u2022 Home Loan \u2022 Loan Against Mutual Funds \u2022 Loan Against Shares",
     "cards": [
       {
         "title": "Personal Loan / Home Loan",
@@ -309,9 +309,9 @@
             "label": "mPower",
             "url": "https://mpower.axismaxlife.com/"
           },
-          {
+		  {
             "label": "IRDAI PAN Lookup",
-            "url": "https://agencyportal.irdai.gov.in/PublicAccess/LookUpPAN.aspx"
+            "url": "https://agencyportal.irdai.gov.in/PublicAccess/LookUpPAN.asp"
           }
         ],
         "template": ""
