@@ -311,7 +311,7 @@
           },
 		  {
             "label": "IRDAI PAN Lookup",
-            "url": "https://agencyportal.irdai.gov.in/PublicAccess/LookUpPAN.asp"
+            "url": "https://agencyportal.irdai.gov.in/PublicAccess/LookUpPAN.aspx"
           }
         ],
         "template": ""
