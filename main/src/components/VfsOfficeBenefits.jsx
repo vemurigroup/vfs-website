@@ -40,7 +40,7 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
     { category: "Distributor tools", items: ["GST & Commission Invoicing", "GST Filing History & Operations", "Monthly MFD Wizard", "My Business Profile"] },
     { category: "AMCs", items: ["AMCs at a Glance", "AMC Directory", "MF US/Canada Residency Rules"] },
     { category: "Client tools", items: ["Multisheet", "22 Calculators", "NPS Detail Calculator", "Bank ePayEEZZ Availability", "Financial Planner", "Advanced Financial Planner"] },
-    { category: "Marketing", items: ["Social Post Composer", "Mail (festival, birthday & anniversary templates)"] },
+    { category: "Marketing", items: ["Mail (festival, birthday & anniversary templates)", "Social Post Composer"] },
     { category: "Reports", items: ["Report Builder", "External Reports (CAMS & tax)", "Reports Center"] },
     { category: "Knowledge", items: ["Certification Prep", "Industry Ecosystem Directory", "Document Library", "Regulatory Updates", "Search", "Knowledge Base"] },
     { category: "Support & admin", items: ["Feedback & Testimonials", "Support Tickets", "Approvals", "Feedback Dashboard", "Mail Campaigns", "Error & Issue Monitor"] }
@@ -458,7 +458,7 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
                     <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
                   </tr>
                   <tr className="hover:bg-slate-700/30 transition-colors">
-                    <td className="p-4 md:p-6 text-sm text-slate-300">Social Composer & Mail Marketing</td>
+                    <td className="p-4 md:p-6 text-sm text-slate-300">Mail Marketing & Social Composer</td>
                     <td className="p-4 md:p-6 text-center"><Minus className="w-5 h-5 text-slate-600 mx-auto" /></td>
                     <td className="p-4 md:p-6 text-center text-sm">Composer only</td>
                     <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
