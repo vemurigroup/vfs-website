@@ -12,10 +12,10 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
   }, [])
 
   const plans = [
-    { name: 'Basic', price: '₹0', term: 'forever', features: ['20 of 30 tools', '200MB storage', '50 credits/mo'] },
-    { name: 'Medium', price: '₹50', term: '/month', features: ['25 of 30 tools', '1GB storage', '500 credits/mo'] },
-    { name: 'Advanced', price: '₹100', term: '/month', features: ['29 of 30 tools', 'Unlimited users', 'Unlimited credits'], popular: true },
-    { name: 'Enterprise', price: '₹1,999', term: '/year', features: ['All 30 tools', 'My Business Profile included', 'Priority Support'] }
+    { name: 'Basic', price: '₹0', term: 'forever', features: ['21 of 31 tools', '200MB storage', '50 credits/mo'] },
+    { name: 'Medium', price: '₹50', term: '/month', features: ['26 of 31 tools', '1GB storage', '500 credits/mo'] },
+    { name: 'Advanced', price: '₹100', term: '/month', features: ['30 of 31 tools', 'Unlimited users', 'Unlimited credits'], popular: true },
+    { name: 'Enterprise', price: '₹1,999', term: '/year', features: ['All 31 tools', 'My Business Profile included', 'Priority Support'] }
   ]
 
   const features = [
@@ -40,7 +40,7 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
     { category: "Distributor tools", items: ["GST & Commission Invoicing", "GST Filing History & Operations", "Monthly MFD Wizard", "My Business Profile"] },
     { category: "AMCs", items: ["AMCs at a Glance", "AMC Directory", "MF US/Canada Residency Rules"] },
     { category: "Client tools", items: ["Multisheet", "22 Calculators", "NPS Detail Calculator", "Bank ePayEEZZ Availability", "Financial Planner", "Advanced Financial Planner"] },
-    { category: "Marketing", items: ["Mail (festival, birthday & anniversary templates)", "Social Post Composer"] },
+    { category: "Marketing", items: ["Mail (festival, birthday & anniversary templates)", "Social Post Composer", "WhatsApp Messaging"] },
     { category: "Reports", items: ["Report Builder", "External Reports (CAMS & tax)", "Reports Center"] },
     { category: "Knowledge", items: ["Certification Prep", "Industry Ecosystem Directory", "Document Library", "Regulatory Updates", "Search", "Knowledge Base"] },
     { category: "Support & admin", items: ["Feedback & Testimonials", "Support Tickets", "Approvals", "Feedback Dashboard", "Mail Campaigns", "Error & Issue Monitor"] }
@@ -120,7 +120,7 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
       <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="text-4xl font-black text-primary-600 mb-2">30</div>
+            <div className="text-4xl font-black text-primary-600 mb-2">31</div>
             <div className="text-gray-500 font-medium">tools, 1 login</div>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
@@ -357,7 +357,7 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
             <div className="text-sm font-bold tracking-widest text-primary-600 uppercase mb-4">
               Everything included
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">30 tools, organized the way your business thinks.</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">31 tools, organized the way your business thinks.</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">The complete set of tools, grouped by what they're for.</p>
           </div>
 
@@ -461,6 +461,13 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
                     <td className="p-4 md:p-6 text-sm text-slate-300">Mail Marketing & Social Composer</td>
                     <td className="p-4 md:p-6 text-center"><Minus className="w-5 h-5 text-slate-600 mx-auto" /></td>
                     <td className="p-4 md:p-6 text-center text-sm">Composer only</td>
+                    <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
+                    <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
+                  </tr>
+                  <tr className="hover:bg-slate-700/30 transition-colors">
+                    <td className="p-4 md:p-6 text-sm text-slate-300">WhatsApp Messaging</td>
+                    <td className="p-4 md:p-6 text-center text-sm">Single only</td>
+                    <td className="p-4 md:p-6 text-center text-sm">Single only</td>
                     <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
                     <td className="p-4 md:p-6 text-center"><Check className="w-5 h-5 text-teal-400 mx-auto" /></td>
                   </tr>
