@@ -26,7 +26,7 @@ export default function Testimonials() {
     }
   ]
 
-  const googleReviewLink = "https://www.google.com/search?client=ms-android-vivo-terr1-rso2&hs=R8Sq&sca_esv=4d319e267d2ecc05&cs=0&hl=en-US&output=search&kgmid=/g/11b8_sbz2f&q=Vemuri+Espousal+Pvt+Ltd+-+GST,+Income+tax,+LLP+and+Company+MCA+filing&shem=epsd1,ltae,rimspwouoe&shndl=30&source=sh/x/loc/act/m1/4&kgs=c84809916f9c5c90&utm_source=epsd1,ltae,rimspwouoe,sh/x/loc/act/m1/4#lrd=0x3bae13ca52588c65:0xed20da49da05d29,1,,,,"
+  const googleReviewLink = "https://www.google.com/search?q=Vemuri+Financial+Services#lrd=0x3bae11887838ceed:0x41caa87cdeb641c,1,,,,"
 
   return (
     <section id="testimonialsSec" className="py-8 bg-primary-900 relative overflow-hidden text-white">

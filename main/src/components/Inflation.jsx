@@ -21,7 +21,7 @@ export default function Inflation() {
   const results = calculateInflation()
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto my-6">
+    <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto">
       <div className="mb-8">
         <h3 className="text-3xl font-bold text-gray-900 mb-2">Inflation Calculator</h3>
         <p className="text-gray-600">See how inflation reduces the purchasing power of your money over time.</p>

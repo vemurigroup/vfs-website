@@ -41,7 +41,7 @@ export default function Calculators() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-0 space-y-2">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
             Planning Tools
           </h2>
@@ -54,7 +54,7 @@ export default function Calculators() {
         </div>
 
         {/* Main Content: Calculator + Sidebar */}
-        <div className="flex flex-col lg:flex-row gap-8 -mt-2">
+        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10">
           {/* Calculator Area */}
           <motion.div
             key={activeTab}
@@ -72,7 +72,7 @@ export default function Calculators() {
           {/* Sidebar: Popular Calculators */}
           <div className="w-full lg:w-80 flex-shrink-0">
             <div className="bg-white rounded-3xl border border-gray-100 shadow-lg overflow-hidden sticky top-32">
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
+              <div className="bg-gray-50 px-6 py-5 border-b border-gray-100">
                 <h4 className="font-bold text-gray-900 flex items-center gap-2">
                   <Calculator className="w-5 h-5 text-primary-500" />
                   Popular Calculators
@@ -83,11 +83,14 @@ export default function Calculators() {
                   <button
                     key={calc.id}
                     onClick={() => handleCalcClick(calc.id)}
-                    className={`w-full text-left px-6 py-3.5 hover:bg-primary-50 transition-colors group ${
+                    className={`relative w-full text-left pl-5 pr-6 py-4 hover:bg-primary-50 transition-colors group ${
                       activeTab === calc.id ? 'bg-primary-50/50' : ''
                     }`}
                   >
-                    <div className="flex items-center justify-between">
+                    {activeTab === calc.id && (
+                      <span className="absolute left-0 top-0 bottom-0 w-1 bg-primary-500 rounded-r-full" />
+                    )}
+                    <div className="flex items-center justify-between gap-3">
                       <div className="min-w-0">
                         <span className={`text-sm font-semibold block ${
                           activeTab === calc.id
@@ -96,11 +99,11 @@ export default function Calculators() {
                         }`}>
                           {calc.name}
                         </span>
-                        <span className="text-xs text-gray-400 leading-snug block mt-0.5 line-clamp-2">
+                        <span className="text-xs text-gray-400 leading-snug block mt-1 line-clamp-2">
                           {calc.desc}
                         </span>
                       </div>
-                      <ChevronRight className={`w-4 h-4 flex-shrink-0 ml-2 transition-colors ${
+                      <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-colors ${
                         activeTab === calc.id
                           ? 'text-primary-500'
                           : 'text-gray-300 group-hover:text-primary-400'

@@ -37,22 +37,22 @@ export default function Sip({ mode = 'sip' }) {
   const returnsDash = (returnsPercent / 100) * circumference
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-5 lg:p-6 border border-gray-100 max-w-4xl mx-auto my-2">
+    <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto">
       {/* Calculator Header */}
-      <div className="mb-3">
-        <h3 className="text-2xl font-bold text-gray-900 mb-1">
+      <div className="mb-8">
+        <h3 className="text-3xl font-bold text-gray-900 mb-2">
           {mode === 'sip' ? 'SIP Calculator' : 'Lumpsum Calculator'}
         </h3>
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600">
           {mode === 'sip'
             ? 'Calculate the future value of your systematic investment plan.'
             : 'Calculate the future value of a one-time lumpsum investment.'}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Sliders */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           {mode === 'sip' ? (
             <div>
               <div className="flex items-center justify-between mb-2">

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CheckCircle2, ArrowUpRight } from 'lucide-react'
+import { CheckCircle2, ArrowUpRight, Star, MapPin } from 'lucide-react'
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
@@ -176,6 +176,49 @@ export default function Contact() {
           </motion.div>
 
         </div>
+
+        {/* Visit Us: Map + Google Review */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 lg:mt-12 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-5">
+            <div className="lg:col-span-3 w-full aspect-[4/3] sm:aspect-video">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29965.42259202462!2d77.65153667431639!3d13.00978670000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11887838ceed%3A0x41caa87cdeb641c!2sVemuri%20Financial%20Services!5e1!3m2!1sen!2sin!4v1787895753085!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Vemuri Financial Services — Location Map"
+              ></iframe>
+            </div>
+            <div className="lg:col-span-2 p-8 flex flex-col justify-center">
+              <div className="flex items-center gap-2 text-primary-500 mb-3">
+                <MapPin className="w-5 h-5" />
+                <span className="text-sm font-bold uppercase tracking-widest">Visit Us</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">ITI Colony, Bengaluru</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Drop by for an in-person consultation, or find us on Google Maps for directions.
+              </p>
+              <a
+                href="https://www.google.com/search?q=Vemuri+Financial+Services#lrd=0x3bae11887838ceed:0x41caa87cdeb641c,1,,,,"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-primary-500/30 w-full sm:w-auto"
+              >
+                <Star className="w-5 h-5" />
+                Leave Us a Google Review
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

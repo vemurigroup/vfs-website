@@ -13,6 +13,13 @@ export default function Header({ currentView, onViewChange }) {
     { name: 'Compare', href: '#compare' },
     { name: 'Calculators', href: '#sip' },
   ]
+  const homeMoreLinks = [
+    { name: 'Testimonials', href: '#testimonialsSec' },
+    { name: 'FAQs', href: '#faq' },
+    { name: 'KYC Services', href: '#kyc' },
+    { name: 'Compliance', href: '#compliance' },
+    { name: 'Contact', href: '#contact' },
+  ]
 
   const partnerLinks = [
     { name: 'Loans', href: '#loans' },
@@ -22,8 +29,14 @@ export default function Header({ currentView, onViewChange }) {
     { name: 'NPS', href: '#nps' },
     { name: 'Templates', href: '#templates' },
   ]
+  const partnerMoreLinks = [
+    { name: 'Commodity', href: '#commodity' },
+    { name: 'AMC Directory', href: '#amcSection' },
+    { name: 'Compliance', href: '#compliance' },
+  ]
 
   const navLinks = currentView === 'partner' ? partnerLinks : homeLinks
+  const moreLinks = currentView === 'partner' ? partnerMoreLinks : homeMoreLinks
 
   const { scrollY } = useScroll()
   const backgroundColor = useTransform(
@@ -77,7 +90,7 @@ export default function Header({ currentView, onViewChange }) {
           <a href="#" onClick={(e) => { e.preventDefault(); onViewChange('home'); window.scrollTo(0,0); }} className="flex items-center space-x-3 md:space-x-4">
             <div className="shine-wrapper rounded-xl flex-shrink-0">
               <img 
-                src="/vemurifinance_logo.png" 
+                src={`${import.meta.env.BASE_URL}vemurifinance_logo.png`}
                 alt="Vemuri Financial Services Logo" 
                 className="h-16 md:h-24 w-auto object-contain block" 
                 onError={(e) => e.target.style.display = 'none'} 
@@ -109,28 +122,54 @@ export default function Header({ currentView, onViewChange }) {
                   {link.name}
                 </a>
               ))}
+              {moreLinks.length > 0 && (
+                <div className="relative group">
+                  <button className="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors flex items-center gap-1">
+                    More
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </button>
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top scale-95 group-hover:scale-100 flex flex-col p-1">
+                    {moreLinks.map((link) => (
+                      <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </nav>
 
             <div className="flex items-center space-x-3 lg:space-x-4">
               {/* Main Website button removed from header as requested */}
 
-              <div className="hidden md:flex items-center space-x-2">
-                {/* VFS Office Dropdown */}
+              <div className="hidden lg:flex items-center">
+                {/* Login Dropdown: Client Login + VFS Office */}
                 <div className="relative group">
-                  <button className={`font-bold text-gray-600 bg-gray-50 border border-gray-100 hover:bg-white hover:text-primary-600 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-1 ${currentView === 'vfs-benefits' ? 'px-3 py-2 text-[11px]' : 'px-4 py-2.5 text-xs'}`}>
-                    {currentView === 'vfs-benefits' ? 'Distributor Backoffice' : 'VFS Office'}
+                  <button className="px-4 py-2.5 text-xs font-bold text-gray-600 bg-gray-50 border border-gray-100 hover:bg-white hover:text-primary-600 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-1">
+                    {currentView === 'vfs-benefits' ? 'Distributor Backoffice' : 'Login'}
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </button>
-                  <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 flex flex-col p-1">
-                    <button 
-                      onClick={() => { onViewChange('vfs-benefits'); window.scrollTo(0,0); setIsOpen(false); }}
+                  <div className="absolute top-full right-0 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 flex flex-col p-1">
+                    <a
+                      href="https://vfs.vemurigroup.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                     >
-                      Benefits & Utilization
-                    </button>
-                    <a 
-                      href="https://vfsoffice.vemurigroup.in/" 
-                      target="_blank" 
+                      Client Login
+                    </a>
+                    <div className="h-px bg-gray-100 my-1 mx-2" />
+                    <span className="px-4 pt-1 pb-1 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                      VFS Office
+                    </span>
+                    <a
+                      href="https://vfsoffice.vemurigroup.in/"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                     >
@@ -138,21 +177,12 @@ export default function Header({ currentView, onViewChange }) {
                     </a>
                   </div>
                 </div>
-
-                <a 
-                  href="https://vfs.vemurigroup.in/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 text-xs font-bold text-gray-600 bg-gray-50 border border-gray-100 hover:text-primary-600 hover:bg-white rounded-full shadow-sm hover:shadow-md transition-all"
-                >
-                  Client Login
-                </a>
               </div>
               
               <a 
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
-                className={`hidden md:inline-flex items-center justify-center px-4 lg:px-6 py-2.5 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full transition-colors shadow-lg shadow-primary-500/30 ${currentView === 'partner' ? 'hidden' : ''}`}
+                className={`hidden lg:inline-flex items-center justify-center px-4 lg:px-6 py-2.5 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full transition-colors shadow-lg shadow-primary-500/30 ${currentView === 'partner' ? 'hidden' : ''}`}
               >
                 Get Advice
               </a>
@@ -187,6 +217,21 @@ export default function Header({ currentView, onViewChange }) {
                 {link.name}
               </a>
             ))}
+            {moreLinks.length > 0 && (
+              <>
+                <div className="h-px bg-gray-100 my-1" />
+                {moreLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-base font-medium text-gray-900 hover:text-primary-500"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </>
+            )}
             <div className="h-px bg-gray-100 my-2" />
             
             {currentView !== 'home' && (
@@ -199,16 +244,23 @@ export default function Header({ currentView, onViewChange }) {
             )}
             <div className="flex flex-col space-y-2 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
               <span className="text-xs font-bold tracking-widest text-gray-500 uppercase px-2 mb-1">
+                Login
+              </span>
+              <a
+                href="https://vfs.vemurigroup.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
+                onClick={() => setIsOpen(false)}
+              >
+                Client Login
+              </a>
+              <div className="h-px bg-gray-200 my-1 mx-2" />
+              <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase px-2">
                 {currentView === 'vfs-benefits' ? 'Distributor Backoffice' : 'VFS Office'}
               </span>
-              <button 
-                onClick={() => { onViewChange('vfs-benefits'); window.scrollTo(0, 0); setIsOpen(false); }}
-                className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
-              >
-                Benefits & Utilization
-              </button>
-              <a 
-                href="https://vfsoffice.vemurigroup.in/" 
+              <a
+                href="https://vfsoffice.vemurigroup.in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
@@ -217,15 +269,6 @@ export default function Header({ currentView, onViewChange }) {
                 Portal Login
               </a>
             </div>
-            <a 
-              href="https://vfs.vemurigroup.in/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-full mt-3"
-              onClick={() => setIsOpen(false)}
-            >
-              Client Login
-            </a>
             {currentView === 'home' && (
               <a 
                 href="#contact"

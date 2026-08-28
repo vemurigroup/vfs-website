@@ -14,7 +14,8 @@ import {
   PiggyBank, 
   Gem,
   ExternalLink,
-  Phone
+  Phone,
+  BarChart3
 } from 'lucide-react'
 
 const services = [
@@ -49,6 +50,16 @@ const services = [
       { text: 'Quicklend', url: 'https://www.quicklend.in?ref_code=NIABFETK', type: 'web' },
       { text: 'Yenmo', url: 'https://vemurifin.loanonline.cc/', type: 'web' },
       { text: 'NJ Capital', url: 'https://www.njcapital.in/partner/customer/login', type: 'web' }
+    ]
+  },
+  {
+    badge: 'Instant Liquidity',
+    title: 'Loan Against Shares',
+    description: 'Unlock cash against your equity holdings without selling them. Apply through our Mirae Asset lending partnership.',
+    icon: BarChart3,
+    color: 'bg-indigo-500',
+    links: [
+      { text: 'Mirae Asset', url: 'https://miraeassetfin.onelink.me/GyWy/partner?deep_link_sub1=A302882', type: 'web' }
     ]
   },
   {

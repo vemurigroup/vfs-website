@@ -31,7 +31,7 @@ export default function Swp() {
   const results = calculateSWP()
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto my-6">
+    <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto">
       <div className="mb-8">
         <h3 className="text-3xl font-bold text-gray-900 mb-2">SWP Calculator</h3>
         <p className="text-gray-600">Calculate the future value of your Systematic Withdrawal Plan.</p>

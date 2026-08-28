@@ -35,13 +35,13 @@ export default function Footer({ onViewChange }) {
           <div>
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><a href="#home" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-primary-400 transition-colors cursor-pointer">Home</a></li>
-              <li><a href="#pillars" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#pillars'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Pillars</a></li>
-              <li><a href="#solutions" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#solutions'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Solutions</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#services'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Services</a></li>
-              <li><a href="#sip" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#sip'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Calculators</a></li>
-              <li><a href="#testimonialsSec" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#testimonialsSec'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Testimonials</a></li>
-              <li><a href="#faq" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#faq'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Frequently Asked Questions</a></li>
+              <li><a href="#home" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-primary-400 transition-colors cursor-pointer">Home</a></li>
+              <li><a href="#pillars" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#pillars'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Pillars</a></li>
+              <li><a href="#solutions" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#solutions'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Solutions</a></li>
+              <li><a href="#services" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#services'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Services</a></li>
+              <li><a href="#sip" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#sip'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Calculators</a></li>
+              <li><a href="#testimonialsSec" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#testimonialsSec'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Testimonials</a></li>
+              <li><a href="#faq" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#faq'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Frequently Asked Questions</a></li>
             </ul>
           </div>
 
@@ -50,7 +50,7 @@ export default function Footer({ onViewChange }) {
             <ul className="space-y-3">
               <li>
                 <button 
-                  onClick={() => { onViewChange && onViewChange('partner'); window.scrollTo(0,0); }}
+                  onClick={() => { onViewChange?.('partner'); window.scrollTo(0,0); }}
                   className="hover:text-primary-400 transition-colors text-left"
                 >
                   Partner Hub
@@ -58,16 +58,24 @@ export default function Footer({ onViewChange }) {
               </li>
               <li>
                 <button 
-                  onClick={() => { onViewChange && onViewChange('gst'); window.scrollTo(0,0); }}
+                  onClick={() => { onViewChange?.('gst'); window.scrollTo(0,0); }}
                   className="hover:text-primary-400 transition-colors text-left"
                 >
                   GST Helper
                 </button>
               </li>
               <li><a href="https://vfsoffice.vemurigroup.in/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">Office Portal</a></li>
+              <li>
+                <button
+                  onClick={() => { onViewChange?.('vfs-benefits'); window.scrollTo(0,0); }}
+                  className="hover:text-primary-400 transition-colors text-left"
+                >
+                  VFS Office Benefits & Pricing
+                </button>
+              </li>
               <li><a href="https://vfs.vemurigroup.in/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">Client Login</a></li>
-              <li><a href="#kyc" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#kyc'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">KYC Services</a></li>
-              <li><a href="#compliance" onClick={(e) => { e.preventDefault(); onViewChange && onViewChange('home'); setTimeout(() => { const el = document.querySelector('#compliance'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Regulatory Disclosures</a></li>
+              <li><a href="#kyc" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#kyc'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">KYC Services</a></li>
+              <li><a href="#compliance" onClick={(e) => { e.preventDefault(); onViewChange?.('home'); setTimeout(() => { const el = document.querySelector('#compliance'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }, 150); }} className="hover:text-primary-400 transition-colors cursor-pointer">Regulatory Disclosures</a></li>
             </ul>
           </div>
 

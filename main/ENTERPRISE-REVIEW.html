@@ -212,7 +212,7 @@ pre code { background: none; padding: 0; }
       <article class="persona">
         <div class="persona-head"><h4>Principal Frontend Engineer</h4><span class="rating r-high">7/10</span></div>
         <dl>
-          <dt>Strengths</dt><dd>Clean component-per-file structure, no prop-drilling mess, calculators isolated as pure components; production build now cleanly code-splits the heavy GST tooling (pdf-lib/xlsx/jszip/pdfjs) away from the home page bundle.</dd>
+          <dt>Strengths</dt><dd>Clean component-per-file structure, no prop-drilling mess, calculators isolated as pure components; production build now cleanly code-splits the heavy GST tooling (pdf-lib/xlsx/jszip/pdfjs) away from the home page bundle. <code>npm run lint</code> now returns zero warnings across <code>src/</code> — the last 11 stylistic <code>no-unused-expressions</code> hits in <code>Footer.jsx</code> were cleaned up this pass.</dd>
           <dt>Weaknesses</dt><dd>No shared design-token layer — Tailwind utility classes are the only source of truth, duplicated across components rather than centralized as design tokens.</dd>
           <dt>Critical Issues</dt><dd>Zero automated tests. <code>TESTING.md</code> documents manual E2E scenarios and recommends Vitest/Playwright as "future scope" — that scope was never started.</dd>
           <dt>Technical Risk</dt><dd>Any future edit to <code>App.jsx</code>'s view-switching or the calculators can regress silently.</dd>
@@ -368,7 +368,7 @@ pre code { background: none; padding: 0; }
         <tr><td>User Experience</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
         <tr><td>Visual Design</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
         <tr><td>Trust / Compliance Copy</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
-        <tr><td>Code Quality</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
+        <tr><td>Code Quality</td><td class="num">8/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill good" style="width:80%"></div></div></td></tr>
         <tr><td>Architecture</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
         <tr><td>Build &amp; Bundle Health</td><td class="num">7/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></td></tr>
         <tr><td>Performance</td><td class="num">6/10</td><td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></td></tr>
@@ -446,7 +446,7 @@ pre code { background: none; padding: 0; }
         <tr><td>SEO meta / structured data</td><td><span class="pill pill-yes">Present</span></td><td>Added this pass — description, OG, canonical, JSON-LD restored</td></tr>
         <tr><td>robots.txt / sitemap.xml</td><td><span class="pill pill-yes">Present</span></td><td>Restored this pass — dropped during the React migration</td></tr>
         <tr><td>Deployment documentation</td><td><span class="pill pill-yes">Present</span></td><td>Rewritten this pass with accurate GoDaddy cPanel/FTP steps</td></tr>
-        <tr><td>Lint clean</td><td><span class="pill pill-partial">Partial</span></td><td>All real unused-var/import warnings fixed; 11 stylistic <code>no-unused-expressions</code> remain (functionally harmless)</td></tr>
+        <tr><td>Lint clean</td><td><span class="pill pill-yes">Present</span></td><td><code>npm run lint</code> reports 0 warnings; the remaining 11 <code>no-unused-expressions</code> hits in <code>Footer.jsx</code> were fixed this pass</td></tr>
         <tr><td>Automated testing</td><td><span class="pill pill-none">Missing</span></td><td><code>TESTING.md</code> specifies scenarios manually; none automated</td></tr>
         <tr><td>CI/CD pipeline</td><td><span class="pill pill-none">Missing</span></td><td>Manual build-and-upload only</td></tr>
         <tr><td>Analytics</td><td><span class="pill pill-none">Missing</span></td><td>No GA4 or equivalent anywhere</td></tr>
@@ -471,6 +471,8 @@ pre code { background: none; padding: 0; }
       <div class="check-row"><span class="check-box cb-done">✓</span> Restored SEO meta description, canonical URL, Open Graph/Twitter tags, and <code>FinancialService</code> JSON-LD to <code>index.html</code></div>
       <div class="check-row"><span class="check-box cb-done">✓</span> Restored <code>robots.txt</code> and <code>sitemap.xml</code> at the build root (<code>public/</code>)</div>
       <div class="check-row"><span class="check-box cb-done">✓</span> Fixed all real oxlint warnings in <code>src/</code>: unused imports/variables, sparse array literals, an unused parameter</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Fixed the remaining 11 stylistic oxlint warnings in <code>Footer.jsx</code> — <code>onViewChange && onViewChange(...)</code> short-circuit calls replaced with <code>onViewChange?.(...)</code>; <code>npm run lint</code> now returns zero warnings</div>
+      <div class="check-row"><span class="check-box cb-done">✓</span> Removed a short-lived footer section linking to the archived legacy sites (<code>pv0/</code>/<code>pv1/</code>) — reverted after review; <code>pv0/</code> was found to have no <code>assets/</code> folder at all and would have rendered broken if shipped</div>
       <div class="check-row"><span class="check-box cb-done">✓</span> Rewrote <code>DEPLOYMENT.md</code> with accurate local-dev steps and a step-by-step GoDaddy cPanel/FTP deployment guide (the previous version referenced a nonexistent <code>my-react-app</code> subfolder)</div>
       <div class="check-row"><span class="check-box cb-done">✓</span> Fixed the same stale path reference in <code>README.md</code></div>
       <div class="check-row"><span class="check-box cb-done">✓</span> Verified in a real headless browser: home page and all three lazy-loaded views render with zero console errors and zero failed requests</div>
@@ -559,6 +561,8 @@ pre code { background: none; padding: 0; }
 
   <div class="footer-note">
     This review supersedes <code>pv1/ENTERPRISE-REVIEW.html</code>, which assessed the previous static HTML/vanilla-JS codebase and is retained only as historical reference — its findings (v1/v2 duplicate homepages, PHP backoffice foundation, etc.) no longer describe this repository's architecture.
+    <br/><br/>
+    <b>Since this review (2026-08-25):</b> feature and content work landed — a Loan Against Shares product, a Contact "Visit Us" map/reviews block, a corrected Google reviews link (was pointing at an unrelated business), calculator card alignment/spacing fixes, and a header nav overhaul (a "More" dropdown covering previously unlinked sections, a consolidated Login menu, and a fix for a cramped tablet-width layout bug). None of these change the audit findings above — see <code>CHANGELOG.md</code> [1.3.0] for the full list.
   </div>
 
 </main>

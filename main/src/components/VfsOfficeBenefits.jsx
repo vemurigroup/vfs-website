@@ -13,8 +13,8 @@ export default function VfsOfficeBenefits({ onNavigateHome }) {
 
   const plans = [
     { name: 'Basic', price: '₹0', term: 'forever', features: ['21 of 31 tools', '200MB storage', '50 credits/mo'] },
-    { name: 'Medium', price: '₹50', term: '/month', features: ['26 of 31 tools', '1GB storage', '500 credits/mo'] },
-    { name: 'Advanced', price: '₹100', term: '/month', features: ['30 of 31 tools', 'Unlimited users', 'Unlimited credits'], popular: true },
+    { name: 'Medium', price: '₹49', term: '/month', features: ['26 of 31 tools', '1GB storage', '500 credits/mo'] },
+    { name: 'Advanced', price: '₹99', term: '/month', features: ['30 of 31 tools', 'Unlimited users', 'Unlimited credits'], popular: true },
     { name: 'Enterprise', price: '₹1,999', term: '/year', features: ['All 31 tools', 'My Business Profile included', 'Priority Support'] }
   ]
 
