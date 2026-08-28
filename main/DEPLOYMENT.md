@@ -136,9 +136,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ## 5. Alternative Hosts
 
-GoDaddy is the target for this project, but since the output is a static SPA it can also be deployed to:
+GoDaddy is the primary production target, but since the output is a static SPA it can also be deployed elsewhere:
 
-- **Vercel / Netlify**: connect the GitHub repo, build command `npm run build`, output directory `dist`. Gives you automatic deploys on every push.
-- **AWS S3 + CloudFront**: upload `dist/` to an S3 bucket with static website hosting enabled (index document `index.html`), front it with CloudFront for HTTPS + caching.
-
-These aren't currently configured for this project — GoDaddy/cPanel (Section 3) is the supported path.
+- **Vercel** — already configured for this project (preview/staging), live at [vfs-website-three.vercel.app](https://vfs-website-three.vercel.app). Root Directory is set to `main` (the app's `package.json` isn't at the repo root); framework preset auto-detects as Vite (build command `npm run build`, output `dist`). Deploy with `vercel --prod` from the repo root, or push to `main` for an automatic build if the GitHub integration is connected. See the root [`README.md`](../README.md#4-deploy-to-vercel) for full setup steps.
+- **AWS S3 + CloudFront**: upload `dist/` to an S3 bucket with static website hosting enabled (index document `index.html`), front it with CloudFront for HTTPS + caching. Not currently configured for this project.
