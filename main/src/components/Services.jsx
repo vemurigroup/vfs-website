@@ -15,7 +15,8 @@ import {
   Gem,
   ExternalLink,
   Phone,
-  BarChart3
+  BarChart3,
+  Vault
 } from 'lucide-react'
 import { useLanguage } from '../i18n/useLanguage'
 
@@ -155,6 +156,16 @@ const services = [
     links: [
       { text: 'Connect', url: 'tel:+919886291668', type: 'phone' },
       { text: 'Explore Investments', url: 'https://qrcode.batuk.gold/partner/?ref=SRRRV461', type: 'web' }
+    ]
+  },
+  {
+    badge: 'Family Records',
+    title: 'Family Vault',
+    description: 'Store policies, investments, identity documents & nominee details in one secure, encrypted record book for your family or office.',
+    icon: Vault,
+    color: 'bg-violet-500',
+    links: [
+      { text: 'Open Family Vault', url: 'https://familyvault.vemurigroup.in/modules/auth/login.php', type: 'web' }
     ]
   }
 ]

@@ -10,7 +10,8 @@ import {
   Wallet,
   PiggyBank,
   PieChart,
-  CheckCircle2
+  CheckCircle2,
+  Vault
 } from 'lucide-react'
 import { useLanguage } from '../i18n/useLanguage'
 
@@ -121,6 +122,18 @@ const solutions = [
       'Diversification across asset classes',
       'Reduces overall portfolio volatility',
       'Potential for stable, long-term growth'
+    ]
+  },
+  {
+    badge: 'Family Records',
+    title: 'Family Vault',
+    description: 'A plan is only as strong as the paperwork behind it — Family Vault keeps every policy, investment, identity document, and nominee detail in one secure place, so your family can actually find and use them when it matters.',
+    icon: Vault,
+    color: 'bg-violet-500',
+    features: [
+      'Insurance, investments, assets & liabilities in one view',
+      'Nominee coverage tracked per policy, gaps flagged automatically',
+      'Encrypted storage for PAN, Aadhaar & other identity documents'
     ]
   }
 ]
