@@ -2,7 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/vemurifinance_logo.png" />
+    <!-- Real Vemuri sunburst mark, properly sized for a favicon/PWA icon —
+         this used to be a single 967KB, 1254x1254 marketing PNG pointed at
+         directly as the favicon, which several browsers/OSes render
+         inconsistently (or not at all) for a tab icon, and public/favicon.svg
+         was an unrelated placeholder never actually referenced anywhere.
+         All sizes below are cropped/resized from the same real logo
+         (vemurifinance_logo.png) so the tab, bookmark, share-link preview,
+         and "Add to Home Screen" icon all agree. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a56db" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vemuri Financial Services | One Partner for All Your Financial Needs</title>
     <meta name="description" content="Vemuri Financial Services helps you protect today and grow for tomorrow with mutual funds, insurance, NPS and tax-saving solutions. AMFI-registered Mutual Fund Distributor (ARN-302882)." />
@@ -13,11 +26,19 @@
     <meta property="og:title" content="Vemuri Financial Services | One Partner for All Your Financial Needs" />
     <meta property="og:description" content="Protect today, grow for tomorrow. Mutual funds, insurance, NPS and tax-saving solutions from an AMFI-registered Mutual Fund Distributor (ARN-302882)." />
     <meta property="og:url" content="https://fin.vemurigroup.in/" />
-    <meta property="og:image" content="https://fin.vemurigroup.in/vemurifinance_logo.png" />
+    <!-- A cropped, reasonably-sized square logo instead of the 967KB full
+         marketing PNG — some link-preview crawlers (WhatsApp in
+         particular) silently drop the preview image if it's slow to fetch
+         or lacks explicit dimensions. -->
+    <meta property="og:image" content="https://fin.vemurigroup.in/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Vemuri Financial Services" />
     <meta name="twitter:description" content="Protect today, grow for tomorrow. Mutual funds, insurance, NPS and tax-saving solutions." />
+    <meta name="twitter:image" content="https://fin.vemurigroup.in/icon-512.png" />
 
     <script type="application/ld+json">
       {
