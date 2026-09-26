@@ -4,9 +4,11 @@ import Sip from '../components/Sip'
 import Swp from '../components/Swp'
 import Fd from '../components/Fd'
 import Inflation from '../components/Inflation'
-import { Calculator, ChevronRight } from 'lucide-react'
+import SipSwpPlanner from '../components/SipSwpPlanner'
+import { Calculator, ChevronRight, Star } from 'lucide-react'
 
 const popularCalculators = [
+  { id: 'sip-waiting-swp', name: 'SIP → Waiting → SWP Planner', desc: 'Model accumulation, a waiting period, then withdrawals — see if your corpus survives inflation.', featured: true },
   { id: 'sip', name: 'SIP Calculator', desc: 'Plan monthly investments and estimate wealth growth over time.' },
   { id: 'lumpsum', name: 'Lumpsum Calculator', desc: 'Estimate returns on a one-time investment at a given rate.' },
   { id: 'swp', name: 'SWP Calculator', desc: 'Plan systematic withdrawals from your mutual fund corpus.' },
@@ -22,10 +24,10 @@ const popularCalculators = [
 ]
 
 export default function Calculators() {
-  const [activeTab, setActiveTab] = useState('sip')
+  const [activeTab, setActiveTab] = useState('sip-waiting-swp')
 
   const handleCalcClick = (id) => {
-    if (['sip', 'lumpsum', 'swp', 'fd', 'inflation'].includes(id)) {
+    if (['sip-waiting-swp', 'sip', 'lumpsum', 'swp', 'fd', 'inflation'].includes(id)) {
       setActiveTab(id)
       // Scroll up to the calculator area, especially important for mobile 
       // where the sidebar is below the calculator
@@ -63,6 +65,7 @@ export default function Calculators() {
             transition={{ duration: 0.4 }}
             className="flex-1 min-w-0"
           >
+            {activeTab === 'sip-waiting-swp' && <SipSwpPlanner />}
             {(activeTab === 'sip' || activeTab === 'lumpsum') && <Sip mode={activeTab} />}
             {activeTab === 'swp' && <Swp />}
             {activeTab === 'fd' && <Fd />}
@@ -92,12 +95,13 @@ export default function Calculators() {
                     )}
                     <div className="flex items-center justify-between gap-3">
                       <div className="min-w-0">
-                        <span className={`text-sm font-semibold block ${
+                        <span className={`text-sm font-semibold flex items-center gap-1.5 ${
                           activeTab === calc.id
                             ? 'text-primary-600'
                             : 'text-gray-800 group-hover:text-primary-600'
                         }`}>
-                          {calc.name}
+                          {calc.featured && <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />}
+                          <span className="truncate">{calc.name}</span>
                         </span>
                         <span className="text-xs text-gray-400 leading-snug block mt-1 line-clamp-2">
                           {calc.desc}

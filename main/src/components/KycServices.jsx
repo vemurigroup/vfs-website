@@ -1,8 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FileEdit, CheckCircle, UploadCloud, Info, Phone } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function KycServices() {
+  const { t } = useLanguage()
   const cards = [
     {
       id: "kyc-entry",
@@ -36,13 +38,13 @@ export default function KycServices() {
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Getting Started
+            {t('Getting Started')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            KYC <span className="text-primary-500">Services</span>
+            {t('KYC ')}<span className="text-primary-500">{t('Services')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Complete your KYC seamlessly before investing in Mutual Funds and other financial products.
+            {t('Complete your KYC seamlessly before investing in Mutual Funds and other financial products.')}
           </p>
         </div>
 
@@ -59,16 +61,16 @@ export default function KycServices() {
               <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-primary-50 transition-colors">
                 {card.icon}
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">{card.title}</h4>
-              <p className="text-gray-600 mb-8 flex-grow">{card.description}</p>
-              
-              <a 
-                href={card.actionUrl} 
-                target="_blank" 
+              <h4 className="text-xl font-bold text-gray-900 mb-3">{t(card.title)}</h4>
+              <p className="text-gray-600 mb-8 flex-grow">{t(card.description)}</p>
+
+              <a
+                href={card.actionUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full transition-colors"
               >
-                {card.actionText}
+                {t(card.actionText)}
               </a>
             </motion.div>
           ))}
@@ -85,7 +87,7 @@ export default function KycServices() {
             <div className="flex-1 space-y-6">
               <div className="flex items-center space-x-3 text-gray-900">
                 <Info className="w-6 h-6 text-primary-500" />
-                <h3 className="text-2xl font-bold">Why is KYC Important?</h3>
+                <h3 className="text-2xl font-bold">{t('Why is KYC Important?')}</h3>
               </div>
               <ul className="space-y-3">
                 {[
@@ -98,25 +100,25 @@ export default function KycServices() {
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-600">{item}</span>
+                    <span className="text-gray-600">{t(item)}</span>
                   </li>
                 ))}
               </ul>
               <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 text-orange-800 text-sm">
-                <strong>Note:</strong> Investors without a valid KYC may not be able to invest or transact in Mutual Funds until their KYC is completed and verified.
+                <strong>{t('Note:')}</strong> {t('Investors without a valid KYC may not be able to invest or transact in Mutual Funds until their KYC is completed and verified.')}
               </div>
             </div>
-            
+
             <div className="md:w-72 flex flex-col justify-center items-center text-center p-8 bg-gray-50 rounded-2xl border border-gray-100">
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4">
                 <Phone className="w-8 h-8 text-primary-600" />
               </div>
-              <h4 className="text-lg font-bold text-gray-900 mb-2">Need help?</h4>
+              <h4 className="text-lg font-bold text-gray-900 mb-2">{t('Need help?')}</h4>
               <p className="text-gray-600 text-sm mb-4">
-                Need help completing your KYC?
+                {t('Need help completing your KYC?')}
               </p>
               <a href="tel:+919886291668" className="text-2xl font-black text-primary-600 hover:text-primary-700 transition-colors">
-                Call Us
+                {t('Call Us')}
               </a>
               <p className="text-xs text-gray-500 mt-4 font-semibold uppercase tracking-wider">
                 Vemuri Financial Services

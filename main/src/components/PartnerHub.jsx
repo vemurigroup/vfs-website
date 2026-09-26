@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ExternalLink, Copy, Check, Users } from 'lucide-react'
 import partnerData from '../data/partnerData.json'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function PartnerHub({ onNavigateHome }) {
+  const { t } = useLanguage()
   React.useEffect(() => {
     const originalTitle = document.title
     document.title = "VFS Partner Hub"
@@ -38,26 +40,26 @@ export default function PartnerHub({ onNavigateHome }) {
               className="inline-flex items-center text-sm font-semibold text-gray-500 hover:text-primary-600 transition-colors mb-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Main Website
+              {t('Back to Main Website')}
             </button>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
-              Partner <span className="text-primary-500">Hub</span>
+              {t('Partner ')}<span className="text-primary-500">{t('Hub')}</span>
             </h1>
             <p className="text-lg text-gray-600 mt-3 max-w-2xl">
-              Access partner dashboards, distributor portals, and relationship-manager details for all your financial services.
+              {t('Access partner dashboards, distributor portals, and relationship-manager details for all your financial services.')}
             </p>
           </div>
           <div className="flex-shrink-0">
             <button
               onClick={() => setShowRM(!showRM)}
               className={`inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all shadow-sm ${
-                showRM 
-                ? 'bg-primary-50 text-primary-700 border border-primary-200' 
+                showRM
+                ? 'bg-primary-50 text-primary-700 border border-primary-200'
                 : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
               }`}
             >
               <Users className="w-5 h-5 mr-2" />
-              {showRM ? 'Hide RM Details' : 'Show RM Details'}
+              {showRM ? t('Hide RM Details') : t('Show RM Details')}
             </button>
           </div>
         </div>
@@ -81,11 +83,11 @@ export default function PartnerHub({ onNavigateHome }) {
               >
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                    {section.title}
+                    {t(section.title)}
                   </h2>
                   {section.tag && (
                     <p className="text-sm font-medium text-primary-600 mt-2 uppercase tracking-wide">
-                      {section.tag}
+                      {t(section.tag)}
                     </p>
                   )}
                 </div>
@@ -134,9 +136,9 @@ export default function PartnerHub({ onNavigateHome }) {
                               className="inline-flex items-center px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-full text-sm font-semibold transition-colors"
                             >
                               {copiedId === `${section.id}-${cIdx}` ? (
-                                <><Check className="w-4 h-4 mr-2" /> Copied</>
+                                <><Check className="w-4 h-4 mr-2" /> {t('Copied')}</>
                               ) : (
-                                <><Copy className="w-4 h-4 mr-2" /> Copy Message</>
+                                <><Copy className="w-4 h-4 mr-2" /> {t('Copy Message')}</>
                               )}
                             </button>
                           </div>

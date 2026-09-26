@@ -1,7 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Faq() {
+  const { t } = useLanguage()
   const faqs = [
     {
       question: "Why start with protection first?",
@@ -27,13 +29,13 @@ export default function Faq() {
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            FAQs
+            {t('FAQs')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Frequently Asked <span className="text-primary-500">Questions</span>
+            {t('Frequently Asked ')}<span className="text-primary-500">{t('Questions')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Short answers to common doubts.
+            {t('Short answers to common doubts.')}
           </p>
         </div>
 
@@ -47,8 +49,8 @@ export default function Faq() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-gray-50 rounded-3xl p-8 hover:shadow-lg transition-shadow border border-gray-100"
             >
-              <h4 className="text-xl font-bold text-gray-900 mb-4">{faq.question}</h4>
-              <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+              <h4 className="text-xl font-bold text-gray-900 mb-4">{t(faq.question)}</h4>
+              <p className="text-gray-600 leading-relaxed">{t(faq.answer)}</p>
             </motion.div>
           ))}
         </div>

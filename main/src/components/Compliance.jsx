@@ -1,8 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, ShieldCheck, Scale, Landmark, PiggyBank } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Compliance() {
+  const { t } = useLanguage()
   const disclosures = [
     {
       id: "amfi",
@@ -12,24 +14,24 @@ export default function Compliance() {
       content: (
         <>
           <p className="text-gray-600 mb-4 leading-relaxed">
-            Vemuri Financial Services is an <b>AMFI-registered Mutual Fund Distributor</b> (ARN-302882). We facilitate distribution only and do not provide investment advice or portfolio management services unless separately registered to do so.
+            {t('Vemuri Financial Services is an ')}<b>{t('AMFI-registered Mutual Fund Distributor')}</b>{t(' (ARN-302882). We facilitate distribution only and do not provide investment advice or portfolio management services unless separately registered to do so.')}
           </p>
           <ul className="space-y-2 text-sm text-gray-500 mb-6">
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              Mutual Fund investments are subject to market risks. Read all scheme related documents carefully.
+              {t('Mutual Fund investments are subject to market risks. Read all scheme related documents carefully.')}
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              In accordance with AMFI guidelines, we disclose that we earn incidental/trail commission from Asset Management Companies for distributing their mutual funds.
+              {t('In accordance with AMFI guidelines, we disclose that we earn incidental/trail commission from Asset Management Companies for distributing their mutual funds.')}
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              No assured or guaranteed returns are offered on any scheme, and past performance is not indicative of future results.
+              {t('No assured or guaranteed returns are offered on any scheme, and past performance is not indicative of future results.')}
             </li>
           </ul>
           <p className="text-sm text-gray-700 mb-6">
-            <b>Grievance escalation:</b> Contact our Grievance Officer first → AMFI investor helpline → SEBI SCORES if unresolved.
+            <b>{t('Grievance escalation:')}</b> {t('Contact our Grievance Officer first → AMFI investor helpline → SEBI SCORES if unresolved.')}
           </p>
         </>
       ),
@@ -46,20 +48,20 @@ export default function Compliance() {
       content: (
         <>
           <p className="text-gray-600 mb-4 leading-relaxed">
-            Vemuri Financial Services is a registered Insurance Agent / Corporate Agent / POSP with IRDAI. <b>Insurance is the subject matter of solicitation.</b>
+            {t('Vemuri Financial Services is a registered Insurance Agent / Corporate Agent / POSP with IRDAI. ')}<b>{t('Insurance is the subject matter of solicitation.')}</b>
           </p>
           <ul className="space-y-2 text-sm text-gray-500 mb-6">
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              For more details on risk factors, terms & conditions, read the product brochure before concluding a sale.
+              {t('For more details on risk factors, terms & conditions, read the product brochure before concluding a sale.')}
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              IRDAI does not sell policies, invest premiums or announce bonuses — beware of fraudulent calls/offers.
+              {t('IRDAI does not sell policies, invest premiums or announce bonuses — beware of fraudulent calls/offers.')}
             </li>
           </ul>
           <p className="text-sm text-gray-700 mb-6 mt-auto">
-            <b>Grievance escalation:</b> Insurer's grievance cell → our Grievance Officer → IRDAI Bima Bharosa (Toll-free 155255 / 1800-4254-732).
+            <b>{t('Grievance escalation:')}</b> {t("Insurer's grievance cell → our Grievance Officer → IRDAI Bima Bharosa (Toll-free 155255 / 1800-4254-732).")}
           </p>
         </>
       ),
@@ -75,20 +77,20 @@ export default function Compliance() {
       content: (
         <>
           <p className="text-gray-600 mb-4 leading-relaxed">
-            Vemuri Financial Services facilitates NPS onboarding as an authorised Point of Presence (POP) / subscriber-facilitation channel registered with PFRDA. NPS returns are market-linked and <b>not guaranteed</b> by PFRDA or the Government of India.
+            {t('Vemuri Financial Services facilitates NPS onboarding as an authorised Point of Presence (POP) / subscriber-facilitation channel registered with PFRDA. NPS returns are market-linked and ')}<b>{t('not guaranteed')}</b>{t(' by PFRDA or the Government of India.')}
           </p>
           <ul className="space-y-2 text-sm text-gray-500 mb-6">
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              Subscribers should read the NPS Offer Document and scheme information before investing.
+              {t('Subscribers should read the NPS Offer Document and scheme information before investing.')}
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              PFRDA does not collect any charges directly from subscribers for grievance redressal.
+              {t('PFRDA does not collect any charges directly from subscribers for grievance redressal.')}
             </li>
           </ul>
           <p className="text-sm text-gray-700 mb-6 mt-auto">
-            <b>Grievance escalation:</b> POP grievance officer → CRA (NSDL/KFintech/CAMS) → PFRDA Pension Sahayak Portal → NPS Trust Ombudsman (Toll-free: 1800 110 708).
+            <b>{t('Grievance escalation:')}</b> {t('POP grievance officer → CRA (NSDL/KFintech/CAMS) → PFRDA Pension Sahayak Portal → NPS Trust Ombudsman (Toll-free: 1800 110 708).')}
           </p>
         </>
       ),
@@ -104,20 +106,20 @@ export default function Compliance() {
       content: (
         <>
           <p className="text-gray-600 mb-4 leading-relaxed">
-            For Loan Against Mutual Funds, Home Loan and Personal Loan services, Vemuri Financial Services acts <b>only as a referral partner / Direct Selling Agent (DSA)</b> for RBI-regulated Banks and NBFCs. We are <b>not a lender</b> and do not sanction, disburse or hold custody of loan funds.
+            {t('For Loan Against Mutual Funds, Home Loan and Personal Loan services, Vemuri Financial Services acts ')}<b>{t('only as a referral partner / Direct Selling Agent (DSA)')}</b>{t(' for RBI-regulated Banks and NBFCs. We are ')}<b>{t('not a lender')}</b>{t(' and do not sanction, disburse or hold custody of loan funds.')}
           </p>
           <ul className="space-y-2 text-sm text-gray-500 mb-6">
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              Please read the Key Fact Statement (KFS) and loan agreement carefully before signing, as per RBI's Fair Practices Code.
+              {t("Please read the Key Fact Statement (KFS) and loan agreement carefully before signing, as per RBI's Fair Practices Code.")}
             </li>
             <li className="flex items-start">
               <span className="mr-2 text-primary-400">•</span>
-              We do not charge you anything for referring you to a lending partner.
+              {t('We do not charge you anything for referring you to a lending partner.')}
             </li>
           </ul>
           <p className="text-sm text-gray-700 mb-6 mt-auto">
-            <b>Grievance escalation:</b> Lender's Nodal/Grievance Officer → RBI Complaint Management System, CMS (Toll-free 14448), if unresolved after 30 days.
+            <b>{t('Grievance escalation:')}</b> {t("Lender's Nodal/Grievance Officer → RBI Complaint Management System, CMS (Toll-free 14448), if unresolved after 30 days.")}
           </p>
         </>
       ),
@@ -133,13 +135,13 @@ export default function Compliance() {
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Compliance
+            {t('Compliance')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Regulatory Disclosures &amp; <span className="text-primary-500">Grievance Redressal</span>
+            {t('Regulatory Disclosures & ')}<span className="text-primary-500">{t('Grievance Redressal')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            As mandated by AMFI, IRDAI, PFRDA and RBI for regulated financial distribution.
+            {t('As mandated by AMFI, IRDAI, PFRDA and RBI for regulated financial distribution.')}
           </p>
         </div>
 
@@ -155,14 +157,14 @@ export default function Compliance() {
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-xs font-bold tracking-wide uppercase">
-                  {item.badge}
+                  {t(item.badge)}
                 </span>
                 <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center border border-gray-100">
                   {item.icon}
                 </div>
               </div>
-              
-              <h4 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h4>
+
+              <h4 className="text-2xl font-bold text-gray-900 mb-4">{t(item.title)}</h4>
               
               <div className="flex-grow flex flex-col">
                 {item.content}
@@ -188,7 +190,7 @@ export default function Compliance() {
 
         <div className="max-w-4xl mx-auto mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-200">
           <p className="text-xs text-gray-500 leading-relaxed text-center">
-            <b>Disclaimer:</b> Vemuri Financial Services does not guarantee returns on any investment, insurance or loan product; all products are offered by their respective regulated principals (AMCs, insurers, PFRDA-registered pension funds, banks & NBFCs) and are subject to their terms, conditions and regulatory guidelines.
+            <b>{t('Disclaimer:')}</b> {t('Vemuri Financial Services does not guarantee returns on any investment, insurance or loan product; all products are offered by their respective regulated principals (AMCs, insurers, PFRDA-registered pension funds, banks & NBFCs) and are subject to their terms, conditions and regulatory guidelines.')}
           </p>
         </div>
         

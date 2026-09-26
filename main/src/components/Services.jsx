@@ -17,6 +17,7 @@ import {
   Phone,
   BarChart3
 } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 const services = [
   {
@@ -159,18 +160,19 @@ const services = [
 ]
 
 export default function Services() {
+  const { t } = useLanguage()
   return (
     <section id="services" className="py-8 bg-gray-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Our Services
+            {t('Our Services')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            One-tap access to <span className="text-primary-500">everything you need</span>
+            {t('One-tap access to ')}<span className="text-primary-500">{t('everything you need')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Directly connect with onboarding, loans, NPS, insurance, bonds & global investing from a single platform.
+            {t('Directly connect with onboarding, loans, NPS, insurance, bonds & global investing from a single platform.')}
           </p>
         </div>
 
@@ -191,13 +193,13 @@ export default function Services() {
                     <service.icon className={`h-6 w-6 ${service.color.replace('bg-', 'text-')}`} />
                   </div>
                   <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${service.color} text-white`}>
-                    {service.badge}
+                    {t(service.badge)}
                   </span>
                 </div>
-                
-                <h4 className="text-xl font-bold mb-2 text-gray-900">{service.title}</h4>
+
+                <h4 className="text-xl font-bold mb-2 text-gray-900">{t(service.title)}</h4>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
-                  {service.description}
+                  {t(service.description)}
                 </p>
                 
                 <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-gray-100">
@@ -214,7 +216,7 @@ export default function Services() {
                       ) : (
                         <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-primary-500" />
                       )}
-                      {link.text}
+                      {t(link.text)}
                     </a>
                   ))}
                 </div>

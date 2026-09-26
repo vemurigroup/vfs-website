@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ShieldCheck, HeartPulse, TrendingUp, Landmark, PieChart } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 const comparisonData = [
   {
@@ -51,18 +52,19 @@ const comparisonData = [
 ]
 
 export default function Compare() {
+  const { t } = useLanguage()
   return (
     <section id="compare" className="py-8 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Quick Comparison
+            {t('Quick Comparison')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Each product solves a <span className="text-primary-500">specific job.</span>
+            {t('Each product solves a ')}<span className="text-primary-500">{t('specific job.')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Mix them wisely to build a balanced, resilient financial portfolio.
+            {t('Mix them wisely to build a balanced, resilient financial portfolio.')}
           </p>
         </div>
 
