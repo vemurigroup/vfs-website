@@ -1,9 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, ArrowUpRight, Star, MapPin } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 import { scrollToId } from '../utils/scroll'
 
 export default function Contact() {
+  const { t } = useLanguage()
   const [isSubmitting, setIsSubmitting] = React.useState(false)
 
   const handleSubmit = (e) => {
@@ -39,13 +41,13 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Start Your Plan
+            {t('Start Your Plan')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Let's build your <span className="text-primary-500">financial future.</span>
+            {t("Let's build your ")}<span className="text-primary-500">{t('financial future.')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Share basic details and we'll tailor a plan to your specific goals.
+            {t("Share basic details and we'll tailor a plan to your specific goals.")}
           </p>
         </div>
 
@@ -62,7 +64,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-semibold text-gray-700">Name</label>
+                  <label htmlFor="name" className="text-sm font-semibold text-gray-700">{t('Name')}</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -73,7 +75,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone</label>
+                  <label htmlFor="phone" className="text-sm font-semibold text-gray-700">{t('Phone')}</label>
                   <input 
                     type="tel" 
                     id="phone" 
@@ -84,7 +86,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email</label>
+                  <label htmlFor="email" className="text-sm font-semibold text-gray-700">{t('Email')}</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -94,23 +96,23 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="goal" className="text-sm font-semibold text-gray-700">Primary Goal</label>
+                  <label htmlFor="goal" className="text-sm font-semibold text-gray-700">{t('Primary Goal')}</label>
                   <select 
                     id="goal" 
                     name="goal"
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none"
                   >
-                    <option>Children's Education</option>
-                    <option>Retirement Planning</option>
-                    <option>Tax Saving</option>
-                    <option>Wealth Creation</option>
-                    <option>Insurance Planning</option>
+                    <option>{t("Children's Education")}</option>
+                    <option>{t('Retirement Planning')}</option>
+                    <option>{t('Tax Saving')}</option>
+                    <option>{t('Wealth Creation')}</option>
+                    <option>{t('Insurance Planning')}</option>
                   </select>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-semibold text-gray-700">Message</label>
+                <label htmlFor="message" className="text-sm font-semibold text-gray-700">{t('Message')}</label>
                 <textarea 
                   id="message" 
                   name="message"
@@ -126,7 +128,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   className={`w-full md:w-auto px-8 py-3.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-primary-500/30 flex items-center justify-center ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                 >
-                  {isSubmitting ? 'Sending...' : 'Request Call-Back'}
+                  {isSubmitting ? t('Sending...') : t('Request Call-Back')}
                   {!isSubmitting && <ArrowUpRight className="ml-2 w-5 h-5" />}
                 </button>
               </div>
@@ -142,7 +144,7 @@ export default function Contact() {
             className="lg:col-span-2 space-y-6 flex flex-col"
           >
             <div className="bg-primary-900 rounded-3xl p-8 shadow-xl text-white flex-grow">
-              <h3 className="text-2xl font-bold mb-6">What you'll get</h3>
+              <h3 className="text-2xl font-bold mb-6">{t("What you'll get")}</h3>
               <ul className="space-y-4">
                 {[
                   'Personalized coverage & investment plan',
@@ -152,18 +154,18 @@ export default function Contact() {
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start">
                     <CheckCircle2 className="w-6 h-6 text-primary-400 mr-3 flex-shrink-0" />
-                    <span className="text-gray-200 leading-relaxed">{item}</span>
+                    <span className="text-gray-200 leading-relaxed">{t(item)}</span>
                   </li>
                 ))}
               </ul>
-              
+
               <div className="mt-8 pt-6">
-                <a 
+                <a
                   href="#faq"
                   onClick={(e) => { e.preventDefault(); scrollToId('faq'); }}
                   className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white border border-white/20 hover:bg-white/10 rounded-xl transition-colors w-full cursor-pointer"
                 >
-                  View FAQs
+                  {t('View FAQs')}
                 </a>
               </div>
 
@@ -202,11 +204,11 @@ export default function Contact() {
             <div className="lg:col-span-2 p-8 flex flex-col justify-center">
               <div className="flex items-center gap-2 text-primary-500 mb-3">
                 <MapPin className="w-5 h-5" />
-                <span className="text-sm font-bold uppercase tracking-widest">Visit Us</span>
+                <span className="text-sm font-bold uppercase tracking-widest">{t('Visit Us')}</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">ITI Colony, Bengaluru</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Drop by for an in-person consultation, or find us on Google Maps for directions.
+                {t('Drop by for an in-person consultation, or find us on Google Maps for directions.')}
               </p>
               <a
                 href="https://www.google.com/search?q=Vemuri+Financial+Services#lrd=0x3bae11887838ceed:0x41caa87cdeb641c,1,,,,"
@@ -215,7 +217,7 @@ export default function Contact() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-primary-500/30 w-full sm:w-auto"
               >
                 <Star className="w-5 h-5" />
-                Leave Us a Google Review
+                {t('Leave Us a Google Review')}
               </a>
             </div>
           </div>

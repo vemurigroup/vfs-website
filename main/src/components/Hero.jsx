@@ -2,10 +2,12 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, Shield, TrendingUp } from 'lucide-react'
 import ShinyText from './ShinyText'
 import { useState, useEffect } from 'react'
+import { useLanguage } from '../i18n/useLanguage'
 import { scrollToId } from '../utils/scroll'
 
 export default function Hero() {
   const [isExpanded, setIsExpanded] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,7 +65,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
-              <span className="text-gradient">Protect today.</span><br />Grow for tomorrow.
+              <span className="text-gradient">{t('Protect today.')}</span><br />{t('Grow for tomorrow.')}
             </h1>
 
             <p className="text-xl text-gray-600 max-w-[600px] leading-relaxed">
@@ -76,7 +78,7 @@ export default function Hero() {
                 onClick={(e) => { e.preventDefault(); scrollToId('contact'); }}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-500 text-white font-semibold text-base shadow-xl shadow-primary-500/20 hover:bg-primary-600 transition-colors cursor-pointer"
               >
-                Start your plan
+                {t('Start your plan')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
               <a
@@ -84,19 +86,19 @@ export default function Hero() {
                 onClick={(e) => { e.preventDefault(); scrollToId('solutions'); }}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-gray-200 text-gray-900 font-semibold text-base hover:border-primary-500 hover:text-primary-600 transition-colors cursor-pointer"
               >
-                Explore solutions
+                {t('Explore solutions')}
               </a>
             </div>
 
             <div className="flex items-center space-x-8 pt-4">
               <div className="flex flex-col">
                 <span className="text-2xl font-bold text-gray-900">₹10k → ₹1Cr*</span>
-                <span className="text-sm text-gray-500">Long-term SIP potential</span>
+                <span className="text-sm text-gray-500">{t('Long-term SIP potential')}</span>
               </div>
               <div className="w-px h-10 bg-gray-200" />
               <div className="flex flex-col">
-                <span className="text-2xl font-bold text-gray-900">2 Pillars</span>
-                <span className="text-sm text-gray-500">Protection + Creation</span>
+                <span className="text-2xl font-bold text-gray-900">2 {t('Pillars')}</span>
+                <span className="text-sm text-gray-500">{t('Protection + Creation')}</span>
               </div>
             </div>
             <p className="text-xs text-gray-400">*Illustrative, not guaranteed. Market-linked & subject to risk.</p>
@@ -109,7 +111,7 @@ export default function Hero() {
             className="relative hidden lg:block"
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 glass p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Your Financial Shield & Engine</h3>
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('Your Financial Shield & Engine')}</h3>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">

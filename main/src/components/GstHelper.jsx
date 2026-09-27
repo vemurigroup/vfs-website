@@ -5,11 +5,13 @@ import { PDFDocument } from 'pdf-lib'
 import JSZip from 'jszip'
 import * as XLSX from 'xlsx'
 import * as pdfjsLib from 'pdfjs-dist'
+import { useLanguage } from '../i18n/useLanguage'
 
 // Setup pdf.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
 
 export default function GstHelper({ onNavigateHome }) {
+  const { t } = useLanguage()
   const [pdfType, setPdfType] = useState('KFINTECH')
   const [inputMode, setInputMode] = useState('single')
   const [loading, setLoading] = useState(false)
@@ -93,7 +95,7 @@ export default function GstHelper({ onNavigateHome }) {
       if (entry.dir) continue
       
       const fileName = entry.name.toLowerCase()
-      setLoadingText("Signing: " + entry.name)
+      setLoadingText(t("Signing: ") + entry.name)
 
       if (fileName.endsWith(".pdf")) {
         try {
@@ -138,12 +140,12 @@ export default function GstHelper({ onNavigateHome }) {
 
     const signInput = signFileRef.current?.files[0]
     if (!signInput) {
-      alert("Please select a signature image.")
+      alert(t("Please select a signature image."))
       return
     }
 
     setLoading(true)
-    setLoadingText('Generating signed PDF...')
+    setLoadingText(t('Generating signed PDF...'))
 
     try {
       const signBytes = await signInput.arrayBuffer()
@@ -151,7 +153,7 @@ export default function GstHelper({ onNavigateHome }) {
       if (inputMode === 'single') {
         const pdfInput = pdfFileRef.current?.files[0]
         if (!pdfInput || pdfInput.type !== 'application/pdf') {
-          alert("Please select a valid PDF file.")
+          alert(t("Please select a valid PDF file."))
           setLoading(false)
           return
         }
@@ -170,11 +172,11 @@ export default function GstHelper({ onNavigateHome }) {
         }
         
         downloadBlob(new Blob([signedPdf], { type: "application/pdf" }), filename)
-        setSuccessMsg("Signed PDF generated successfully!")
+        setSuccessMsg(t("Signed PDF generated successfully!"))
       } else {
         const zipInput = zipFileRef.current?.files[0]
         if (!zipInput) {
-          alert("Please select a ZIP file.")
+          alert(t("Please select a ZIP file."))
           setLoading(false)
           return
         }
@@ -182,26 +184,26 @@ export default function GstHelper({ onNavigateHome }) {
         const zipBytes = await zipInput.arrayBuffer()
         const inputZip = await JSZip.loadAsync(zipBytes)
         const outputZip = new JSZip()
-        
-        setLoadingText("Scanning ZIP...")
+
+        setLoadingText(t("Scanning ZIP..."))
         const totalSigned = await processNestedZip(inputZip, outputZip, signBytes, signInput.type, pdfType)
-        
+
         if (totalSigned === 0) {
-          alert("No PDF files found inside the ZIP.")
+          alert(t("No PDF files found inside the ZIP."))
           setLoading(false)
           return
         }
-        
-        setLoadingText("Creating ZIP...")
+
+        setLoadingText(t("Creating ZIP..."))
         const outZipBlob = await outputZip.generateAsync({ type: "blob" })
         const outFilename = zipInput.name.replace(/\.zip$/i, "_signed.zip")
-        
+
         downloadBlob(outZipBlob, outFilename)
-        setSuccessMsg(`Completed! Signed ${totalSigned} PDF(s).`)
+        setSuccessMsg(t('Completed! Signed {count} PDF(s).').replace('{count}', totalSigned))
       }
     } catch (e) {
       console.error(e)
-      alert("Error: " + e.message)
+      alert(t("Error: ") + e.message)
     } finally {
       setLoading(false)
     }
@@ -210,11 +212,11 @@ export default function GstHelper({ onNavigateHome }) {
   const generateExcel = async () => {
     const excelInput = excelFileRef.current?.files[0]
     if (!excelInput) {
-      alert("Please select an Excel file.")
+      alert(t("Please select an Excel file."))
       return
     }
     if (pdfFileMapRef.current.size === 0) {
-      alert("No mapping was created. Please generate signed PDFs first.")
+      alert(t("No mapping was created. Please generate signed PDFs first."))
       return
     }
 
@@ -249,10 +251,10 @@ export default function GstHelper({ onNavigateHome }) {
         new Blob([output], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }),
         excelInput.name.replace(/\.xlsx$/i, "_Mapped.xlsx")
       )
-      alert(`${updated} row(s) updated successfully.`)
+      alert(t('{count} row(s) updated successfully.').replace('{count}', updated))
     } catch (err) {
       console.error(err)
-      alert("Failed to process Excel file.")
+      alert(t("Failed to process Excel file."))
     }
   }
 
@@ -264,31 +266,31 @@ export default function GstHelper({ onNavigateHome }) {
           className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Main Website
+          {t('Back to Main Website')}
         </button>
       </div>
 
       <div className="max-w-3xl w-full px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100"
         >
           <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">GST & PDF Helper</h1>
-            <p className="text-gray-500">Automatically place signatures on CAMS and KFINTECH PDFs</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('GST & PDF Helper')}</h1>
+            <p className="text-gray-500">{t('Automatically place signatures on CAMS and KFINTECH PDFs')}</p>
           </div>
 
           <div className="space-y-8">
             <div className="bg-blue-50 text-blue-800 p-4 rounded-xl flex items-start gap-3">
               <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
-              <p className="text-sm">Automatically places the signature based on the selected template layout.</p>
+              <p className="text-sm">{t('Automatically places the signature based on the selected template layout.')}</p>
             </div>
 
             {/* Config Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-gray-700">Template Mode</label>
+                <label className="text-sm font-semibold text-gray-700">{t('Template Mode')}</label>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input 
@@ -316,29 +318,29 @@ export default function GstHelper({ onNavigateHome }) {
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-gray-700">Input Format</label>
+                <label className="text-sm font-semibold text-gray-700">{t('Input Format')}</label>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input 
-                      type="radio" 
-                      name="inputMode" 
-                      value="single" 
-                      checked={inputMode === 'single'} 
+                    <input
+                      type="radio"
+                      name="inputMode"
+                      value="single"
+                      checked={inputMode === 'single'}
                       onChange={() => setInputMode('single')}
                       className="w-4 h-4 text-primary-600 focus:ring-primary-500"
                     />
-                    <span className="text-gray-700 font-medium">Single PDF</span>
+                    <span className="text-gray-700 font-medium">{t('Single PDF')}</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input 
-                      type="radio" 
-                      name="inputMode" 
-                      value="zip" 
-                      checked={inputMode === 'zip'} 
+                    <input
+                      type="radio"
+                      name="inputMode"
+                      value="zip"
+                      checked={inputMode === 'zip'}
                       onChange={() => setInputMode('zip')}
                       className="w-4 h-4 text-primary-600 focus:ring-primary-500"
                     />
-                    <span className="text-gray-700 font-medium">ZIP Archive</span>
+                    <span className="text-gray-700 font-medium">{t('ZIP Archive')}</span>
                   </label>
                 </div>
               </div>
@@ -350,13 +352,13 @@ export default function GstHelper({ onNavigateHome }) {
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <FileSignature className="w-5 h-5 text-primary-500" />
-                Step 1: Process PDFs
+                {t('Step 1: Process PDFs')}
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {inputMode === 'single' ? 'Select PDF Document' : 'Select ZIP Archive'}
+                    {inputMode === 'single' ? t('Select PDF Document') : t('Select ZIP Archive')}
                   </label>
                   <input 
                     type="file" 
@@ -367,7 +369,7 @@ export default function GstHelper({ onNavigateHome }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Select Signature Image</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('Select Signature Image')}</label>
                   <input 
                     type="file" 
                     ref={signFileRef}
@@ -385,7 +387,7 @@ export default function GstHelper({ onNavigateHome }) {
                 {loading ? (
                   <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> {loadingText}</>
                 ) : (
-                  <><Upload className="w-5 h-5 mr-2" /> Generate & Download Signed PDF</>
+                  <><Upload className="w-5 h-5 mr-2" /> {t('Generate & Download Signed PDF')}</>
                 )}
               </button>
 
@@ -403,11 +405,11 @@ export default function GstHelper({ onNavigateHome }) {
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <FileSpreadsheet className="w-5 h-5 text-primary-500" />
-                Step 2: Map Filenames to Excel
+                {t('Step 2: Map Filenames to Excel')}
               </h3>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Select Original CAMS/KFINTECH Excel</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('Select Original CAMS/KFINTECH Excel')}</label>
                 <input 
                   type="file" 
                   ref={excelFileRef}
@@ -416,11 +418,11 @@ export default function GstHelper({ onNavigateHome }) {
                 />
               </div>
 
-              <button 
+              <button
                 onClick={generateExcel}
                 className="w-full flex items-center justify-center px-6 py-3.5 bg-gray-900 hover:bg-black text-white rounded-xl font-bold transition-all"
               >
-                Download Updated Excel
+                {t('Download Updated Excel')}
               </button>
             </div>
 

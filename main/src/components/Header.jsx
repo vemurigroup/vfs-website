@@ -1,10 +1,12 @@
 import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Globe, Menu, X } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 import { scrollToId } from '../utils/scroll'
 
 export default function Header({ currentView, onViewChange }) {
   const [isOpen, setIsOpen] = React.useState(false)
+  const { lang, setLang, t, languages } = useLanguage()
 
   const homeLinks = [
     { name: 'Home', href: '#' },
@@ -93,7 +95,7 @@ export default function Header({ currentView, onViewChange }) {
               </span>
               <div className="flex flex-col text-[9px] sm:text-[10px] md:text-xs font-semibold text-gray-500 leading-snug mt-0.5">
                 {/* <span><span className="text-primary-500 mr-1">🔹</span>Simple. Smart. Secure Finance.</span> */}
-                <span><span className="text-primary-500 mr-1">🔹</span>One Partner for All Your Financial Needs</span>
+                <span><span className="text-primary-500 mr-1">🔹</span>{t('One Partner for All Your Financial Needs')}</span>
               </div>
               {/* <div className="mt-1.5 inline-block bg-primary-50 text-primary-700 text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded border border-primary-100 w-max">
                 AMFI Registered Mutual Fund Distributor - ARN-302882
@@ -110,13 +112,13 @@ export default function Header({ currentView, onViewChange }) {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors"
                 >
-                  {link.name}
+                  {t(link.name)}
                 </a>
               ))}
               {moreLinks.length > 0 && (
                 <div className="relative group">
                   <button className="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors flex items-center gap-1">
-                    More
+                    {t('More')}
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </button>
                   <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top scale-95 group-hover:scale-100 flex flex-col p-1">
@@ -127,7 +129,7 @@ export default function Header({ currentView, onViewChange }) {
                         onClick={(e) => handleNavClick(e, link.href)}
                         className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                       >
-                        {link.name}
+                        {t(link.name)}
                       </a>
                     ))}
                   </div>
@@ -138,11 +140,30 @@ export default function Header({ currentView, onViewChange }) {
             <div className="flex items-center space-x-3 lg:space-x-4">
               {/* Main Website button removed from header as requested */}
 
-              <div className="hidden lg:flex items-center">
+              <div className="hidden lg:flex items-center gap-2">
+                {/* Language Dropdown */}
+                <div className="relative group">
+                  <button className="px-3 py-2.5 text-xs font-bold text-gray-600 bg-gray-50 border border-gray-100 hover:bg-white hover:text-primary-600 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-1">
+                    <Globe className="w-3.5 h-3.5" />
+                    {languages[lang]}
+                  </button>
+                  <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 flex flex-col p-1 max-h-72 overflow-y-auto">
+                    {Object.entries(languages).map(([code, label]) => (
+                      <button
+                        key={code}
+                        onClick={() => setLang(code)}
+                        className={`px-4 py-2.5 text-left text-sm font-semibold rounded-lg transition-colors ${lang === code ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'}`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Login Dropdown: Client Login + VFS Office */}
                 <div className="relative group">
                   <button className="px-4 py-2.5 text-xs font-bold text-gray-600 bg-gray-50 border border-gray-100 hover:bg-white hover:text-primary-600 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-1">
-                    {currentView === 'vfs-benefits' ? 'Distributor Backoffice' : 'Login'}
+                    {currentView === 'vfs-benefits' ? t('Distributor Backoffice') : t('Login')}
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </button>
                   <div className="absolute top-full right-0 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 flex flex-col p-1">
@@ -152,11 +173,11 @@ export default function Header({ currentView, onViewChange }) {
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                     >
-                      Client Login
+                      {t('Client Login')}
                     </a>
                     <div className="h-px bg-gray-100 my-1 mx-2" />
                     <span className="px-4 pt-1 pb-1 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
-                      VFS Office
+                      {t('VFS Office')}
                     </span>
                     <a
                       href="https://vfsoffice.vemurigroup.in/"
@@ -164,18 +185,30 @@ export default function Header({ currentView, onViewChange }) {
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                     >
-                      Portal Login
+                      {t('Portal Login')}
+                    </a>
+                    <div className="h-px bg-gray-100 my-1 mx-2" />
+                    <span className="px-4 pt-1 pb-1 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                      {t('Family Vault')}
+                    </span>
+                    <a
+                      href="https://familyvault.vemurigroup.in/modules/auth/login.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
+                    >
+                      {t('Vault Login')}
                     </a>
                   </div>
                 </div>
               </div>
-              
-              <a 
+
+              <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
                 className={`hidden lg:inline-flex items-center justify-center px-4 lg:px-6 py-2.5 text-sm font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full transition-colors shadow-lg shadow-primary-500/30 ${currentView === 'partner' ? 'hidden' : ''}`}
               >
-                Get Advice
+                {t('Get Advice')}
               </a>
               
               <button 
@@ -192,10 +225,10 @@ export default function Header({ currentView, onViewChange }) {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-white border-b border-gray-100 px-4 py-6 shadow-xl absolute top-full left-0 right-0"
+          className="lg:hidden bg-white border-b border-gray-100 px-4 py-6 shadow-xl absolute top-full left-0 right-0 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
         >
             <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
@@ -205,7 +238,7 @@ export default function Header({ currentView, onViewChange }) {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="text-base font-medium text-gray-900 hover:text-primary-500"
               >
-                {link.name}
+                {t(link.name)}
               </a>
             ))}
             {moreLinks.length > 0 && (
@@ -218,24 +251,43 @@ export default function Header({ currentView, onViewChange }) {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className="text-base font-medium text-gray-900 hover:text-primary-500"
                   >
-                    {link.name}
+                    {t(link.name)}
                   </a>
                 ))}
               </>
             )}
             <div className="h-px bg-gray-100 my-2" />
-            
+
             {currentView !== 'home' && (
-              <button 
+              <button
                 onClick={() => { onViewChange('home'); window.scrollTo(0, 0); setIsOpen(false); }}
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary-700 bg-primary-50 hover:bg-primary-100 rounded-full mt-4"
               >
-                Back to Main Website
+                {t('Back to Main Website')}
               </button>
             )}
+
+            {/* Language picker */}
+            <div className="flex flex-col gap-2 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+              <span className="text-xs font-bold tracking-widest text-gray-500 uppercase px-2 mb-1 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5" /> {t('Language')}
+              </span>
+              <div className="grid grid-cols-2 gap-1.5">
+                {Object.entries(languages).map(([code, label]) => (
+                  <button
+                    key={code}
+                    onClick={() => setLang(code)}
+                    className={`px-3 py-2 text-sm font-semibold rounded-xl text-left ${lang === code ? 'bg-primary-500 text-white' : 'bg-white text-gray-700 border border-gray-100 hover:border-primary-200'}`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-col space-y-2 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
               <span className="text-xs font-bold tracking-widest text-gray-500 uppercase px-2 mb-1">
-                Login
+                {t('Login')}
               </span>
               <a
                 href="https://vfs.vemurigroup.in/"
@@ -244,11 +296,11 @@ export default function Header({ currentView, onViewChange }) {
                 className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
                 onClick={() => setIsOpen(false)}
               >
-                Client Login
+                {t('Client Login')}
               </a>
               <div className="h-px bg-gray-200 my-1 mx-2" />
               <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase px-2">
-                {currentView === 'vfs-benefits' ? 'Distributor Backoffice' : 'VFS Office'}
+                {currentView === 'vfs-benefits' ? t('Distributor Backoffice') : t('VFS Office')}
               </span>
               <a
                 href="https://vfsoffice.vemurigroup.in/"
@@ -257,7 +309,20 @@ export default function Header({ currentView, onViewChange }) {
                 className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
                 onClick={() => setIsOpen(false)}
               >
-                Portal Login
+                {t('Portal Login')}
+              </a>
+              <div className="h-px bg-gray-200 my-1 mx-2" />
+              <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase px-2">
+                {t('Family Vault')}
+              </span>
+              <a
+                href="https://familyvault.vemurigroup.in/modules/auth/login.php"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
+                onClick={() => setIsOpen(false)}
+              >
+                {t('Vault Login')}
               </a>
             </div>
             {currentView === 'home' && (
@@ -266,7 +331,7 @@ export default function Header({ currentView, onViewChange }) {
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full mt-3"
                 onClick={(e) => handleNavClick(e, '#contact')}
               >
-                Get Advice
+                {t('Get Advice')}
               </a>
             )}
           </div>

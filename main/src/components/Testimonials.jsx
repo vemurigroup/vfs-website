@@ -1,8 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Quote, ExternalLink } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Testimonials() {
+  const { t } = useLanguage()
   const testimonialsData = [
     {
       text: "Its been over 5 years since I started my financial journey with Vemuri Financial Services and I couldnt be more satisfied Their expert guidance has helped me stay disciplined with my SIPs build a strong mutual fund portfolio and plan ahead for my familys future What I appreciate most is their personalized approach they always listen patiently and suggest what truly suits my goals not just whats trending Regular reviews and proactive communication have made me feel confident and stressfree about my investments A big thank you to the Vemuri team for being my trusted financial partner for the last 5 years M Swathi Bangalore Auditor of ITI PVT LTD",
@@ -40,10 +42,10 @@ export default function Testimonials() {
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-300">
-            Testimonials
+            {t('Testimonials')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-white">
-            What Clients Are <span className="text-primary-400">Saying</span>
+            {t('What Clients Are ')}<span className="text-primary-400">{t('Saying')}</span>
           </h3>
         </div>
 
@@ -63,7 +65,7 @@ export default function Testimonials() {
             // Pause animation on hover
             whileHover={{ animationPlayState: "paused" }} 
           >
-            {[...testimonialsData, ...testimonialsData].map((t, index) => (
+            {[...testimonialsData, ...testimonialsData].map((item, index) => (
               <div
                 key={index}
                 className="flex-none w-[320px] md:w-[400px] bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:bg-white/15 transition-colors relative"
@@ -71,11 +73,11 @@ export default function Testimonials() {
                 <Quote className="absolute top-6 right-6 w-8 h-8 text-primary-400/30" />
                 <div className="h-full flex flex-col justify-between space-y-6">
                   <p className="text-gray-200 text-sm leading-relaxed italic relative z-10">
-                    "{t.text}"
+                    "{t(item.text)}"
                   </p>
                   <div className="border-t border-white/10 pt-4 mt-auto">
                     <p className="font-bold text-primary-300 text-sm">
-                      — {t.author}
+                      — {item.author}
                     </p>
                   </div>
                 </div>
@@ -97,7 +99,7 @@ export default function Testimonials() {
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 bg-white text-primary-900 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl hover:shadow-2xl hover:-translate-y-0.5 duration-200"
           >
-            Read more reviews on Google
+            {t('Read more reviews on Google')}
             <ExternalLink className="ml-2 w-5 h-5" />
           </a>
         </motion.div>

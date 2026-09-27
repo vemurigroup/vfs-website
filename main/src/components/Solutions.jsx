@@ -10,8 +10,10 @@ import {
   Wallet,
   PiggyBank,
   PieChart,
-  CheckCircle2
+  CheckCircle2,
+  Vault
 } from 'lucide-react'
+import { useLanguage } from '../i18n/useLanguage'
 
 const solutions = [
   {
@@ -121,10 +123,23 @@ const solutions = [
       'Reduces overall portfolio volatility',
       'Potential for stable, long-term growth'
     ]
+  },
+  {
+    badge: 'Family Records',
+    title: 'Family Vault',
+    description: 'A plan is only as strong as the paperwork behind it — Family Vault keeps every policy, investment, identity document, and nominee detail in one secure place, so your family can actually find and use them when it matters.',
+    icon: Vault,
+    color: 'bg-violet-500',
+    features: [
+      'Insurance, investments, assets & liabilities in one view',
+      'Nominee coverage tracked per policy, gaps flagged automatically',
+      'Encrypted storage for PAN, Aadhaar & other identity documents'
+    ]
   }
 ]
 
 export default function Solutions() {
+  const { t } = useLanguage()
   return (
     <section id="solutions" className="py-8 bg-white relative overflow-hidden">
       {/* Decorative background elements */}
@@ -134,13 +149,13 @@ export default function Solutions() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Solutions & Use-Cases
+            {t('Solutions & Use-Cases')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Pick what you need now — <span className="text-primary-500">add more as life evolves.</span>
+            {t('Pick what you need now — ')}<span className="text-primary-500">{t('add more as life evolves.')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            From protecting your family today to leaving a legacy tomorrow, we map every investment to a specific, measurable life goal.
+            {t('From protecting your family today to leaving a legacy tomorrow, we map every investment to a specific, measurable life goal.')}
           </p>
         </div>
 
@@ -161,20 +176,20 @@ export default function Solutions() {
                     <solution.icon className={`h-8 w-8 ${solution.color.replace('bg-', 'text-')}`} />
                   </div>
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${solution.color} text-white`}>
-                    {solution.badge}
+                    {t(solution.badge)}
                   </span>
                 </div>
 
-                <h4 className="text-2xl font-bold mb-3 text-gray-900">{solution.title}</h4>
+                <h4 className="text-2xl font-bold mb-3 text-gray-900">{t(solution.title)}</h4>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  {solution.description}
+                  {t(solution.description)}
                 </p>
 
                 <div className="mt-auto space-y-3 pt-6 border-t border-gray-100">
                   {solution.features.map((feature, fIndex) => (
                     <div key={fIndex} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">{feature}</span>
+                      <span className="text-sm text-gray-700">{t(feature)}</span>
                     </div>
                   ))}
                 </div>
