@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Sip({ mode = 'sip' }) {
+  const { t } = useLanguage()
   const [investment, setInvestment] = useState(10000)
   const [lumpsum, setLumpsum] = useState(100000)
   const [rate, setRate] = useState(12)
@@ -41,12 +43,12 @@ export default function Sip({ mode = 'sip' }) {
       {/* Calculator Header */}
       <div className="mb-8">
         <h3 className="text-3xl font-bold text-gray-900 mb-2">
-          {mode === 'sip' ? 'SIP Calculator' : 'Lumpsum Calculator'}
+          {mode === 'sip' ? t('SIP Calculator') : t('Lumpsum Calculator')}
         </h3>
         <p className="text-gray-600">
           {mode === 'sip'
-            ? 'Calculate the future value of your systematic investment plan.'
-            : 'Calculate the future value of a one-time lumpsum investment.'}
+            ? t('Calculate the future value of your systematic investment plan.')
+            : t('Calculate the future value of a one-time lumpsum investment.')}
         </p>
       </div>
 
@@ -56,7 +58,7 @@ export default function Sip({ mode = 'sip' }) {
           {mode === 'sip' ? (
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-semibold text-gray-700">Monthly Investment</label>
+                <label className="text-sm font-semibold text-gray-700">{t('Monthly Investment')}</label>
                 <div className="bg-primary-50 border border-primary-100 rounded-lg px-3 py-1">
                   <span className="text-primary-600 font-bold">₹{investment.toLocaleString()}</span>
                 </div>
@@ -76,7 +78,7 @@ export default function Sip({ mode = 'sip' }) {
           ) : (
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-semibold text-gray-700">Total Investment</label>
+                <label className="text-sm font-semibold text-gray-700">{t('Total Investment')}</label>
                 <div className="bg-primary-50 border border-primary-100 rounded-lg px-3 py-1">
                   <span className="text-primary-600 font-bold">₹{lumpsum.toLocaleString()}</span>
                 </div>
@@ -97,7 +99,7 @@ export default function Sip({ mode = 'sip' }) {
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-semibold text-gray-700">Expected Return Rate (p.a)</label>
+              <label className="text-sm font-semibold text-gray-700">{t('Expected Return Rate (p.a)')}</label>
               <div className="bg-primary-50 border border-primary-100 rounded-lg px-3 py-1">
                 <span className="text-primary-600 font-bold">{rate}%</span>
               </div>
@@ -117,7 +119,7 @@ export default function Sip({ mode = 'sip' }) {
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-semibold text-gray-700">Time Period</label>
+              <label className="text-sm font-semibold text-gray-700">{t('Time Period')}</label>
               <div className="bg-primary-50 border border-primary-100 rounded-lg px-3 py-1">
                 <span className="text-primary-600 font-bold">{years} Yr{years > 1 ? 's' : ''}</span>
               </div>
@@ -138,15 +140,15 @@ export default function Sip({ mode = 'sip' }) {
           {/* Results below sliders */}
           <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-3 mt-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">Invested amount</span>
+              <span className="text-sm text-gray-500">{t('Invested amount')}</span>
               <span className="font-bold text-gray-900">₹{results.totalInvested.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">Est. returns</span>
+              <span className="text-sm text-gray-500">{t('Est. returns')}</span>
               <span className="font-bold text-green-600">₹{results.wealthGained.toLocaleString()}</span>
             </div>
             <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
-              <span className="text-sm font-semibold text-gray-700">Total value</span>
+              <span className="text-sm font-semibold text-gray-700">{t('Total value')}</span>
               <span className="text-xl font-black text-primary-600">₹{results.futureValue.toLocaleString()}</span>
             </div>
           </div>
@@ -178,7 +180,7 @@ export default function Sip({ mode = 'sip' }) {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-xs text-gray-500 font-medium">Total Value</span>
+              <span className="text-xs text-gray-500 font-medium">{t('Total value')}</span>
               <span className="text-lg font-black text-gray-900">₹{results.futureValue.toLocaleString()}</span>
             </div>
           </div>
@@ -187,11 +189,11 @@ export default function Sip({ mode = 'sip' }) {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-indigo-200"></div>
-              <span className="text-sm text-gray-600">Invested amount</span>
+              <span className="text-sm text-gray-600">{t('Invested amount')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
-              <span className="text-sm text-gray-600">Est. returns</span>
+              <span className="text-sm text-gray-600">{t('Est. returns')}</span>
             </div>
           </div>
         </div>

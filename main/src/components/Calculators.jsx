@@ -7,6 +7,7 @@ import Inflation from '../components/Inflation'
 import SipSwpPlanner from '../components/SipSwpPlanner'
 import { Calculator, ChevronRight, Star } from 'lucide-react'
 import { scrollToId } from '../utils/scroll'
+import { useLanguage } from '../i18n/useLanguage'
 
 const popularCalculators = [
   { id: 'sip-waiting-swp', name: 'SIP → Waiting → SWP Planner', desc: 'Model accumulation, a waiting period, then withdrawals — see if your corpus survives inflation.', featured: true },
@@ -25,6 +26,7 @@ const popularCalculators = [
 ]
 
 export default function Calculators() {
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState('sip-waiting-swp')
 
   const handleCalcClick = (id) => {
@@ -43,13 +45,13 @@ export default function Calculators() {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary-500">
-            Planning Tools
+            {t('Planning Tools')}
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Calculate Your <span className="text-primary-500">Future</span>
+            {t('Calculate Your ')}<span className="text-primary-500">{t('Future')}</span>
           </h3>
           <p className="text-lg text-gray-600">
-            Plan your investments, estimate your returns, and stay ahead of inflation with our suite of smart financial tools.
+            {t('Plan your investments, estimate your returns, and stay ahead of inflation with our suite of smart financial tools.')}
           </p>
         </div>
 
@@ -76,7 +78,7 @@ export default function Calculators() {
               <div className="bg-gray-50 px-6 py-5 border-b border-gray-100">
                 <h4 className="font-bold text-gray-900 flex items-center gap-2">
                   <Calculator className="w-5 h-5 text-primary-500" />
-                  Popular Calculators
+                  {t('Popular Calculators')}
                 </h4>
               </div>
               <div className="divide-y divide-gray-50">
@@ -99,10 +101,10 @@ export default function Calculators() {
                             : 'text-gray-800 group-hover:text-primary-600'
                         }`}>
                           {calc.featured && <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />}
-                          <span className="truncate">{calc.name}</span>
+                          <span className="truncate">{t(calc.name)}</span>
                         </span>
                         <span className="text-xs text-gray-400 leading-snug block mt-1 line-clamp-2">
-                          {calc.desc}
+                          {t(calc.desc)}
                         </span>
                       </div>
                       <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-colors ${

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../i18n/useLanguage'
 
 export default function Fd() {
+  const { t } = useLanguage()
   const [investment, setInvestment] = useState(100000)
   const [rate, setRate] = useState(7)
   const [years, setYears] = useState(5)
@@ -24,14 +26,14 @@ export default function Fd() {
   return (
     <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 max-w-4xl mx-auto">
       <div className="mb-8">
-        <h3 className="text-3xl font-bold text-gray-900 mb-2">FD Calculator</h3>
-        <p className="text-gray-600">Calculate maturity value and interest earned on your Fixed Deposit.</p>
+        <h3 className="text-3xl font-bold text-gray-900 mb-2">{t('FD Calculator')}</h3>
+        <p className="text-gray-600">{t('Calculate maturity value and interest earned on your Fixed Deposit.')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Total Investment (₹)</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">{t('Total Investment (₹)')}</label>
             <input 
               type="range" 
               min="10000" max="10000000" step="10000"
@@ -43,7 +45,7 @@ export default function Fd() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Interest Rate (p.a %)</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">{t('Interest Rate (p.a %)')}</label>
             <input 
               type="range" 
               min="1" max="15" step="0.25"
@@ -55,7 +57,7 @@ export default function Fd() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Time Period (Years)</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">{t('Time Period (Years)')}</label>
             <input 
               type="range" 
               min="1" max="30" step="1"
@@ -69,16 +71,16 @@ export default function Fd() {
 
         <div className="bg-primary-50 rounded-2xl p-8 flex flex-col justify-center items-center text-center border border-primary-100">
           <div className="mb-6 w-full">
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">Maturity Value</p>
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">{t('Maturity Value')}</p>
             <p className="text-4xl font-bold text-primary-600">₹{results.finalValue.toLocaleString()}</p>
           </div>
           <div className="grid grid-cols-2 gap-4 w-full pt-6 border-t border-primary-200">
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Total Interest</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{t('Total Interest')}</p>
               <p className="text-lg font-bold text-green-600">₹{results.totalInterest.toLocaleString()}</p>
             </div>
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Principal Amount</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{t('Principal Amount')}</p>
               <p className="text-lg font-bold text-gray-900">₹{investment.toLocaleString()}</p>
             </div>
           </div>
