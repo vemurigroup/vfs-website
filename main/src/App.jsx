@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import WhatsAppWidget from './components/WhatsAppWidget'
 import QuickActions from './components/QuickActions'
+import { scrollToId } from './utils/scroll'
 
 const PartnerHub = lazy(() => import('./components/PartnerHub'))
 const VfsOfficeBenefits = lazy(() => import('./components/VfsOfficeBenefits'))
@@ -53,6 +54,20 @@ function App() {
       }
     }
   }, [currentView])
+
+  // A URL landed on with a #section hash (a shared link, a bookmark, an
+  // SEO result) never scrolled anywhere: the target section doesn't exist
+  // in the DOM until this component renders it, so the browser's own
+  // hash-jump has nothing to land on and silently does nothing. Once the
+  // home view's sections are mounted, do that scroll ourselves.
+  React.useEffect(() => {
+    if (currentView !== 'home') return
+    const hash = window.location.hash.replace('#', '')
+    if (!hash) return
+    const timer = setTimeout(() => scrollToId(hash, 'auto'), 150)
+    return () => clearTimeout(timer)
+  }, [currentView])
+
   return (
     <div className="bg-white min-h-screen text-gray-900 font-sans selection:bg-primary-500 selection:text-white flex flex-col">
       <Header currentView={currentView} onViewChange={setCurrentView} />

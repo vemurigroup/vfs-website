@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, ArrowUpRight, Star, MapPin } from 'lucide-react'
+import { scrollToId } from '../utils/scroll'
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
@@ -159,7 +160,7 @@ export default function Contact() {
               <div className="mt-8 pt-6">
                 <a 
                   href="#faq"
-                  onClick={(e) => { e.preventDefault(); const el = document.querySelector('#faq'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }}
+                  onClick={(e) => { e.preventDefault(); scrollToId('faq'); }}
                   className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white border border-white/20 hover:bg-white/10 rounded-xl transition-colors w-full cursor-pointer"
                 >
                   View FAQs

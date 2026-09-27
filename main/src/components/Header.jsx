@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { scrollToId } from '../utils/scroll'
 
 export default function Header({ currentView, onViewChange }) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -60,19 +61,9 @@ export default function Header({ currentView, onViewChange }) {
       e.preventDefault()
       if (currentView !== 'home' && currentView !== 'partner') {
         onViewChange('home')
-        setTimeout(() => {
-          const el = document.querySelector(href)
-          if (el) {
-            const y = el.getBoundingClientRect().top + window.scrollY - 100
-            window.scrollTo({ top: y, behavior: 'smooth' })
-          }
-        }, 150)
+        setTimeout(() => scrollToId(href), 150)
       } else {
-        const el = document.querySelector(href)
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 100
-          window.scrollTo({ top: y, behavior: 'smooth' })
-        }
+        scrollToId(href)
       }
     }
   }

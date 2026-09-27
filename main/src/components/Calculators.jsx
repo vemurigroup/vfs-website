@@ -5,6 +5,7 @@ import Swp from '../components/Swp'
 import Fd from '../components/Fd'
 import Inflation from '../components/Inflation'
 import { Calculator, ChevronRight } from 'lucide-react'
+import { scrollToId } from '../utils/scroll'
 
 const popularCalculators = [
   { id: 'sip', name: 'SIP Calculator', desc: 'Plan monthly investments and estimate wealth growth over time.' },
@@ -27,12 +28,9 @@ export default function Calculators() {
   const handleCalcClick = (id) => {
     if (['sip', 'lumpsum', 'swp', 'fd', 'inflation'].includes(id)) {
       setActiveTab(id)
-      // Scroll up to the calculator area, especially important for mobile 
+      // Scroll up to the calculator area, especially important for mobile
       // where the sidebar is below the calculator
-      const el = document.getElementById('sip')
-      if (el) {
-        window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' })
-      }
+      scrollToId('sip')
     }
   }
 

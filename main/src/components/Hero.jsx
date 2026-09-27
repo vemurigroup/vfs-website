@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, Shield, TrendingUp } from 'lucide-react'
 import ShinyText from './ShinyText'
 import { useState, useEffect } from 'react'
+import { scrollToId } from '../utils/scroll'
 
 export default function Hero() {
   const [isExpanded, setIsExpanded] = useState(true)
@@ -72,7 +73,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                onClick={(e) => { e.preventDefault(); const el = document.querySelector('#contact'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }}
+                onClick={(e) => { e.preventDefault(); scrollToId('contact'); }}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-500 text-white font-semibold text-base shadow-xl shadow-primary-500/20 hover:bg-primary-600 transition-colors cursor-pointer"
               >
                 Start your plan
@@ -80,7 +81,7 @@ export default function Hero() {
               </a>
               <a
                 href="#solutions"
-                onClick={(e) => { e.preventDefault(); const el = document.querySelector('#solutions'); if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' }); }}
+                onClick={(e) => { e.preventDefault(); scrollToId('solutions'); }}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-gray-200 text-gray-900 font-semibold text-base hover:border-primary-500 hover:text-primary-600 transition-colors cursor-pointer"
               >
                 Explore solutions
