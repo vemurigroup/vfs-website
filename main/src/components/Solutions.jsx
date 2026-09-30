@@ -125,9 +125,9 @@ const solutions = [
     ]
   },
   {
-    badge: 'Family Records',
-    title: 'Family Vault',
-    description: 'A plan is only as strong as the paperwork behind it — Family Vault keeps every policy, investment, identity document, and nominee detail in one secure place, so your family can actually find and use them when it matters.',
+    badge: 'Family & Personal Records',
+    title: 'MyFamilyRecords',
+    description: 'A plan is only as strong as the paperwork behind it — MyFamilyRecords keeps every policy, investment, identity document, and nominee detail in one secure place, so your family can actually find and use them when it matters.',
     icon: Vault,
     color: 'bg-violet-500',
     features: [

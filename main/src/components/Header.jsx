@@ -189,7 +189,7 @@ export default function Header({ currentView, onViewChange }) {
                     </a>
                     <div className="h-px bg-gray-100 my-1 mx-2" />
                     <span className="px-4 pt-1 pb-1 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
-                      {t('Family Vault')}
+                      {t('MyFamilyRecords')}
                     </span>
                     <a
                       href="https://familyvault.vemurigroup.in/modules/auth/login.php"
@@ -197,7 +197,7 @@ export default function Header({ currentView, onViewChange }) {
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
                     >
-                      {t('Vault Login')}
+                      {t('MyFamilyRecords Login')}
                     </a>
                   </div>
                 </div>
@@ -313,7 +313,7 @@ export default function Header({ currentView, onViewChange }) {
               </a>
               <div className="h-px bg-gray-200 my-1 mx-2" />
               <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase px-2">
-                {t('Family Vault')}
+                {t('MyFamilyRecords')}
               </span>
               <a
                 href="https://familyvault.vemurigroup.in/modules/auth/login.php"
@@ -322,7 +322,7 @@ export default function Header({ currentView, onViewChange }) {
                 className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"
                 onClick={() => setIsOpen(false)}
               >
-                {t('Vault Login')}
+                {t('MyFamilyRecords Login')}
               </a>
             </div>
             {currentView === 'home' && (

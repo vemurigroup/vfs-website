@@ -159,13 +159,13 @@ const services = [
     ]
   },
   {
-    badge: 'Family Records',
-    title: 'Family Vault',
+    badge: 'Family & Personal Records',
+    title: 'MyFamilyRecords',
     description: 'Store policies, investments, identity documents & nominee details in one secure, encrypted record book for your family or office.',
     icon: Vault,
     color: 'bg-violet-500',
     links: [
-      { text: 'Open Family Vault', url: 'https://familyvault.vemurigroup.in/modules/auth/login.php', type: 'web' }
+      { text: 'Open MyFamilyRecords', url: 'https://familyvault.vemurigroup.in/modules/auth/login.php', type: 'web' }
     ]
   }
 ]
