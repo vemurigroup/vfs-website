@@ -268,21 +268,19 @@ export default function Header({ currentView, onViewChange }) {
             )}
 
             {/* Language picker */}
-            <div className="flex flex-col gap-2 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
-              <span className="text-xs font-bold tracking-widest text-gray-500 uppercase px-2 mb-1 flex items-center gap-1.5">
+            <div className="flex items-center justify-between gap-3 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+              <span className="text-xs font-bold tracking-widest text-gray-500 uppercase flex items-center gap-1.5 flex-shrink-0">
                 <Globe className="w-3.5 h-3.5" /> {t('Language')}
               </span>
-              <div className="grid grid-cols-2 gap-1.5">
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value)}
+                className="flex-1 min-w-0 px-3 py-2 text-sm font-semibold rounded-xl bg-white text-gray-700 border border-gray-200"
+              >
                 {Object.entries(languages).map(([code, label]) => (
-                  <button
-                    key={code}
-                    onClick={() => setLang(code)}
-                    className={`px-3 py-2 text-sm font-semibold rounded-xl text-left ${lang === code ? 'bg-primary-500 text-white' : 'bg-white text-gray-700 border border-gray-100 hover:border-primary-200'}`}
-                  >
-                    {label}
-                  </button>
+                  <option key={code} value={code}>{label}</option>
                 ))}
-              </div>
+              </select>
             </div>
 
             <div className="flex flex-col space-y-2 mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
