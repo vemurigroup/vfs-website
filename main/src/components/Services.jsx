@@ -165,7 +165,7 @@ const services = [
     icon: Vault,
     color: 'bg-violet-500',
     links: [
-      { text: 'Open MyFamilyRecords', url: 'https://familyvault.vemurigroup.in/modules/auth/login.php', type: 'web' }
+      { text: 'Open MyFamilyRecords', url: 'http://myfamilyrecords.vemurigroup.in/', type: 'web' }
     ]
   }
 ]

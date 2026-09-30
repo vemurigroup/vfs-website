@@ -192,7 +192,7 @@ export default function Header({ currentView, onViewChange }) {
                       {t('MyFamilyRecords')}
                     </span>
                     <a
-                      href="https://familyvault.vemurigroup.in/modules/auth/login.php"
+                      href="http://myfamilyrecords.vemurigroup.in/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 text-left text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-colors"
@@ -316,7 +316,7 @@ export default function Header({ currentView, onViewChange }) {
                 {t('MyFamilyRecords')}
               </span>
               <a
-                href="https://familyvault.vemurigroup.in/modules/auth/login.php"
+                href="http://myfamilyrecords.vemurigroup.in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-left px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-xl"

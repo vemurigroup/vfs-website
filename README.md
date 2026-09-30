@@ -117,6 +117,7 @@ Alternatively, connect the GitHub repo in the [Vercel dashboard](https://vercel.
 | **Vercel deployment** | [vfs-website-three.vercel.app](https://vfs-website-three.vercel.app) |
 | **VFS Office (client back-office portal)** | [vfsoffice.vemurigroup.in](https://vfsoffice.vemurigroup.in/) |
 | **VFS client login** | [vfs.vemurigroup.in](https://vfs.vemurigroup.in/) |
+| **MyFamilyRecords (family & personal records vault)** | [myfamilyrecords.vemurigroup.in](http://myfamilyrecords.vemurigroup.in/) |
 | **Email** | [vemurifin@gmail.com](mailto:vemurifin@gmail.com) |
 | **WhatsApp** | +91 98862 91668 |
 
