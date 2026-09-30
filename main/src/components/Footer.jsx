@@ -110,6 +110,7 @@ export default function Footer({ onViewChange }) {
         <div className="border-t border-gray-800 pt-8">
           <p className="text-white font-bold text-sm">Vemuri Financial Services</p>
           <p className="text-xs text-gray-400 mt-1">{t('A brand of Sita Rama Ranganadha Ramanujadasu Vemuri')}</p>
+          <p className="text-xs font-semibold text-gray-400 mt-1">{t('Name')}: Sita Rama Ranganadha Ramanujadasu Vemuri</p>
           <p className="text-xs font-semibold text-gray-400 mt-1">{t('AMFI Registered Mutual Fund Distributor')} | ARN: 302882</p>
           <p className="text-xs text-gray-500 mt-3 leading-relaxed max-w-3xl">
             {t('Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.')}
