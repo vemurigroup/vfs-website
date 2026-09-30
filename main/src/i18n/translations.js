@@ -19,6 +19,15 @@
 
 export const translations = {
   hi: {
+    // Footer — AMFI regulatory
+    'A brand of Sita Rama Ranganadha Ramanujadasu Vemuri': 'सीता राम रंगनाध रामानुजदासु वेमुरी का एक ब्रांड',
+    'AMFI Registered Mutual Fund Distributor': 'AMFI पंजीकृत म्यूचुअल फंड वितरक',
+    'Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.': 'वेमुरी फाइनेंशियल सर्विसेज एक म्यूचुअल फंड वितरक है। म्यूचुअल फंड निवेश बाजार जोखिमों के अधीन हैं। निवेश करने से पहले सभी योजना संबंधित दस्तावेजों को ध्यान से पढ़ें।',
+    'Regulatory Links:': 'नियामक लिंक:',
+    'AMFI Code of Conduct': 'AMFI आचार संहिता',
+    'MFD Disclosures': 'MFD प्रकटीकरण',
+    'Investor Grievance': 'निवेशक शिकायत',
+
     // GstHelper page
     'Signing: ': 'हस्ताक्षर हो रहा है: ',
     'Please select a signature image.': 'कृपया एक हस्ताक्षर छवि चुनें।',
@@ -637,6 +646,15 @@ export const translations = {
   },
 
   te: {
+    // Footer — AMFI regulatory
+    'A brand of Sita Rama Ranganadha Ramanujadasu Vemuri': 'సీతా రామ రంగనాధ రామానుజదాసు వేముri యొక్క బ్రాండ్',
+    'AMFI Registered Mutual Fund Distributor': 'AMFI నమోదిత మ్యూచువల్ ఫండ్ డిస్ట్రిబ్యూటర్',
+    'Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.': 'వేముri ఫైనాన్షియల్ సర్వీసెస్ ఒక మ్యూచువల్ ఫండ్ డిస్ట్రిబ్యూటర్. మ్యూచువల్ ఫండ్ పెట్టుబడులు మార్కెట్ నష్టాలకు లోబడి ఉంటాయి. పెట్టుబడి పెట్టే ముందు అన్ని పథకం సంబంధిత పత్రాలను జాగ్రత్తగా చదవండి.',
+    'Regulatory Links:': 'నియంత్రణ లింకులు:',
+    'AMFI Code of Conduct': 'AMFI నియమావళి',
+    'MFD Disclosures': 'MFD వెల్లడింపులు',
+    'Investor Grievance': 'పెట్టుబడిదారుల ఫిర్యాదు',
+
     // GstHelper page
     'Signing: ': 'సంతకం చేస్తోంది: ',
     'Please select a signature image.': 'దయచేసి సంతకం చిత్రాన్ని ఎంచుకోండి.',
@@ -1257,6 +1275,15 @@ export const translations = {
   },
 
   ta: {
+    // Footer — AMFI regulatory
+    'A brand of Sita Rama Ranganadha Ramanujadasu Vemuri': 'சீதா ராம ரங்கநாத ராமானுஜதாசு வேமுரியின் ஒரு பிராண்ட்',
+    'AMFI Registered Mutual Fund Distributor': 'AMFI பதிவுசெய்யப்பட்ட மியூச்சுவல் ஃபண்ட் டிஸ்ட்ரிபியூட்டர்',
+    'Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.': 'வேமுரி ஃபைனான்ஷியல் சர்வீசஸ் ஒரு மியூச்சுவல் ஃபண்ட் டிஸ்ட்ரிபியூட்டர். மியூச்சுவல் ஃபண்ட் முதலீடுகள் சந்தை அபாயங்களுக்கு உட்பட்டவை. முதலீடு செய்வதற்கு முன் அனைத்து திட்ட தொடர்பான ஆவணங்களையும் கவனமாகப் படிக்கவும்.',
+    'Regulatory Links:': 'ஒழுங்குமுறை இணைப்புகள்:',
+    'AMFI Code of Conduct': 'AMFI நடத்தை நெறிமுறை',
+    'MFD Disclosures': 'MFD வெளிப்படுத்தல்கள்',
+    'Investor Grievance': 'முதலீட்டாளர் குறை',
+
     // GstHelper page
     'Signing: ': 'கையொப்பமிடுகிறது: ',
     'Please select a signature image.': 'தயவுசெய்து ஒரு கையொப்ப படத்தைத் தேர்ந்தெடுக்கவும்.',
@@ -1877,6 +1904,15 @@ export const translations = {
   },
 
   kn: {
+    // Footer — AMFI regulatory
+    'A brand of Sita Rama Ranganadha Ramanujadasu Vemuri': 'ಸೀತಾ ರಾಮ ರಂಗನಾಧ ರಾಮಾನುಜದಾಸು ವೇಮುರಿ ಅವರ ಬ್ರಾಂಡ್',
+    'AMFI Registered Mutual Fund Distributor': 'AMFI ನೋಂದಾಯಿತ ಮ್ಯೂಚುಯಲ್ ಫಂಡ್ ಡಿಸ್ಟ್ರಿಬ್ಯೂಟರ್',
+    'Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.': 'ವೇಮುರಿ ಫೈನಾನ್ಷಿಯಲ್ ಸರ್ವೀಸಸ್ ಒಂದು ಮ್ಯೂಚುಯಲ್ ಫಂಡ್ ಡಿಸ್ಟ್ರಿಬ್ಯೂಟರ್. ಮ್ಯೂಚುಯಲ್ ಫಂಡ್ ಹೂಡಿಕೆಗಳು ಮಾರುಕಟ್ಟೆ ಅಪಾಯಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತವೆ. ಹೂಡಿಕೆ ಮಾಡುವ ಮೊದಲು ಎಲ್ಲಾ ಯೋಜನೆ ಸಂಬಂಧಿತ ದಾಖಲೆಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ.',
+    'Regulatory Links:': 'ನಿಯಂತ್ರಕ ಲಿಂಕ್‌ಗಳು:',
+    'AMFI Code of Conduct': 'AMFI ನೀತಿ ಸಂಹಿತೆ',
+    'MFD Disclosures': 'MFD ಬಹಿರಂಗಪಡಿಸುವಿಕೆಗಳು',
+    'Investor Grievance': 'ಹೂಡಿಕೆದಾರರ ಕುಂದುಕೊರತೆ',
+
     // GstHelper page
     'Signing: ': 'ಸಹಿ ಮಾಡಲಾಗುತ್ತಿದೆ: ',
     'Please select a signature image.': 'ದಯವಿಟ್ಟು ಸಹಿ ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ.',
@@ -2497,6 +2533,15 @@ export const translations = {
   },
 
   ml: {
+    // Footer — AMFI regulatory
+    'A brand of Sita Rama Ranganadha Ramanujadasu Vemuri': 'സീതാ രാമ രംഗനാധ രാമാനുജദാസു വേമുരിയുടെ ഒരു ബ്രാൻഡ്',
+    'AMFI Registered Mutual Fund Distributor': 'AMFI രജിസ്റ്റർ ചെയ്ത മ്യൂച്വൽ ഫണ്ട് ഡിസ്ട്രിബ്യൂട്ടർ',
+    'Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.': 'വേമുരി ഫിനാൻഷ്യൽ സർവീസസ് ഒരു മ്യൂച്വൽ ഫണ്ട് ഡിസ്ട്രിബ്യൂട്ടറാണ്. മ്യൂച്വൽ ഫണ്ട് നിക്ഷേപങ്ങൾ വിപണി അപകടസാധ്യതകൾക്ക് വിധേയമാണ്. നിക്ഷേപിക്കുന്നതിന് മുമ്പ് എല്ലാ സ്കീം സംബന്ധിച്ച രേഖകളും ശ്രദ്ധാപൂർവ്വം വായിക്കുക.',
+    'Regulatory Links:': 'നിയന്ത്രണ ലിങ്കുകൾ:',
+    'AMFI Code of Conduct': 'AMFI പെരുമാറ്റച്ചട്ടം',
+    'MFD Disclosures': 'MFD വെളിപ്പെടുത്തലുകൾ',
+    'Investor Grievance': 'നിക്ഷേപക പരാതി',
+
     // GstHelper page
     'Signing: ': 'ഒപ്പിടുന്നു: ',
     'Please select a signature image.': 'ദയവായി ഒരു ഒപ്പ് ചിത്രം തിരഞ്ഞെടുക്കുക.',

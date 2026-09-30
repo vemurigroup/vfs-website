@@ -107,9 +107,32 @@ export default function Footer({ onViewChange }) {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <div className="border-t border-gray-800 pt-8">
+          <p className="text-white font-bold text-sm">Vemuri Financial Services</p>
+          <p className="text-xs text-gray-400 mt-1">{t('A brand of Sita Rama Ranganadha Ramanujadasu Vemuri')}</p>
+          <p className="text-xs font-semibold text-gray-400 mt-1">{t('AMFI Registered Mutual Fund Distributor')} | ARN: 302882</p>
+          <p className="text-xs text-gray-500 mt-3 leading-relaxed max-w-3xl">
+            {t('Vemuri Financial Services is a Mutual Fund Distributor. Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.')}
+          </p>
+          <p className="text-xs text-gray-500 mt-2">
+            📧 <a href="mailto:vemurifin@gmail.com" className="hover:text-primary-400 transition-colors">vemurifin@gmail.com</a>
+          </p>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-3 text-xs text-gray-500">
+            <span className="text-gray-400 font-semibold">{t('Regulatory Links:')}</span>
+            <a href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors underline">AMFI</a>
+            <span>|</span>
+            <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors underline">SEBI</a>
+            <span>|</span>
+            <a href="https://www.amfiindia.com/amfi-guidelines" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors underline">{t('AMFI Code of Conduct')}</a>
+            <span>|</span>
+            <a href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors underline">{t('MFD Disclosures')}</a>
+            <span>|</span>
+            <a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors underline">{t('Investor Grievance')}</a>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>© {new Date().getFullYear()} Vemuri Financial Services. All rights reserved.</p>
-          <p className="mt-4 md:mt-0 text-xs font-semibold text-gray-400">AMFI Registered Mutual Fund Distributor - ARN-302882</p>
         </div>
       </div>
     </footer>
